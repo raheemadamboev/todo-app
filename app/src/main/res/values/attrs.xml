@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Layout background color -->
+    <attr name="layout_background" format="reference" />
+
+    <!-- Primary text color -->
+    <attr name="primary_text_color" format="reference" />
+
+    <!-- Card color -->
+    <attr name="card_color" format="reference" />
+
+    <!-- Primary button color -->
+    <attr name="primary_button_color" format="reference" />
+
+    <!-- Primary button text color -->
+    <attr name="button_text_color" format="reference" />
+
+    <!-- Card click ripple color -->
+    <attr name="primary_ripple_color" format="reference" />
+
+</resources>
