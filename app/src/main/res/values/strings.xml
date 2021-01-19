@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ToDo</string>
+
+    <!-- Add Edit Task Fragment -->
+    <string name="task_name">Task name</string>
+    <string name="important_task">Important task</string>
 </resources>

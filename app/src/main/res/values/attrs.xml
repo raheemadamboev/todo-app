@@ -7,6 +7,9 @@
     <!-- Primary text color -->
     <attr name="primary_text_color" format="reference" />
 
+    <!-- Secondary text color -->
+    <attr name="secondary_text_color" format="reference" />
+
     <!-- Card color -->
     <attr name="card_color" format="reference" />
 

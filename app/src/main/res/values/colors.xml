@@ -6,6 +6,7 @@
     <color name="brown">#7E5233</color>
     <color name="brown_2">#4f290c</color>
     <color name="brown_3">#b07e5d</color>
+    <color name="grey">#696969</color>
 
     <color name="black_ripple">#30000000</color>
 </resources>
