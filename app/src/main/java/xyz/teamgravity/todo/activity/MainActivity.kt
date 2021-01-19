@@ -2,8 +2,10 @@ package xyz.teamgravity.todo.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import xyz.teamgravity.todo.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

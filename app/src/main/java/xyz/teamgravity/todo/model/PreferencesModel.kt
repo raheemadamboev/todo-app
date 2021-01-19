@@ -1,6 +1,6 @@
 package xyz.teamgravity.todo.model
 
-import xyz.teamgravity.todo.viewmodel.TaskSort
+import xyz.teamgravity.todo.viewmodel.room.TaskSort
 
 data class PreferencesModel(
     val sort: TaskSort,

@@ -5,51 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/layout_background"
-    tools:context=".fragment.fragment.TaskListFragment"
-    tools:ignore="Autofill, TextFields">
+    tools:context=".fragment.fragment.TaskListFragment">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/task_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:hint="@string/task_name"
-            android:textColor="?attr/primary_text_color"
-            android:textColorHint="?attr/secondary_text_color" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/important_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/important_task" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/timestamp_t"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textColor="?attr/secondary_text_color"
-            tools:text="24" />
-    </LinearLayout>
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/save_b"
+        android:id="@+id/add_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_check_mark"
+        android:src="@drawable/ic_add"
         app:elevation="10dp"
         app:tint="?attr/button_text_color" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

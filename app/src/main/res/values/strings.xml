@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">ToDo</string>
 
+    <!-- Task List Fragment -->
+    <string name="tasks">Tasks</string>
+
+    <!-- Task list menu -->
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
+    <string name="sort_by_name">Sort by name</string>
+    <string name="sort_by_date">Sort by date</string>
+    <string name="hide_completed">Hide completed</string>
+    <string name="delete_all_completed">Delete all completed</string>
+
     <!-- Add Edit Task Fragment -->
     <string name="task_name">Task name</string>
     <string name="important_task">Important task</string>

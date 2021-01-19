@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.viewmodel
+package xyz.teamgravity.todo.viewmodel.room
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

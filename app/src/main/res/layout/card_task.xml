@@ -33,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:fontFamily="@font/muli"
             android:maxLines="1"
             android:textColor="?attr/primary_text_color"
             app:layout_constraintBottom_toBottomOf="parent"

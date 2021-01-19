@@ -9,8 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import xyz.teamgravity.todo.helper.constants.TaskDatabase
-import xyz.teamgravity.todo.viewmodel.MyDatabase
-import xyz.teamgravity.todo.viewmodel.TaskCallback
+import xyz.teamgravity.todo.viewmodel.room.MyDatabase
+import xyz.teamgravity.todo.viewmodel.room.TaskCallback
 import javax.inject.Singleton
 
 @Module
