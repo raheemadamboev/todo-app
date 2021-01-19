@@ -18,7 +18,7 @@ class ConfirmDialog : DialogFragment() {
             .setTitle(viewModel.headerText)
             .setMessage(viewModel.bodyText)
             .setPositiveButton(viewModel.positiveButtonText) { _, _ ->
-
+                viewModel.onPositiveButtonClick()
             }.setNegativeButton(viewModel.negativeButtonText, null)
             .create()
     }

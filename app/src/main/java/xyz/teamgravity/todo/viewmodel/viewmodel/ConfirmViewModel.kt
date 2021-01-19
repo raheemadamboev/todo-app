@@ -5,11 +5,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.injection.ApplicationScope
 import xyz.teamgravity.todo.viewmodel.room.TaskDao
 
 class ConfirmViewModel @ViewModelInject constructor(
-    private val taskDao: TaskDao,
+    private val dao: TaskDao,
     @ApplicationScope private val applicationScope: CoroutineScope,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
@@ -43,4 +44,15 @@ class ConfirmViewModel @ViewModelInject constructor(
             field = value
             state.set(NEGATIVE_BUTTON_TEXT, value)
         }
+
+    /**
+     * events
+     */
+
+    /**
+     * Confirm dialog positive button click
+     */
+    fun onPositiveButtonClick() = applicationScope.launch {
+        dao.deleteAllCompleted()
+    }
 }
