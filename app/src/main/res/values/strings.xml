@@ -3,6 +3,10 @@
 
     <!-- Task List Fragment -->
     <string name="tasks">Tasks</string>
+    <string name="deleted_successfully">Task deleted successfully</string>
+    <string name="undo">Undo</string>
+    <string name="new_task">New task</string>
+    <string name="edit_task">Edit task</string>
 
     <!-- Task list menu -->
     <string name="search">Search</string>
@@ -15,4 +19,10 @@
     <!-- Add Edit Task Fragment -->
     <string name="task_name">Task name</string>
     <string name="important_task">Important task</string>
+
+    <!-- Delete All Completed Dialog -->
+    <string name="confirm_deletion">Confirm deletion</string>
+    <string name="wanna_delete_all">Do you want to delete all completed tasks?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>
