@@ -25,10 +25,14 @@
     <string name="task_created">Task created</string>
     <string name="created">Created</string>
 
+    <!-- Add Edit Task menu -->
+    <string name="delete">Delete</string>
+
     <!-- Confirm dialog -->
     <string name="confirm_deletion">Confirm deletion</string>
     <string name="wanna_delete_completed">Do you want to delete all completed tasks?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="wanna_delete_all">Do you want to delete all tasks?</string>
+    <string name="wanna_delete_task">Do you want to delete this task?</string>
 </resources>
