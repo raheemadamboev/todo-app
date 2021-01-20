@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/taskListFragment"
         android:name="xyz.teamgravity.todo.fragment.fragment.TaskListFragment"
-        android:label="tasks"
+        android:label="@string/tasks"
         tools:layout="@layout/fragment_task_list">
         <action
             android:id="@+id/action_taskListFragment_to_addEditTaskFragment"

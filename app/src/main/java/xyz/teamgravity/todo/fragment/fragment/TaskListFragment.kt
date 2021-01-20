@@ -42,6 +42,7 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         recyclerView()
         button()

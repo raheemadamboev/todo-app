@@ -18,7 +18,7 @@ class ConfirmViewModel @ViewModelInject constructor(
         const val HEADER_TEXT = "header"
         const val BODY_TEXT = "body"
         const val POSITIVE_BUTTON_TEXT = "positive_button"
-        const val NEGATIVE_BUTTON_TEXT = "negativeButtonText"
+        const val NEGATIVE_BUTTON_TEXT = "negative_button"
     }
 
     var headerText = state.get<String>(HEADER_TEXT) ?: ""
