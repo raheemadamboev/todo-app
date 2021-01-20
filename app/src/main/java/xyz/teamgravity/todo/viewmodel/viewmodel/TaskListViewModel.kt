@@ -79,7 +79,7 @@ class TaskListViewModel @ViewModelInject constructor(
      * Menu delete all task
      */
     fun onMenuDeleteAllTasks() = viewModelScope.launch {
-        taskEventChannel.send(TaskEvent.NavigateDeleteAllCompleted)
+        taskEventChannel.send(TaskEvent.NavigateDeleteAllTasks)
     }
 
     /**
