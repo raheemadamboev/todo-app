@@ -5,6 +5,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.injection.ApplicationScope
+import xyz.teamgravity.todo.model.TaskModel
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -19,7 +20,9 @@ class TaskCallback @Inject constructor(
         val dao = database.get().taskDao()
 
         applicationScope.launch {
-            // insert boys
+            dao.insert(TaskModel(name = "Be organized and efficient", important = true))
+            dao.insert(TaskModel(name = "Будьте организованы и эффективны", important = true))
+            dao.insert(TaskModel(name = "Tartibli va samarali bo'ling", important = true))
         }
     }
 }
