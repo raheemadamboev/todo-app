@@ -83,6 +83,13 @@ class TaskListViewModel @ViewModelInject constructor(
     }
 
     /**
+     * Menu about me
+     */
+    fun onMenuAboutMe() = viewModelScope.launch {
+        taskEventChannel.send(TaskEvent.NavigateAboutMeScreen)
+    }
+
+    /**
      * Task card click
      */
     fun onTaskCardClick(task: TaskModel) = viewModelScope.launch {
@@ -124,5 +131,6 @@ class TaskListViewModel @ViewModelInject constructor(
         object NavigateToAddTaskScreen : TaskEvent()
         data class NavigateToAddEditTaskScreen(val task: TaskModel) : TaskEvent()
         data class ShowAddEditResultMessage(val message: String) : TaskEvent()
+        object NavigateAboutMeScreen: TaskEvent()
     }
 }

@@ -140,6 +140,10 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                             )
                         )
                     }
+
+                    is TaskListViewModel.TaskEvent.NavigateAboutMeScreen -> {
+                        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToAboutFragment())
+                    }
                 }.exhaustive
             }
         }
@@ -220,6 +224,11 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
 
             R.id.action_delete_all -> {
                 viewModel.onMenuDeleteAllTasks()
+                true
+            }
+
+            R.id.action_about_me -> {
+                viewModel.onMenuAboutMe()
                 true
             }
 

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ToDo</string>
+    <string name="raheem">Raheem</string>
 
     <!-- Task List Fragment -->
     <string name="tasks">Tasks</string>
@@ -16,6 +17,7 @@
     <string name="hide_completed">Hide completed</string>
     <string name="delete_all_completed">Delete all completed</string>
     <string name="delete_all_tasks">Delete all tasks</string>
+    <string name="about_me">About me</string>
 
     <!-- Add Edit Task Fragment -->
     <string name="task_name">Task name</string>
