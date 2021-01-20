@@ -19,6 +19,10 @@
     <!-- Add Edit Task Fragment -->
     <string name="task_name">Task name</string>
     <string name="important_task">Important task</string>
+    <string name="error_name">Name cannot be empty</string>
+    <string name="task_updated">Task updated</string>
+    <string name="task_created">Task created</string>
+    <string name="created">Created</string>
 
     <!-- Delete All Completed Dialog -->
     <string name="confirm_deletion">Confirm deletion</string>
