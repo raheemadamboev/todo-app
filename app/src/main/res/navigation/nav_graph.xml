@@ -44,6 +44,9 @@
         <argument
             android:name="negative_button"
             app:argType="string" />
+        <argument
+            android:name="code"
+            app:argType="integer" />
     </dialog>
     <action android:id="@+id/action_global_confirmDialog" app:destination="@id/confirmDialog" />
 </navigation>

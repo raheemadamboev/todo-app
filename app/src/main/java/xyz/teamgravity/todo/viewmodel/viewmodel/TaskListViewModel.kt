@@ -76,6 +76,13 @@ class TaskListViewModel @ViewModelInject constructor(
     }
 
     /**
+     * Menu delete all task
+     */
+    fun onMenuDeleteAllTasks() = viewModelScope.launch {
+        taskEventChannel.send(TaskEvent.NavigateDeleteAllCompleted)
+    }
+
+    /**
      * Task card click
      */
     fun onTaskCardClick(task: TaskModel) = viewModelScope.launch {
@@ -112,6 +119,7 @@ class TaskListViewModel @ViewModelInject constructor(
 
     sealed class TaskEvent {
         object NavigateDeleteAllCompleted : TaskEvent()
+        object NavigateDeleteAllTasks : TaskEvent()
         data class ShowUndoDeleteTaskMessage(val task: TaskModel) : TaskEvent()
         object NavigateToAddTaskScreen : TaskEvent()
         data class NavigateToAddEditTaskScreen(val task: TaskModel) : TaskEvent()

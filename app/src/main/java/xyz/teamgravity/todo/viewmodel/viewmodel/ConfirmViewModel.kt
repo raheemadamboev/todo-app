@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.injection.ApplicationScope
 import xyz.teamgravity.todo.viewmodel.room.TaskDao
 
@@ -19,6 +20,7 @@ class ConfirmViewModel @ViewModelInject constructor(
         const val BODY_TEXT = "body"
         const val POSITIVE_BUTTON_TEXT = "positive_button"
         const val NEGATIVE_BUTTON_TEXT = "negative_button"
+        const val CODE = "code"
     }
 
     var headerText = state.get<String>(HEADER_TEXT) ?: ""
@@ -45,14 +47,23 @@ class ConfirmViewModel @ViewModelInject constructor(
             state.set(NEGATIVE_BUTTON_TEXT, value)
         }
 
+    var code = state.get<Int>(CODE) ?: 0
+        set(value) {
+            field = value
+            state.set(CODE, value)
+        }
+
     /**
-     * events
+     * Events
      */
 
     /**
      * Confirm dialog positive button click
      */
-    fun onPositiveButtonClick() = applicationScope.launch {
-        dao.deleteAllCompleted()
+    fun onPositiveButtonClick(code: Int) = applicationScope.launch {
+        when (code) {
+            ConfirmDialog.DELETE_COMPLETED_TASK -> dao.deleteAllCompleted()
+            ConfirmDialog.DELETE_ALL_TASKS -> dao.deleteAll()
+        }
     }
 }

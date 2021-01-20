@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.databinding.FragmentTaskListBinding
+import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.helper.adapter.TaskAdapter
 import xyz.teamgravity.todo.helper.extensions.exhaustive
 import xyz.teamgravity.todo.helper.extensions.onQueryTextChanged
@@ -120,9 +121,22 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                         findNavController().navigate(
                             TaskListFragmentDirections.actionGlobalConfirmDialog(
                                 header = getString(R.string.confirm_deletion),
+                                body = getString(R.string.wanna_delete_completed),
+                                positiveButton = getString(R.string.yes),
+                                negativeButton = getString(R.string.no),
+                                code = ConfirmDialog.DELETE_COMPLETED_TASK
+                            )
+                        )
+                    }
+
+                    is TaskListViewModel.TaskEvent.NavigateDeleteAllTasks -> {
+                        findNavController().navigate(
+                            TaskListFragmentDirections.actionGlobalConfirmDialog(
+                                header = getString(R.string.confirm_deletion),
                                 body = getString(R.string.wanna_delete_all),
                                 positiveButton = getString(R.string.yes),
-                                negativeButton = getString(R.string.no)
+                                negativeButton = getString(R.string.no),
+                                code = ConfirmDialog.DELETE_ALL_TASKS
                             )
                         )
                     }
@@ -201,6 +215,11 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
 
             R.id.action_delete_completed -> {
                 viewModel.onMenuDeleteAllCompleted()
+                true
+            }
+
+            R.id.action_delete_all -> {
+                viewModel.onMenuDeleteAllTasks()
                 true
             }
 
