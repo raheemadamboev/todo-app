@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_task_list">
         <action
             android:id="@+id/action_taskListFragment_to_addEditTaskFragment"
-            app:destination="@id/addEditTaskFragment" />
+            app:destination="@id/addEditTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_taskListFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/addEditTaskFragment"
@@ -34,7 +42,7 @@
     <dialog
         android:id="@+id/confirmDialog"
         android:name="xyz.teamgravity.todo.fragment.dialog.ConfirmDialog"
-        android:label="ConfirmDialog" >
+        android:label="ConfirmDialog">
         <argument
             android:name="header"
             app:argType="string" />
@@ -51,7 +59,9 @@
             android:name="code"
             app:argType="integer" />
     </dialog>
-    <action android:id="@+id/action_global_confirmDialog" app:destination="@id/confirmDialog" />
+    <action
+        android:id="@+id/action_global_confirmDialog"
+        app:destination="@id/confirmDialog" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="xyz.teamgravity.todo.fragment.fragment.AboutFragment"
