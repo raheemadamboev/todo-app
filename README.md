@@ -19,6 +19,7 @@ ToDo is a simple tasks list app that emphasises simplicity and ease of use. Whet
 **Key points:**
 
 - MVVM
+- Firebase
 - Dependency Injection (Hilt)
 - Jetpack Navigation Component
 - Kotlin Coroutines
