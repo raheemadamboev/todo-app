@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.ToDo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/brown</item>
-        <item name="colorPrimaryVariant">@color/brown_2</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/brown_2</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/brown_3</item>
         <item name="colorSecondaryVariant">@color/brown_3</item>
@@ -13,12 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
         <!-- Customize your theme here. -->
-        <item name="layout_background">@color/super_light_white</item>
-        <item name="primary_text_color">@color/black</item>
+        <item name="layout_background">@color/lighter_black</item>
+        <item name="primary_text_color">@color/white</item>
         <item name="secondary_text_color">@color/grey</item>
-        <item name="card_color">@color/white</item>
-        <item name="primary_button_color">@color/brown</item>
-        <item name="button_text_color">@color/white</item>
+        <item name="card_color">@color/light_black</item>
+        <item name="primary_button_color">@color/brown_2</item>
+        <item name="button_text_color">@color/black</item>
         <item name="primary_ripple_color">@color/black_ripple</item>
     </style>
 </resources>

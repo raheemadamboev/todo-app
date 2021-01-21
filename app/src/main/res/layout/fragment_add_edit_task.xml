@@ -53,6 +53,7 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_check_mark"
+        app:backgroundTint="?attr/colorPrimary"
         app:elevation="10dp"
         app:tint="?attr/button_text_color" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
