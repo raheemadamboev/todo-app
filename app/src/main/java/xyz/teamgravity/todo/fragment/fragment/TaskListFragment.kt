@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.fragment.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.activity.MainActivity
 import xyz.teamgravity.todo.databinding.FragmentTaskListBinding
 import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.helper.adapter.TaskAdapter
@@ -146,7 +148,9 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                     }
 
                     is TaskListViewModel.TaskEvent.ChangeLanguage -> {
-
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
                     }
                 }.exhaustive
             }
