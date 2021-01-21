@@ -11,6 +11,7 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
+    ndkVersion "21.3.6528147"
 
     defaultConfig {
         applicationId "xyz.teamgravity.todo"
@@ -30,11 +31,21 @@ android {
                 ]
             }
         }
+
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
+
+        bundle {
+            language {
+                enableSplit = false
+            }
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
