@@ -20,6 +20,7 @@ ToDo is a simple tasks list app that emphasises simplicity and ease of use. Whet
 
 - MVVM
 - Firebase
+- R8 (ProGuard)
 - Dependency Injection (Hilt)
 - Jetpack Navigation Component
 - Kotlin Coroutines
