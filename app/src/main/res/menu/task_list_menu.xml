@@ -51,16 +51,19 @@
         <menu>
             <item
                 android:id="@+id/action_english"
+                android:checkable="true"
                 android:title="@string/english"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_russian"
+                android:checkable="true"
                 android:title="@string/russian"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_uzbek"
+                android:checkable="true"
                 android:title="@string/uzbek"
                 app:showAsAction="never" />
         </menu>

@@ -204,6 +204,13 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
             // it gets only first and cancels coroutine
             menu.findItem(R.id.action_hide).isChecked =
                 viewModel.preferencesFlow.first().hideCompleted
+
+            // update language
+            when (viewModel.preferencesFlow.first().language) {
+                "ru" -> menu.findItem(R.id.action_russian).isChecked = true
+                "uz" -> menu.findItem(R.id.action_uzbek).isChecked = true
+                else -> menu.findItem(R.id.action_english).isChecked = true
+            }
         }
     }
 
