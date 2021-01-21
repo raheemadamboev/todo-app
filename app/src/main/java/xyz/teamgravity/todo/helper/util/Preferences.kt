@@ -32,6 +32,11 @@ class Preferences @Inject constructor(@ApplicationContext context: Context) {
          * Task hide completed
          */
         private val HIDE_COMPLETED = booleanPreferencesKey("hideCompleted")
+
+        /**
+         * Language
+         */
+        private val LANGUAGE = stringPreferencesKey("language")
     }
 
     /**
@@ -54,7 +59,9 @@ class Preferences @Inject constructor(@ApplicationContext context: Context) {
 
             val hideCompleted = preferences[HIDE_COMPLETED] ?: false
 
-            PreferencesModel(taskSort, hideCompleted)
+            val language = preferences[LANGUAGE] ?: "def"
+
+            PreferencesModel(taskSort, hideCompleted, language)
         }
 
 
@@ -73,6 +80,13 @@ class Preferences @Inject constructor(@ApplicationContext context: Context) {
     suspend fun updateHideCompleted(hideCompleted: Boolean) {
         dataStore.edit { preferences ->
             preferences[HIDE_COMPLETED] = hideCompleted
+        }
+    }
+
+    // update language
+    suspend fun updateLanguage(language: String) {
+        dataStore.edit { preferences ->
+            preferences[LANGUAGE] = language
         }
     }
 }

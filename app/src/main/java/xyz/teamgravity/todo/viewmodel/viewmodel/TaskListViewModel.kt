@@ -90,6 +90,14 @@ class TaskListViewModel @ViewModelInject constructor(
     }
 
     /**
+     * Menu language click
+     */
+    fun onMenuLanguage(language: String) = viewModelScope.launch {
+        preferences.updateLanguage(language)
+        taskEventChannel.send(TaskEvent.ChangeLanguage(language))
+    }
+
+    /**
      * Task card click
      */
     fun onTaskCardClick(task: TaskModel) = viewModelScope.launch {
@@ -131,6 +139,7 @@ class TaskListViewModel @ViewModelInject constructor(
         object NavigateToAddTaskScreen : TaskEvent()
         data class NavigateToAddEditTaskScreen(val task: TaskModel) : TaskEvent()
         data class ShowAddEditResultMessage(val message: String) : TaskEvent()
-        object NavigateAboutMeScreen: TaskEvent()
+        object NavigateAboutMeScreen : TaskEvent()
+        data class ChangeLanguage(val language: String) : TaskEvent()
     }
 }

@@ -45,6 +45,28 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_languages"
+        android:title="@string/language"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/action_english"
+                android:title="@string/english"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_russian"
+                android:title="@string/russian"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_uzbek"
+                android:title="@string/uzbek"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/action_about_me"
         android:title="@string/about_me"
         app:showAsAction="never" />

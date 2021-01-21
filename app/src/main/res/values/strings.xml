@@ -18,6 +18,10 @@
     <string name="delete_all_completed">Delete all completed</string>
     <string name="delete_all_tasks">Delete all tasks</string>
     <string name="about_me">About me</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="uzbek">Uzbek</string>
 
     <!-- Add Edit Task Fragment -->
     <string name="task_name">Task name</string>

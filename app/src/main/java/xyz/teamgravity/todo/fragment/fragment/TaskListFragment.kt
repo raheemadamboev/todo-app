@@ -144,6 +144,10 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                     is TaskListViewModel.TaskEvent.NavigateAboutMeScreen -> {
                         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToAboutFragment())
                     }
+
+                    is TaskListViewModel.TaskEvent.ChangeLanguage -> {
+
+                    }
                 }.exhaustive
             }
         }
@@ -227,6 +231,21 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                 true
             }
 
+            R.id.action_english -> {
+                viewModel.onMenuLanguage("en")
+                true
+            }
+
+            R.id.action_russian -> {
+                viewModel.onMenuLanguage("ru")
+                true
+            }
+
+            R.id.action_uzbek -> {
+                viewModel.onMenuLanguage("uz")
+                true
+            }
+
             R.id.action_about_me -> {
                 viewModel.onMenuAboutMe()
                 true
@@ -239,6 +258,6 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        searchView.setOnQueryTextListener(null)
+        if (this::searchView.isInitialized) searchView.setOnQueryTextListener(null)
     }
 }
