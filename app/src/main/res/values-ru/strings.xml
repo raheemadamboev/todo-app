@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Задания</string>
+
+    <!-- Task List Fragment -->
+    <string name="tasks">Задания</string>
+    <string name="deleted_successfully">Задача успешно удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="new_task">Новое задание</string>
+    <string name="edit_task">Редактировать задачу</string>
+
+    <!-- Task list menu -->
+    <string name="search">Поиск</string>
+    <string name="sort">Сортировать</string>
+    <string name="sort_by_name">Сортировать по имени</string>
+    <string name="sort_by_date">Сортировать по дате</string>
+    <string name="hide_completed">Скрыть завершено</string>
+    <string name="delete_all_completed">Удалить все завершено</string>
+    <string name="delete_all_tasks">Удалить все задачи</string>
+    <string name="about_me">Обо мне</string>
+    <string name="language">Язык</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+    <string name="uzbek">Узбекский</string>
+
+    <!-- Add Edit Task Fragment -->
+    <string name="task_name">Название задачи</string>
+    <string name="important_task">Важная задача</string>
+    <string name="error_name">Имя не может быть пустым</string>
+    <string name="task_updated">Задача обновлена</string>
+    <string name="task_created">Задача создана</string>
+    <string name="created">Создано</string>
+
+    <!-- Confirm dialog -->
+    <string name="confirm_deletion">Подтвердить удаление</string>
+    <string name="wanna_delete_completed">Вы хотите удалить все выполненные задачи?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="wanna_delete_all">Вы хотите удалить все задачи?</string>
+</resources>

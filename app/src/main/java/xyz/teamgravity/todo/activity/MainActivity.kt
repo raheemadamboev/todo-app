@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     // set language for app
     @Suppress("DEPRECATION")
     private fun setLanguage() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenCreated {
             val language = preferences.preferencesFlow.first().language
 
             if (!language.equals("def", true)) {
@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 val config = Configuration()
                 config.setLocale(locale)
                 baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
+                // update title
+                this@MainActivity.supportActionBar?.title = getString(R.string.tasks)
             }
         }
     }

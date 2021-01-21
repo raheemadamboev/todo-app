@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ToDo</string>
-    <string name="raheem" translatable="false">Raheem</string>
 
     <!-- Task List Fragment -->
     <string name="tasks">Tasks</string>
