@@ -30,7 +30,7 @@ ToDo is a simple tasks list app that emphasises simplicity and ease of use. Whet
 - Flow
 - StateFlow
 - Channel
-- Livedate
+- Livedata
 - Process Death Handling
 - Material Design
 - Git
