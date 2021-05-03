@@ -26,6 +26,7 @@ ToDo is a simple tasks list app that emphasises simplicity and ease of use. Whet
 - Kotlin Coroutines
 - Room
 - Jetpack DataStore Preferences
+- Jetpack Paging 3
 - ViewBinding
 - Flow
 - StateFlow
