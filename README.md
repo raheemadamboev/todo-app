@@ -1,5 +1,5 @@
 # todo-app
-Simple app to track ToDo list
+Simple app to track ToDo list 
 
 **To-Do**
 
