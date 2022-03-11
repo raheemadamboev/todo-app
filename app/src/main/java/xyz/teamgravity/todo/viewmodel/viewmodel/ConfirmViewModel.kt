@@ -8,10 +8,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.injection.ApplicationScope
-import xyz.teamgravity.todo.viewmodel.room.TaskDao
+import xyz.teamgravity.todo.data.local.TodoDao
 
 class ConfirmViewModel @ViewModelInject constructor(
-    private val dao: TaskDao,
+    private val dao: TodoDao,
     @ApplicationScope private val applicationScope: CoroutineScope,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
@@ -62,8 +62,8 @@ class ConfirmViewModel @ViewModelInject constructor(
      */
     fun onPositiveButtonClick(code: Int) = applicationScope.launch {
         when (code) {
-            ConfirmDialog.DELETE_COMPLETED_TASK -> dao.deleteAllCompleted()
-            ConfirmDialog.DELETE_ALL_TASKS -> dao.deleteAll()
+            ConfirmDialog.DELETE_COMPLETED_TASK -> dao.deleteAllCompletedTodo()
+            ConfirmDialog.DELETE_ALL_TASKS -> dao.deleteAllTodo()
         }
     }
 }

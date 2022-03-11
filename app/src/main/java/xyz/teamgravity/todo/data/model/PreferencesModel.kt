@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.model
+package xyz.teamgravity.todo.data.model
 
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
 

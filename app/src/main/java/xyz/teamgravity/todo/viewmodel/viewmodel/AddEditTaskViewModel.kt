@@ -10,12 +10,12 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.model.TaskModel
-import xyz.teamgravity.todo.viewmodel.room.TaskDao
+import xyz.teamgravity.todo.data.model.TodoModel
+import xyz.teamgravity.todo.data.local.TodoDao
 
 class AddEditTaskViewModel @ViewModelInject constructor(
     @Assisted private val state: SavedStateHandle,
-    private val dao: TaskDao
+    private val dao: TodoDao
 ) : ViewModel() {
     companion object {
         private const val TASK = "task"
@@ -23,7 +23,7 @@ class AddEditTaskViewModel @ViewModelInject constructor(
         private const val TASK_IMPORTANCE = "taskImportance"
     }
 
-    val task = state.get<TaskModel>(TASK)
+    val task = state.get<TodoModel>(TASK)
 
     var taskName = state.get<String>(TASK_NAME) ?: task?.name ?: ""
         set(value) {
@@ -59,7 +59,7 @@ class AddEditTaskViewModel @ViewModelInject constructor(
             val updateTask = task.copy(name = taskName, important = taskImportance)
             updateTask(updateTask, res.getString(R.string.task_updated))
         } else {
-            val newTask = TaskModel(name = taskName, important = taskImportance)
+            val newTask = TodoModel(name = taskName, important = taskImportance)
             insertTask(newTask, res.getString(R.string.task_created))
         }
     }
@@ -67,16 +67,16 @@ class AddEditTaskViewModel @ViewModelInject constructor(
     /**
      * Update task
      */
-    private fun updateTask(task: TaskModel, message: String) = viewModelScope.launch {
-        dao.update(task)
+    private fun updateTask(task: TodoModel, message: String) = viewModelScope.launch {
+        dao.updateTodo(task)
         addEditTaskEventChannel.send(AddEditTaskEvent.NavigateBackWithResult(message))
     }
 
     /**
      * Insert task
      */
-    private fun insertTask(task: TaskModel, message: String) = viewModelScope.launch {
-        dao.insert(task)
+    private fun insertTask(task: TodoModel, message: String) = viewModelScope.launch {
+        dao.insertTodo(task)
         addEditTaskEventChannel.send(AddEditTaskEvent.NavigateBackWithResult(message))
     }
 

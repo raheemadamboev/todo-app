@@ -5,16 +5,15 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.helper.util.Preferences
-import xyz.teamgravity.todo.model.TaskModel
-import xyz.teamgravity.todo.viewmodel.room.TaskDao
+import xyz.teamgravity.todo.data.model.TodoModel
+import xyz.teamgravity.todo.data.local.TodoDao
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
 
 class TaskListViewModel @ViewModelInject constructor(
-    private val dao: TaskDao,
+    private val dao: TodoDao,
     private val preferences: Preferences,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
@@ -36,7 +35,7 @@ class TaskListViewModel @ViewModelInject constructor(
     private val taskFlow = combine(query.asFlow(), preferencesFlow) { query, preferencesModel ->
         Pair(query, preferencesModel)
     }.flatMapLatest { (query, preferencesModel) ->
-        dao.getTasks(query, preferencesModel.hideCompleted, preferencesModel.sort)
+        dao.getTodos(query, preferencesModel.hideCompleted, preferencesModel.sort)
     }
 
     // result as a live data
@@ -49,8 +48,8 @@ class TaskListViewModel @ViewModelInject constructor(
     /**
      * Recycler view task card is swiped out
      */
-    fun onTaskSwiped(task: TaskModel) = viewModelScope.launch {
-        dao.delete(task)
+    fun onTaskSwiped(task: TodoModel) = viewModelScope.launch {
+        dao.deleteTodo(task)
         taskEventChannel.send(TaskEvent.ShowUndoDeleteTaskMessage(task))
     }
 
@@ -100,15 +99,15 @@ class TaskListViewModel @ViewModelInject constructor(
     /**
      * Task card click
      */
-    fun onTaskCardClick(task: TaskModel) = viewModelScope.launch {
+    fun onTaskCardClick(task: TodoModel) = viewModelScope.launch {
         taskEventChannel.send(TaskEvent.NavigateToAddEditTaskScreen(task))
     }
 
     /**
      * Task card checked
      */
-    fun onTaskCardChecked(task: TaskModel, isChecked: Boolean) = viewModelScope.launch {
-        dao.update(task.copy(completed = isChecked))
+    fun onTaskCardChecked(task: TodoModel, isChecked: Boolean) = viewModelScope.launch {
+        dao.updateTodo(task.copy(completed = isChecked))
     }
 
     /**
@@ -128,16 +127,16 @@ class TaskListViewModel @ViewModelInject constructor(
     /**
      * Snackbar undo action clicked
      */
-    fun onUndoDeleteTaskClick(task: TaskModel) = viewModelScope.launch {
-        dao.insert(task)
+    fun onUndoDeleteTaskClick(task: TodoModel) = viewModelScope.launch {
+        dao.insertTodo(task)
     }
 
     sealed class TaskEvent {
         object NavigateDeleteAllCompleted : TaskEvent()
         object NavigateDeleteAllTasks : TaskEvent()
-        data class ShowUndoDeleteTaskMessage(val task: TaskModel) : TaskEvent()
+        data class ShowUndoDeleteTaskMessage(val task: TodoModel) : TaskEvent()
         object NavigateToAddTaskScreen : TaskEvent()
-        data class NavigateToAddEditTaskScreen(val task: TaskModel) : TaskEvent()
+        data class NavigateToAddEditTaskScreen(val task: TodoModel) : TaskEvent()
         data class ShowAddEditResultMessage(val message: String) : TaskEvent()
         object NavigateAboutMeScreen : TaskEvent()
         data class ChangeLanguage(val language: String) : TaskEvent()

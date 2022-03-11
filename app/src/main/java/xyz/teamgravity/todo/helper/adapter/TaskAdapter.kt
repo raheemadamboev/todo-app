@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import xyz.teamgravity.todo.databinding.CardTaskBinding
-import xyz.teamgravity.todo.model.TaskModel
+import xyz.teamgravity.todo.data.model.TodoModel
 
-class TaskAdapter(private val listener: OnTaskListener) : ListAdapter<TaskModel, TaskAdapter.TaskViewHolder>(DIFF) {
+class TaskAdapter(private val listener: OnTaskListener) : ListAdapter<TodoModel, TaskAdapter.TaskViewHolder>(DIFF) {
     companion object {
-        val DIFF = object : DiffUtil.ItemCallback<TaskModel>() {
-            override fun areItemsTheSame(oldItem: TaskModel, newItem: TaskModel) =
+        val DIFF = object : DiffUtil.ItemCallback<TodoModel>() {
+            override fun areItemsTheSame(oldItem: TodoModel, newItem: TodoModel) =
                 oldItem._id == newItem._id
 
-            override fun areContentsTheSame(oldItem: TaskModel, newItem: TaskModel) =
+            override fun areContentsTheSame(oldItem: TodoModel, newItem: TodoModel) =
                 oldItem == newItem
         }
     }
@@ -40,7 +40,7 @@ class TaskAdapter(private val listener: OnTaskListener) : ListAdapter<TaskModel,
             }
         }
 
-        fun bind(model: TaskModel) {
+        fun bind(model: TodoModel) {
             binding.apply {
                 taskT.text = model.name
                 taskT.paint.isStrikeThruText = model.completed
@@ -59,7 +59,7 @@ class TaskAdapter(private val listener: OnTaskListener) : ListAdapter<TaskModel,
     }
 
     interface OnTaskListener {
-        fun onTaskClick(task: TaskModel)
-        fun onTaskCheck(task: TaskModel, isChecked: Boolean)
+        fun onTaskClick(task: TodoModel)
+        fun onTaskCheck(task: TodoModel, isChecked: Boolean)
     }
 }

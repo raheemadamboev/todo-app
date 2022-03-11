@@ -13,17 +13,15 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.activity.MainActivity
+import xyz.teamgravity.todo.presentation.activity.MainActivity
 import xyz.teamgravity.todo.databinding.FragmentTaskListBinding
 import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.helper.adapter.TaskAdapter
 import xyz.teamgravity.todo.helper.extensions.exhaustive
 import xyz.teamgravity.todo.helper.extensions.onQueryTextChanged
-import xyz.teamgravity.todo.model.TaskModel
+import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
 import xyz.teamgravity.todo.viewmodel.viewmodel.TaskListViewModel
 
@@ -172,12 +170,12 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
     }
 
     // task click
-    override fun onTaskClick(task: TaskModel) {
+    override fun onTaskClick(task: TodoModel) {
         viewModel.onTaskCardClick(task)
     }
 
     // task check click
-    override fun onTaskCheck(task: TaskModel, isChecked: Boolean) {
+    override fun onTaskCheck(task: TodoModel, isChecked: Boolean) {
         viewModel.onTaskCardChecked(task, isChecked)
     }
 

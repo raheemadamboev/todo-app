@@ -2,14 +2,11 @@ package xyz.teamgravity.todo.helper.util
 
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.createDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import xyz.teamgravity.todo.model.PreferencesModel
+import xyz.teamgravity.todo.data.model.PreferencesModel
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
 import java.io.IOException
 import javax.inject.Inject

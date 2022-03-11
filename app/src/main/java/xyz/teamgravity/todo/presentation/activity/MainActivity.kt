@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.activity
+package xyz.teamgravity.todo.presentation.activity
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -8,8 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.databinding.ActivityMainBinding
 import xyz.teamgravity.todo.helper.util.Preferences
