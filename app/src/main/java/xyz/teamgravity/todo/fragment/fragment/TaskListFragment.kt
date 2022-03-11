@@ -19,8 +19,8 @@ import xyz.teamgravity.todo.presentation.activity.MainActivity
 import xyz.teamgravity.todo.databinding.FragmentTaskListBinding
 import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.helper.adapter.TaskAdapter
-import xyz.teamgravity.todo.helper.extensions.exhaustive
-import xyz.teamgravity.todo.helper.extensions.onQueryTextChanged
+import xyz.teamgravity.todo.core.extension.exhaustive
+import xyz.teamgravity.todo.core.extension.onQueryTextChanged
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
 import xyz.teamgravity.todo.viewmodel.viewmodel.TaskListViewModel

@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.helper.extensions
+package xyz.teamgravity.todo.core.extension
 
 import androidx.appcompat.widget.SearchView
 
