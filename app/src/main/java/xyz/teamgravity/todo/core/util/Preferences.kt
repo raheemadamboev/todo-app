@@ -8,7 +8,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import xyz.teamgravity.todo.viewmodel.room.TaskSort
 import java.io.IOException
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -42,7 +41,7 @@ class Preferences(context: Context) {
     val preferences: Flow<PreferencesModel> = store.data
         .catch { if (it is IOException) emit(emptyPreferences()) else throw it }
         .map { preferences ->
-            val sort = TaskSort.valueOf(preferences[TODO_SORT] ?: TaskSort.BY_DATE.name)
+            val sort = TodoSort.valueOf(preferences[TODO_SORT] ?: TodoSort.BY_DATE.name)
 
             val hideCompleted = preferences[HIDE_COMPLETED] ?: false
 
@@ -51,7 +50,7 @@ class Preferences(context: Context) {
             return@map PreferencesModel(sort = sort, hideCompleted = hideCompleted, language = language)
         }
 
-    suspend fun updateTodoSort(sort: TaskSort) {
+    suspend fun updateTodoSort(sort: TodoSort) {
         store.edit { it[TODO_SORT] = sort.name }
     }
 
@@ -65,7 +64,7 @@ class Preferences(context: Context) {
 }
 
 data class PreferencesModel(
-    val sort: TaskSort,
+    val sort: TodoSort,
     val hideCompleted: Boolean,
     val language: String
 )

@@ -22,7 +22,7 @@ import xyz.teamgravity.todo.helper.adapter.TaskAdapter
 import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.core.extension.onQueryTextChanged
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.viewmodel.room.TaskSort
+import xyz.teamgravity.todo.core.util.TodoSort
 import xyz.teamgravity.todo.viewmodel.viewmodel.TaskListViewModel
 
 @AndroidEntryPoint
@@ -215,12 +215,12 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sort_name -> {
-                viewModel.onMenuTaskSort(TaskSort.BY_NAME)
+                viewModel.onMenuTaskSort(TodoSort.BY_NAME)
                 true
             }
 
             R.id.action_sort_date -> {
-                viewModel.onMenuTaskSort(TaskSort.BY_DATE)
+                viewModel.onMenuTaskSort(TodoSort.BY_DATE)
                 true
             }
 

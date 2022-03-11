@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.core.util.Preferences
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.local.TodoDao
-import xyz.teamgravity.todo.viewmodel.room.TaskSort
+import xyz.teamgravity.todo.core.util.TodoSort
 
 class TaskListViewModel @ViewModelInject constructor(
     private val dao: TodoDao,
@@ -56,7 +56,7 @@ class TaskListViewModel @ViewModelInject constructor(
     /**
      * Menu sort event
      */
-    fun onMenuTaskSort(sort: TaskSort) = viewModelScope.launch {
+    fun onMenuTaskSort(sort: TodoSort) = viewModelScope.launch {
         preferences.updateTodoSort(sort)
     }
 

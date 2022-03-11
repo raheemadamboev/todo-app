@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="light_black">#1b1b1b</color>
-    <color name="lighter_black">#242424</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="super_light_white">#F2F2F2</color>
-    <color name="brown">#7E5233</color>
-    <color name="brown_2">#4f290c</color>
-    <color name="brown_3">#b07e5d</color>
-    <color name="grey">#696969</color>
-
-    <color name="black_ripple">#30000000</color>
+    <color name="brown_700">#4f290c</color>
 </resources>

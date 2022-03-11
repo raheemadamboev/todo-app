@@ -3,7 +3,7 @@ package xyz.teamgravity.todo.data.repository
 import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.data.local.TodoDao
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.viewmodel.room.TaskSort
+import xyz.teamgravity.todo.core.util.TodoSort
 
 class TodoRepository(
     private val dao: TodoDao
@@ -45,7 +45,7 @@ class TodoRepository(
     // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getTodos(query: String, hideCompleted: Boolean, sort: TaskSort): Flow<List<TodoModel>> {
+    fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoModel>> {
         return dao.getTodos(query = query, hideCompleted = hideCompleted, sort = sort)
     }
 }
