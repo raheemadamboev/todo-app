@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import xyz.teamgravity.todo.helper.util.Preferences
+import xyz.teamgravity.todo.core.util.Preferences
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.local.TodoDao
 import xyz.teamgravity.todo.viewmodel.room.TaskSort
@@ -57,7 +57,7 @@ class TaskListViewModel @ViewModelInject constructor(
      * Menu sort event
      */
     fun onMenuTaskSort(sort: TaskSort) = viewModelScope.launch {
-        preferences.updateTaskSort(sort)
+        preferences.updateTodoSort(sort)
     }
 
     /**

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ToDo"
         tools:ignore="AllowBackup">
         <activity
-            android:name="xyz.teamgravity.todo.presentation.activity.MainActivity"
+            android:name="xyz.teamgravity.todo.presentation.activity.Main"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

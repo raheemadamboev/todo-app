@@ -10,12 +10,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.databinding.ActivityMainBinding
-import xyz.teamgravity.todo.helper.util.Preferences
+import xyz.teamgravity.todo.core.util.Preferences
 import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class Main : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
                 // update title
-                this@MainActivity.supportActionBar?.title = getString(R.string.tasks)
+                this@Main.supportActionBar?.title = getString(R.string.tasks)
             }
         }
     }

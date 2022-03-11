@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.activity.MainActivity
+import xyz.teamgravity.todo.presentation.activity.Main
 import xyz.teamgravity.todo.databinding.FragmentTaskListBinding
 import xyz.teamgravity.todo.fragment.dialog.ConfirmDialog
 import xyz.teamgravity.todo.helper.adapter.TaskAdapter
@@ -146,7 +146,7 @@ class TaskListFragment : Fragment(), TaskAdapter.OnTaskListener {
                     }
 
                     is TaskListViewModel.TaskEvent.ChangeLanguage -> {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        val intent = Intent(requireContext(), Main::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                     }
