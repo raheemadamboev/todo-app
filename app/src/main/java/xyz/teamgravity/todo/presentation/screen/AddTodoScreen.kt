@@ -1,26 +1,30 @@
 package xyz.teamgravity.todo.presentation.screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.theme.Brown500
-import xyz.teamgravity.todo.presentation.theme.White
+import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.TodoImportantCheckbox
+import xyz.teamgravity.todo.presentation.component.TodoTextField
+import xyz.teamgravity.todo.presentation.component.TopAppBarTitle
+import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
 
 @Destination
@@ -52,10 +56,7 @@ fun AddTodoScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.new_task),
-                        fontFamily = FontFamily(listOf(Font(R.font.muli_black)))
-                    )
+                    TopAppBarTitle(title = stringResource(id = R.string.new_task))
                 },
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
@@ -68,45 +69,26 @@ fun AddTodoScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
+            TodoFloatingActionButton(
                 onClick = viewmodel::onSaveTodo,
-                elevation = FloatingActionButtonDefaults.elevation(10.dp),
-                backgroundColor = Brown500
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Done,
-                    contentDescription = stringResource(id = R.string.cd_done_button),
-                    tint = White
-                )
-            }
+                icon = Icons.Default.Done,
+                contentDescription = stringResource(id = R.string.cd_done_button)
+            )
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(SuperLightWhite)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            OutlinedTextField(
+            TodoTextField(
                 value = viewmodel.name,
-                onValueChange = viewmodel::onNameChange,
-                placeholder = { Text(text = stringResource(id = R.string.task_name)) },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = MaterialTheme.colors.primary,
-                    unfocusedBorderColor = MaterialTheme.colors.primary
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp, start = 8.dp, end = 8.dp)
+                onValueChange = viewmodel::onNameChange
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Checkbox(
-                    checked = viewmodel.important,
-                    onCheckedChange = viewmodel::onImportantChange
-                )
-                Text(text = stringResource(id = R.string.important_task))
-                Spacer(modifier = Modifier.width(8.dp))
-            }
+            TodoImportantCheckbox(
+                important = viewmodel.important,
+                onImportantChange = viewmodel::onImportantChange
+            )
         }
     }
 }
