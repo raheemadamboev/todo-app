@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cd_task_important" translatable="false">Important task</string>
+    <string name="cd_task_add" translatable="false">Add task</string>
+    <string name="cd_back_button" translatable="false">Back button</string>
+    <string name="cd_done_button" translatable="false">Done button</string>
+    <string name="cd_delete_button" translatable="false">Delete button</string>
+</resources>

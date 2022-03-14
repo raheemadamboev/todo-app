@@ -20,6 +20,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,6 +32,7 @@ import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
 import xyz.teamgravity.todo.presentation.theme.Black
+import xyz.teamgravity.todo.presentation.theme.Brown500
 import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.theme.White
 import xyz.teamgravity.todo.presentation.viewmodel.TodoListViewModel
@@ -45,7 +48,12 @@ fun TodoListScreen(
         scaffoldState = scaffold,
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.tasks)) }
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.tasks),
+                        fontFamily = FontFamily(listOf(Font(R.font.muli_black)))
+                    )
+                }
             )
         },
         floatingActionButton = {
@@ -53,7 +61,8 @@ fun TodoListScreen(
                 onClick = {
                     navigator.navigate(AddTodoScreenDestination)
                 },
-                elevation = FloatingActionButtonDefaults.elevation(10.dp)
+                elevation = FloatingActionButtonDefaults.elevation(10.dp),
+                backgroundColor = Brown500
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -130,7 +139,7 @@ fun SwipeTodoCard(
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Localized description",
+                    contentDescription = stringResource(id = R.string.cd_delete_button),
                     tint = tint,
                     modifier = Modifier.scale(scale)
                 )
@@ -160,13 +169,13 @@ fun TodoCard(
         backgroundColor = White,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 4.dp, vertical = 2.dp)
+            .padding(horizontal = 5.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(2.dp)
         ) {
             Checkbox(
                 checked = todo.completed,
@@ -191,6 +200,7 @@ fun TodoCard(
                         .height(24.dp)
                 )
             }
+            Spacer(modifier = Modifier.width(8.dp))
         }
 
     }

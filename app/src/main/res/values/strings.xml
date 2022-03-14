@@ -37,10 +37,4 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="wanna_delete_all">Do you want to delete all tasks?</string>
-
-    <!-- Content descriptions -->
-    <string name="cd_task_important">Important task</string>
-    <string name="cd_task_add">Add task</string>
-    <string name="cd_back_button">Back button</string>
-    <string name="cd_done_button">Done button</string>
 </resources>
