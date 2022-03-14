@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vazifalar</string>
+
+    <!-- Task List Fragment -->
+    <string name="tasks">Vazifalar</string>
+    <string name="deleted_successfully">Vazifa muvaffaqiyatli o\'chirildi</string>
+    <string name="undo">Qaytarish</string>
+    <string name="new_task">Yangi vazifa</string>
+    <string name="edit_task">Vazifani o\'zgartirish</string>
+
+    <!-- Task list menu -->
+    <string name="search">Qidirish</string>
+    <string name="sort">Saralash</string>
+    <string name="sort_by_name">Nomdan saralash</string>
+    <string name="sort_by_date">Sanadan saralash</string>
+    <string name="hide_completed">Bajarilganlarni yashirish</string>
+    <string name="delete_all_completed">Bajarilganlarni o\'chirish</string>
+    <string name="delete_all_tasks">Hammasini o\'chirish</string>
+    <string name="about_me">Dastur haqida</string>
+    <string name="language">Til</string>
+    <string name="english">Ingliz</string>
+    <string name="russian">Rus</string>
+    <string name="uzbek">O\'zbek</string>
+
+    <!-- Add Edit Task Fragment -->
+    <string name="task_name">Vazifa nomi</string>
+    <string name="important_task">Muhim vazifa</string>
+    <string name="error_name">Nomni to\'ldirish majburiy</string>
+    <string name="task_updated">Vazifa yangilandi</string>
+    <string name="task_created">Vazifa yaratildi</string>
+    <string name="created">Yaratilgan</string>
+
+    <!-- Confirm dialog -->
+    <string name="confirm_deletion">O\'chirishni tasdiqlang</string>
+    <string name="wanna_delete_completed">Hamma bajarilgan vazifalarni o\'chirishga rozimisan?</string>
+    <string name="no">Yo\'q</string>
+    <string name="yes">Ha</string>
+    <string name="wanna_delete_all">Hamma vazifalarni o\'chirishga rozimisan?</string>
+</resources>
