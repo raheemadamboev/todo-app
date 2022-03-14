@@ -15,13 +15,16 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
+import xyz.teamgravity.todo.injection.FullTimeFormatter
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
 class EditTodoViewModel @Inject constructor(
     private val handle: SavedStateHandle,
-    private val repository: TodoRepository
+    private val repository: TodoRepository,
+    @FullTimeFormatter private val formatter: SimpleDateFormat
 ) : ViewModel() {
 
     companion object {
@@ -35,13 +38,15 @@ class EditTodoViewModel @Inject constructor(
     private var _event = Channel<EditTodoEvent> { }
     val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
 
-    val todo: TodoModel by mutableStateOf(handle.get<TodoModel>(TASK) ?: args.todo)
+    private val todo: TodoModel by mutableStateOf(handle.get<TodoModel>(TASK) ?: args.todo)
 
     var name: String by mutableStateOf(handle.get<String>(TASK_NAME) ?: todo.name)
         private set
 
     var important: Boolean by mutableStateOf(handle.get<Boolean>(TASK_IMPORTANT) ?: todo.important)
         private set
+
+    val timestamp: String by mutableStateOf(formatter.format(todo.timestamp))
 
     fun onNameChange(value: String) {
         name = value

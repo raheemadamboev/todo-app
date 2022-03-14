@@ -94,7 +94,7 @@ fun EditTodoScreen(
                 Text(text = stringResource(id = R.string.important_task))
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = stringResource(id = R.string.your_created_timestamp, viewmodel.todo.timestamp.toString()))
+            Text(text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp))
         }
     }
 }
