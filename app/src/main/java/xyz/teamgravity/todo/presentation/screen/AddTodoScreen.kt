@@ -11,12 +11,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.presentation.theme.Brown500
 import xyz.teamgravity.todo.presentation.theme.White
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
 
@@ -48,7 +51,12 @@ fun AddTodoScreen(
         scaffoldState = scaffold,
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.new_task)) },
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.new_task),
+                        fontFamily = FontFamily(listOf(Font(R.font.muli_black)))
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
                         Icon(
@@ -60,7 +68,11 @@ fun AddTodoScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = viewmodel::onSaveTodo) {
+            FloatingActionButton(
+                onClick = viewmodel::onSaveTodo,
+                elevation = FloatingActionButtonDefaults.elevation(10.dp),
+                backgroundColor = Brown500
+            ) {
                 Icon(
                     imageVector = Icons.Default.Done,
                     contentDescription = stringResource(id = R.string.cd_done_button),
@@ -70,16 +82,18 @@ fun AddTodoScreen(
         },
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 8.dp, start = 8.dp, end = 8.dp)
-        ) {
+        Column(modifier = Modifier.fillMaxSize()) {
             OutlinedTextField(
                 value = viewmodel.name,
                 onValueChange = viewmodel::onNameChange,
                 placeholder = { Text(text = stringResource(id = R.string.task_name)) },
-                modifier = Modifier.fillMaxWidth()
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = MaterialTheme.colors.primary,
+                    unfocusedBorderColor = MaterialTheme.colors.primary
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp, start = 8.dp, end = 8.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row(
@@ -91,6 +105,7 @@ fun AddTodoScreen(
                     onCheckedChange = viewmodel::onImportantChange
                 )
                 Text(text = stringResource(id = R.string.important_task))
+                Spacer(modifier = Modifier.width(8.dp))
             }
         }
     }
