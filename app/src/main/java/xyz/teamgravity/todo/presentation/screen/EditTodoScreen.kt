@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -7,7 +8,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -18,7 +18,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.presentation.theme.White
+import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.TodoImportantCheckbox
+import xyz.teamgravity.todo.presentation.component.TodoTextField
+import xyz.teamgravity.todo.presentation.component.TopAppBarTitle
+import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
 
 @Destination(navArgsDelegate = EditScreenNavArgs::class)
@@ -49,7 +53,7 @@ fun EditTodoScreen(
         scaffoldState = scaffold,
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.edit_task)) },
+                title = { TopAppBarTitle(title = stringResource(id = R.string.edit_task)) },
                 navigationIcon = {
                     IconButton(onClick = { navigator.popBackStack() }) {
                         Icon(
@@ -61,40 +65,31 @@ fun EditTodoScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = viewmodel::onUpdateTodo) {
-                Icon(
-                    imageVector = Icons.Default.Done,
-                    contentDescription = stringResource(id = R.string.cd_done_button),
-                    tint = White
-                )
-            }
+            TodoFloatingActionButton(
+                onClick = viewmodel::onUpdateTodo,
+                icon = Icons.Default.Done,
+                contentDescription = stringResource(id = R.string.cd_done_button),
+            )
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(SuperLightWhite)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 8.dp, start = 8.dp, end = 8.dp)
-        ) {
-            OutlinedTextField(
+        Column(modifier = Modifier.fillMaxSize()) {
+            TodoTextField(
                 value = viewmodel.name,
-                onValueChange = viewmodel::onNameChange,
-                placeholder = { Text(text = stringResource(id = R.string.task_name)) },
-                modifier = Modifier.fillMaxWidth()
+                onValueChange = viewmodel::onNameChange
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Checkbox(
-                    checked = viewmodel.important,
-                    onCheckedChange = viewmodel::onImportantChange
-                )
-                Text(text = stringResource(id = R.string.important_task))
-            }
+            TodoImportantCheckbox(
+                important = viewmodel.important,
+                onImportantChange = viewmodel::onImportantChange
+            )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp))
+            Text(
+                text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp),
+                modifier = Modifier.padding(horizontal = 12.dp)
+            )
         }
     }
 }
