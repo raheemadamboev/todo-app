@@ -168,3 +168,11 @@ dependencies {
 kapt {
     correctErrorTypes true
 }
+
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            freeCompilerArgs += ["-Xuse-experimental=androidx.compose.material.ExperimentalMaterialApi"]
+        }
+    }
+}

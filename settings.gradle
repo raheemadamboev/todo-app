@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Dictionary"
+rootProject.name = "ToDo"
 include ':app'
