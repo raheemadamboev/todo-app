@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin' // TODO removed
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
@@ -81,7 +80,6 @@ android {
 
     buildFeatures {
         compose true
-        viewBinding true // TODO need to be removed
     }
 
     composeOptions {
@@ -143,30 +141,6 @@ dependencies {
 
     // data store preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-
-    // TODO need to be removed
-
-    // fragment ktx
-    implementation "androidx.fragment:fragment-ktx:1.5.0-alpha03"
-
-    // constraint layout
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-
-    // compat activity
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-
-    // material design
-    implementation 'com.google.android.material:material:1.5.0'
-
-    // viewmodel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
-
-    // livedata
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
-
-    // navigation components
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
 }
 
 kapt {
