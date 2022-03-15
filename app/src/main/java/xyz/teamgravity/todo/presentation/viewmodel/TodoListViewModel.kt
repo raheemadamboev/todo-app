@@ -35,6 +35,12 @@ class TodoListViewModel @Inject constructor(
     var hideCompleted: Boolean by mutableStateOf(false)
         private set
 
+    var deleteCompletedDialog: Boolean by mutableStateOf(false)
+        private set
+
+    var deleteAllDialog: Boolean by mutableStateOf(false)
+        private set
+
     init {
         observeTodos()
     }
@@ -91,6 +97,38 @@ class TodoListViewModel @Inject constructor(
         viewModelScope.launch {
             preferences.updateHideCompleted(!hideCompleted)
             onMenuCollapsed()
+        }
+    }
+
+    fun onDeleteCompletedDialogShow() {
+        deleteCompletedDialog = true
+        onMenuCollapsed()
+    }
+
+    fun onDeleteCompletedDialogDismiss() {
+        deleteCompletedDialog = false
+    }
+
+    fun onDeleteCompleted() {
+        viewModelScope.launch {
+            repository.deleteAllCompletedTodo()
+            onDeleteCompletedDialogDismiss()
+        }
+    }
+
+    fun onDeleteAllDialogShow() {
+        deleteAllDialog = true
+        onMenuCollapsed()
+    }
+
+    fun onDeleteAllDialogDismiss() {
+        deleteAllDialog = false
+    }
+
+    fun onDeleteAll() {
+        viewModelScope.launch {
+            repository.deleteAllTodo()
+            onDeleteAllDialogDismiss()
         }
     }
 }

@@ -82,6 +82,12 @@ fun TodoListScreen(
                         onCheckedChange = viewmodel::onHideCompletedChange
                     )
                 }
+                DropdownMenuItem(onClick = viewmodel::onDeleteCompletedDialogShow) {
+                    Text(text = stringResource(id = R.string.delete_all_completed))
+                }
+                DropdownMenuItem(onClick = viewmodel::onDeleteAllDialogShow) {
+                    Text(text = stringResource(id = R.string.delete_all_tasks))
+                }
                 DropdownMenuItem(
                     onClick = {
                         navigator.navigate(AboutScreenDestination)
@@ -117,6 +123,48 @@ fun TodoListScreen(
                         onTodoDismissed = viewmodel::onTodoDelete
                     )
                 }
+            }
+            if (viewmodel.deleteCompletedDialog) {
+                AlertDialog(
+                    onDismissRequest = viewmodel::onDeleteCompletedDialogDismiss,
+                    title = {
+                        Text(text = stringResource(id = R.string.confirm_deletion))
+                    },
+                    text = {
+                        Text(text = stringResource(id = R.string.wanna_delete_completed))
+                    },
+                    dismissButton = {
+                        TextButton(onClick = viewmodel::onDeleteCompletedDialogDismiss) {
+                            Text(text = stringResource(id = R.string.no))
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(onClick = viewmodel::onDeleteCompleted) {
+                            Text(text = stringResource(id = R.string.yes))
+                        }
+                    }
+                )
+            }
+            if (viewmodel.deleteAllDialog) {
+                AlertDialog(
+                    onDismissRequest = viewmodel::onDeleteAllDialogDismiss,
+                    title = {
+                        Text(text = stringResource(id = R.string.confirm_deletion))
+                    },
+                    text = {
+                        Text(text = stringResource(id = R.string.wanna_delete_all))
+                    },
+                    dismissButton = {
+                        TextButton(onClick = viewmodel::onDeleteAllDialogDismiss) {
+                            Text(text = stringResource(id = R.string.no))
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(onClick = viewmodel::onDeleteAll) {
+                            Text(text = stringResource(id = R.string.yes))
+                        }
+                    }
+                )
             }
         }
     }
