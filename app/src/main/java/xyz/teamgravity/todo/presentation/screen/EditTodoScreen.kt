@@ -55,7 +55,7 @@ fun EditTodoScreen(
             TopAppBar(
                 title = { TopAppBarTitle(title = stringResource(id = R.string.edit_task)) },
                 navigationIcon = {
-                    IconButton(onClick = { navigator.popBackStack() }) {
+                    IconButton(onClick = navigator::popBackStack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(id = R.string.cd_back_button)
