@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import xyz.teamgravity.todo.R
@@ -49,6 +50,7 @@ fun TodoCard(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.body1,
+                textDecoration = if (todo.completed) TextDecoration.LineThrough else TextDecoration.None,
                 modifier = Modifier.weight(1F)
             )
             if (todo.important) {
