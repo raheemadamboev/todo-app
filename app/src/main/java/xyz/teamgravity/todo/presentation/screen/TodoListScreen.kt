@@ -19,10 +19,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
-import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
-import xyz.teamgravity.todo.presentation.component.SwipeTodoCard
-import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.TopAppBarTitle
+import xyz.teamgravity.todo.presentation.component.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -125,45 +122,19 @@ fun TodoListScreen(
                 }
             }
             if (viewmodel.deleteCompletedDialog) {
-                AlertDialog(
-                    onDismissRequest = viewmodel::onDeleteCompletedDialogDismiss,
-                    title = {
-                        Text(text = stringResource(id = R.string.confirm_deletion))
-                    },
-                    text = {
-                        Text(text = stringResource(id = R.string.wanna_delete_completed))
-                    },
-                    dismissButton = {
-                        TextButton(onClick = viewmodel::onDeleteCompletedDialogDismiss) {
-                            Text(text = stringResource(id = R.string.no))
-                        }
-                    },
-                    confirmButton = {
-                        TextButton(onClick = viewmodel::onDeleteCompleted) {
-                            Text(text = stringResource(id = R.string.yes))
-                        }
-                    }
+                TodoAlertDialog(
+                    title = R.string.confirm_deletion,
+                    message = R.string.wanna_delete_completed,
+                    onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
+                    onConfirm = viewmodel::onDeleteCompleted
                 )
             }
             if (viewmodel.deleteAllDialog) {
-                AlertDialog(
-                    onDismissRequest = viewmodel::onDeleteAllDialogDismiss,
-                    title = {
-                        Text(text = stringResource(id = R.string.confirm_deletion))
-                    },
-                    text = {
-                        Text(text = stringResource(id = R.string.wanna_delete_all))
-                    },
-                    dismissButton = {
-                        TextButton(onClick = viewmodel::onDeleteAllDialogDismiss) {
-                            Text(text = stringResource(id = R.string.no))
-                        }
-                    },
-                    confirmButton = {
-                        TextButton(onClick = viewmodel::onDeleteAll) {
-                            Text(text = stringResource(id = R.string.yes))
-                        }
-                    }
+                TodoAlertDialog(
+                    title = R.string.confirm_deletion,
+                    message = R.string.wanna_delete_all,
+                    onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                    onConfirm = viewmodel::onDeleteAll
                 )
             }
         }
