@@ -32,6 +32,9 @@ class TodoListViewModel @Inject constructor(
     var sortExpanded: Boolean by mutableStateOf(false)
         private set
 
+    var hideCompleted: Boolean by mutableStateOf(false)
+        private set
+
     init {
         observeTodos()
     }
@@ -41,6 +44,7 @@ class TodoListViewModel @Inject constructor(
             combine(_query, preferences.preferences) { query, preferences ->
                 Pair(query, preferences)
             }.flatMapLatest { (query, preferences) ->
+                hideCompleted = preferences.hideCompleted
                 repository.getTodos(query, preferences.hideCompleted, preferences.sort)
             }.collectLatest { todos ->
                 this@TodoListViewModel.todos = todos
@@ -80,6 +84,13 @@ class TodoListViewModel @Inject constructor(
         viewModelScope.launch {
             preferences.updateTodoSort(sort = sort)
             onSortCollapsed()
+        }
+    }
+
+    fun onHideCompletedChange() {
+        viewModelScope.launch {
+            preferences.updateHideCompleted(!hideCompleted)
+            onMenuCollapsed()
         }
     }
 }

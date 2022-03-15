@@ -19,6 +19,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
 import xyz.teamgravity.todo.presentation.component.SwipeTodoCard
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.TopAppBarTitle
@@ -74,6 +75,13 @@ fun TodoListScreen(
                 expanded = viewmodel.menuExpanded,
                 onDismissRequest = viewmodel::onMenuCollapsed
             ) {
+                DropdownMenuItem(onClick = viewmodel::onHideCompletedChange) {
+                    CheckableMenuItem(
+                        title = stringResource(id = R.string.hide_completed),
+                        checked = viewmodel.hideCompleted,
+                        onCheckedChange = viewmodel::onHideCompletedChange
+                    )
+                }
                 DropdownMenuItem(
                     onClick = {
                         navigator.navigate(AboutScreenDestination)
