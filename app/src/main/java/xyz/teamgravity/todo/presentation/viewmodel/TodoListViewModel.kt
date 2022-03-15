@@ -26,6 +26,9 @@ class TodoListViewModel @Inject constructor(
     var todos: List<TodoModel> by mutableStateOf(emptyList())
         private set
 
+    var searchExpanded: Boolean by mutableStateOf(false)
+        private set
+
     var menuExpanded: Boolean by mutableStateOf(false)
         private set
 
@@ -58,6 +61,12 @@ class TodoListViewModel @Inject constructor(
         }
     }
 
+    fun onQueryChange(value: String) {
+        viewModelScope.launch {
+            _query.emit(value)
+        }
+    }
+
     fun onTodoChecked(todo: TodoModel, checked: Boolean) {
         viewModelScope.launch {
             repository.updateTodoSync(todo.copy(completed = checked))
@@ -67,6 +76,17 @@ class TodoListViewModel @Inject constructor(
     fun onTodoDelete(todo: TodoModel) {
         viewModelScope.launch {
             repository.deleteTodoSync(todo)
+        }
+    }
+
+    fun onSearchExpanded() {
+        searchExpanded = true
+    }
+
+    fun onSearchCollapsed() {
+        viewModelScope.launch {
+            _query.emit("")
+            searchExpanded = false
         }
     }
 

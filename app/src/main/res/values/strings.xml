@@ -11,7 +11,7 @@
 
     <!-- Task list menu -->
     <string name="menu">Menu</string>
-    <string name="search">Search</string>
+    <string name="search">Search…</string>
     <string name="sort">Sort</string>
     <string name="sort_by_name">Sort by name</string>
     <string name="sort_by_date">Sort by date</string>

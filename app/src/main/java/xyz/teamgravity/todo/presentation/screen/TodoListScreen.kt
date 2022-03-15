@@ -10,8 +10,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,7 +21,12 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
-import xyz.teamgravity.todo.presentation.component.*
+import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
+import xyz.teamgravity.todo.presentation.component.SwipeTodoCard
+import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
+import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -37,8 +44,26 @@ fun TodoListScreen(
         scaffoldState = scaffold,
         topBar = {
             TopAppBar(
-                title = { TopAppBarTitle(title = stringResource(id = R.string.tasks)) },
+                title = {
+                    if (viewmodel.searchExpanded) {
+                        TopBarSearch(
+                            query = viewmodel.query.collectAsState().value,
+                            onQueryChange = viewmodel::onQueryChange,
+                            onCancel = viewmodel::onSearchCollapsed
+                        )
+                    } else {
+                        TopBarTitle(title = R.string.tasks)
+                    }
+                },
                 actions = {
+                    if (!viewmodel.searchExpanded) {
+                        IconButton(onClick = viewmodel::onSearchExpanded) {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = stringResource(id = R.string.cd_search_button)
+                            )
+                        }
+                    }
                     IconButton(onClick = viewmodel::onSortExpanded) {
                         Icon(
                             imageVector = Icons.Default.Sort,
