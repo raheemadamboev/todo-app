@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.core.util.Preferences
+import xyz.teamgravity.todo.core.util.TodoSort
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
@@ -22,7 +23,13 @@ class TodoListViewModel @Inject constructor(
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
 
-    var todos by mutableStateOf(emptyList<TodoModel>())
+    var todos: List<TodoModel> by mutableStateOf(emptyList())
+        private set
+
+    var menuExpanded: Boolean by mutableStateOf(false)
+        private set
+
+    var sortExpanded: Boolean by mutableStateOf(false)
         private set
 
     init {
@@ -36,7 +43,6 @@ class TodoListViewModel @Inject constructor(
             }.flatMapLatest { (query, preferences) ->
                 repository.getTodos(query, preferences.hideCompleted, preferences.sort)
             }.collectLatest { todos ->
-                println("raheem: $todos")
                 this@TodoListViewModel.todos = todos
             }
         }
@@ -51,6 +57,29 @@ class TodoListViewModel @Inject constructor(
     fun onTodoDelete(todo: TodoModel) {
         viewModelScope.launch {
             repository.deleteTodoSync(todo)
+        }
+    }
+
+    fun onMenuExpanded() {
+        menuExpanded = true
+    }
+
+    fun onMenuCollapsed() {
+        menuExpanded = false
+    }
+
+    fun onSortExpanded() {
+        sortExpanded = true
+    }
+
+    fun onSortCollapsed() {
+        sortExpanded = false
+    }
+
+    fun onSort(sort: TodoSort) {
+        viewModelScope.launch {
+            preferences.updateTodoSort(sort = sort)
+            onSortCollapsed()
         }
     }
 }

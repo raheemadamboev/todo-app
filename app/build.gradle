@@ -117,6 +117,9 @@ dependencies {
     // constraint layout compose
     implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.0'
 
+    // icons compose
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
     // viewmodel
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1"
 
