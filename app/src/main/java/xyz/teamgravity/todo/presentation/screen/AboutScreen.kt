@@ -25,7 +25,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.component.TopAppBarTitle
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 
 @Destination
 @Composable
@@ -37,7 +37,7 @@ fun AboutScreen(
         scaffoldState = scaffold,
         topBar = {
             TopAppBar(
-                title = { TopAppBarTitle(title = stringResource(id = R.string.app_name)) },
+                title = { TopBarTitle(title = R.string.app_name) },
                 navigationIcon = {
                     IconButton(onClick = navigator::popBackStack) {
                         Icon(
