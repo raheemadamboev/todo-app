@@ -5,4 +5,7 @@
     <string name="cd_back_button" translatable="false">Back button</string>
     <string name="cd_done_button" translatable="false">Done button</string>
     <string name="cd_delete_button" translatable="false">Delete button</string>
+    <string name="cd_more_vertical" translatable="false">More button</string>
+    <string name="cd_app_icon" translatable="false">App icon</string>
+    <string name="cd_company_logo" translatable="false">Company logo</string>
 </resources>

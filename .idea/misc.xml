@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_check_mark.xml" value="0.218" />
+        <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2165" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.218" />
         <entry key="app/src/main/res/drawable/ic_sort.xml" value="0.218" />
         <entry key="app/src/main/res/layout-land/fragment_about.xml" value="0.2234375" />
