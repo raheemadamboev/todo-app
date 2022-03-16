@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.card
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -24,7 +24,7 @@ import xyz.teamgravity.todo.presentation.theme.Black
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
-fun SwipeTodoCard(
+fun TodoSwipeCard(
     dismiss: DismissState = rememberDismissState(),
     todo: TodoModel,
     onTodoClick: (todo: TodoModel) -> Unit,

@@ -21,9 +21,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
 import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
-import xyz.teamgravity.todo.presentation.component.SwipeTodoCard
 import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
@@ -136,7 +136,7 @@ fun TodoListScreen(
                 items = viewmodel.todos,
                 key = { it._id }
             ) { todo ->
-                SwipeTodoCard(
+                TodoSwipeCard(
                     todo = todo,
                     onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
                     onTodoCheckedChange = viewmodel::onTodoChecked,

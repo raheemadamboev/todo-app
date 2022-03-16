@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
