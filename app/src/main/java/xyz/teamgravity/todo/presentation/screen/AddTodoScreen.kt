@@ -1,20 +1,18 @@
 package xyz.teamgravity.todo.presentation.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -22,8 +20,8 @@ import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.checkbox.TodoImportantCheckbox
-import xyz.teamgravity.todo.presentation.component.textfield.TodoTextField
+import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
@@ -58,12 +56,11 @@ fun AddTodoScreen(
             TopAppBar(
                 title = { TopBarTitle(title = R.string.new_task) },
                 navigationIcon = {
-                    IconButton(onClick = navigator::popBackStack) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(id = R.string.cd_back_button)
-                        )
-                    }
+                    TopBarIconButton(
+                        onClick = navigator::popBackStack,
+                        icon = Icons.Default.ArrowBack,
+                        contentDescription = R.string.cd_back_button
+                    )
                 }
             )
         },
@@ -78,16 +75,11 @@ fun AddTodoScreen(
             .fillMaxSize()
             .background(SuperLightWhite)
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            TodoTextField(
-                value = viewmodel.name,
-                onValueChange = viewmodel::onNameChange
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            TodoImportantCheckbox(
-                important = viewmodel.important,
-                onImportantChange = viewmodel::onImportantChange
-            )
-        }
+        TodoConfigure(
+            name = viewmodel.name,
+            onNameChange = viewmodel::onNameChange,
+            important = viewmodel.important,
+            onImportantChange = viewmodel::onImportantChange
+        )
     }
 }
