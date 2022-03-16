@@ -9,9 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.presentation.theme.Muli
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
@@ -32,7 +31,8 @@ fun TopBarSearch(
         placeholder = {
             Text(
                 text = stringResource(id = R.string.search),
-                color = White.copy(alpha = 0.4F)
+                color = White.copy(alpha = 0.4F),
+                fontFamily = Muli
             )
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -42,7 +42,7 @@ fun TopBarSearch(
         ),
         textStyle = TextStyle.Default.copy(
             color = White,
-            fontFamily = FontFamily(Font(R.font.muli))
+            fontFamily = Muli
         )
     )
 }

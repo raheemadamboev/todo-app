@@ -7,6 +7,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.presentation.theme.Muli
 
 @Composable
 fun TopBarTitle(
@@ -14,6 +15,6 @@ fun TopBarTitle(
 ) {
     Text(
         text = stringResource(id = title),
-        fontFamily = FontFamily(Font(R.font.muli_black))
+        fontFamily = Muli
     )
 }

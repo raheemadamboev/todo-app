@@ -16,7 +16,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.presentation.theme.White
+import xyz.teamgravity.todo.presentation.theme.backgroundCard
+import xyz.teamgravity.todo.presentation.theme.textPrimary
 
 @Composable
 fun TodoCard(
@@ -28,7 +29,7 @@ fun TodoCard(
         onClick = { onTodoClick(todo) },
         shape = MaterialTheme.shapes.large,
         elevation = 8.dp,
-        backgroundColor = White,
+        backgroundColor = MaterialTheme.colors.backgroundCard,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 5.dp, vertical = 2.dp)
@@ -50,6 +51,7 @@ fun TodoCard(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.textPrimary,
                 textDecoration = if (todo.completed) TextDecoration.LineThrough else TextDecoration.None,
                 modifier = Modifier.weight(1F)
             )

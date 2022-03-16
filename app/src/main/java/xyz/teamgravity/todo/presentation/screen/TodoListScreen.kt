@@ -1,16 +1,14 @@
 package xyz.teamgravity.todo.presentation.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -25,7 +23,7 @@ import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
-import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
+import xyz.teamgravity.todo.presentation.theme.backgroundLayout
 import xyz.teamgravity.todo.presentation.viewmodel.TodoListViewModel
 
 @Destination(start = true)
@@ -86,39 +84,42 @@ fun TodoListScreen(
                 icon = Icons.Default.Add,
                 contentDescription = R.string.cd_task_add
             )
-        },
-        modifier = Modifier
-            .fillMaxSize()
-            .background(SuperLightWhite)
+        }
     ) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(
-                items = viewmodel.todos,
-                key = { it._id }
-            ) { todo ->
-                TodoSwipeCard(
-                    todo = todo,
-                    onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
-                    onTodoCheckedChange = viewmodel::onTodoChecked,
-                    onTodoDismissed = viewmodel::onTodoDelete
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.backgroundLayout)
+        ) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(
+                    items = viewmodel.todos,
+                    key = { it._id }
+                ) { todo ->
+                    TodoSwipeCard(
+                        todo = todo,
+                        onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
+                        onTodoCheckedChange = viewmodel::onTodoChecked,
+                        onTodoDismissed = viewmodel::onTodoDelete
+                    )
+                }
+            }
+            if (viewmodel.deleteCompletedDialog) {
+                TodoAlertDialog(
+                    title = R.string.confirm_deletion,
+                    message = R.string.wanna_delete_completed,
+                    onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
+                    onConfirm = viewmodel::onDeleteCompleted
                 )
             }
-        }
-        if (viewmodel.deleteCompletedDialog) {
-            TodoAlertDialog(
-                title = R.string.confirm_deletion,
-                message = R.string.wanna_delete_completed,
-                onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
-                onConfirm = viewmodel::onDeleteCompleted
-            )
-        }
-        if (viewmodel.deleteAllDialog) {
-            TodoAlertDialog(
-                title = R.string.confirm_deletion,
-                message = R.string.wanna_delete_all,
-                onDismiss = viewmodel::onDeleteAllDialogDismiss,
-                onConfirm = viewmodel::onDeleteAll
-            )
+            if (viewmodel.deleteAllDialog) {
+                TodoAlertDialog(
+                    title = R.string.confirm_deletion,
+                    message = R.string.wanna_delete_all,
+                    onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                    onConfirm = viewmodel::onDeleteAll
+                )
+            }
         }
     }
 }

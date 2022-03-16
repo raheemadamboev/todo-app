@@ -23,7 +23,8 @@ import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButt
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
-import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
+import xyz.teamgravity.todo.presentation.theme.backgroundLayout
+import xyz.teamgravity.todo.presentation.theme.textSecondary
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
 
 @Destination(navArgsDelegate = EditScreenNavArgs::class)
@@ -70,12 +71,13 @@ fun EditTodoScreen(
                 icon = Icons.Default.Done,
                 contentDescription = R.string.cd_done_button
             )
-        },
-        modifier = Modifier
-            .fillMaxSize()
-            .background(SuperLightWhite)
+        }
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.backgroundLayout)
+        ) {
             TodoConfigure(
                 name = viewmodel.name,
                 onNameChange = viewmodel::onNameChange,
@@ -85,6 +87,8 @@ fun EditTodoScreen(
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp),
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.textSecondary,
                 modifier = Modifier.padding(horizontal = 12.dp)
             )
         }

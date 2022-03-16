@@ -1,14 +1,12 @@
 package xyz.teamgravity.todo.presentation.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -23,7 +21,7 @@ import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButt
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
-import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
+import xyz.teamgravity.todo.presentation.theme.backgroundLayout
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
 
 @Destination
@@ -70,16 +68,19 @@ fun AddTodoScreen(
                 icon = Icons.Default.Done,
                 contentDescription = R.string.cd_done_button
             )
-        },
-        modifier = Modifier
-            .fillMaxSize()
-            .background(SuperLightWhite)
+        }
     ) {
-        TodoConfigure(
-            name = viewmodel.name,
-            onNameChange = viewmodel::onNameChange,
-            important = viewmodel.important,
-            onImportantChange = viewmodel::onImportantChange
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.backgroundLayout)
+        ) {
+            TodoConfigure(
+                name = viewmodel.name,
+                onNameChange = viewmodel::onNameChange,
+                important = viewmodel.important,
+                onImportantChange = viewmodel::onImportantChange
+            )
+        }
     }
 }

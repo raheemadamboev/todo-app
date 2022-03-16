@@ -1,6 +1,7 @@
 package xyz.teamgravity.todo.presentation.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,12 +11,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +24,10 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
+import xyz.teamgravity.todo.presentation.theme.Muli
+import xyz.teamgravity.todo.presentation.theme.backgroundLayout
+import xyz.teamgravity.todo.presentation.theme.textPrimary
+import xyz.teamgravity.todo.presentation.theme.textSecondary
 
 @Destination
 @Composable
@@ -50,7 +52,9 @@ fun AboutScreen(
         }
     ) {
         ConstraintLayout(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colors.backgroundLayout)
         ) {
             val (appI, appNameT, appVersionT, companyI, developerT) = createRefs()
 
@@ -70,9 +74,9 @@ fun AboutScreen(
                 text = stringResource(id = R.string.app_name),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily(listOf(Font(R.font.muli_black))),
+                color = MaterialTheme.colors.textPrimary,
+                fontWeight = FontWeight.Black,
+                fontFamily = Muli,
                 modifier = Modifier
                     .fillMaxWidth()
                     .constrainAs(appNameT) {
@@ -82,6 +86,7 @@ fun AboutScreen(
             Text(
                 text = BuildConfig.VERSION_NAME,
                 style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.textSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,6 +109,7 @@ fun AboutScreen(
                 text = stringResource(id = R.string.raheem),
                 style = MaterialTheme.typography.body1,
                 fontSize = 12.sp,
+                color = MaterialTheme.colors.textPrimary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()

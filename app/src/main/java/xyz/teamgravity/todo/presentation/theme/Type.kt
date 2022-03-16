@@ -8,19 +8,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import xyz.teamgravity.todo.R
 
-private val muli = FontFamily(
+val Muli = FontFamily(
     Font(R.font.muli, FontWeight.Normal),
     Font(R.font.muli_black, FontWeight.Black)
 )
 
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily(Font(R.font.muli)),
+        fontFamily = Muli,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
     button = TextStyle(
-        fontFamily = FontFamily(Font(R.font.muli_black)),
+        fontFamily = Muli,
         fontWeight = FontWeight.W500,
         fontSize = 14.sp
     )
