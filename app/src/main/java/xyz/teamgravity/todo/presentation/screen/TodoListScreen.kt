@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -17,14 +19,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
 import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
+import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -67,38 +65,19 @@ fun TodoListScreen(
                         onDismiss = viewmodel::onSortCollapsed,
                         onSort = viewmodel::onSort
                     )
-                    IconButton(onClick = viewmodel::onMenuExpanded) {
-                        Icon(
-                            imageVector = Icons.Default.MoreVert,
-                            contentDescription = stringResource(id = R.string.cd_more_vertical)
-                        )
-                    }
-                    DropdownMenu(
+                    TopBarMoreMenu(
                         expanded = viewmodel.menuExpanded,
-                        onDismissRequest = viewmodel::onMenuCollapsed
-                    ) {
-                        DropdownMenuItem(onClick = viewmodel::onHideCompletedChange) {
-                            CheckableMenuItem(
-                                title = stringResource(id = R.string.hide_completed),
-                                checked = viewmodel.hideCompleted,
-                                onCheckedChange = viewmodel::onHideCompletedChange
-                            )
+                        onExpand = viewmodel::onMenuExpanded,
+                        onDismiss = viewmodel::onMenuCollapsed,
+                        hideCompleted = viewmodel.hideCompleted,
+                        onHideCompletedChange = viewmodel::onHideCompletedChange,
+                        onDeleteCompletedClick = viewmodel::onDeleteCompletedDialogShow,
+                        onDeleteAllClick = viewmodel::onDeleteAllDialogShow,
+                        onAboutClick = {
+                            navigator.navigate(AboutScreenDestination)
+                            viewmodel.onMenuCollapsed()
                         }
-                        DropdownMenuItem(onClick = viewmodel::onDeleteCompletedDialogShow) {
-                            Text(text = stringResource(id = R.string.delete_all_completed))
-                        }
-                        DropdownMenuItem(onClick = viewmodel::onDeleteAllDialogShow) {
-                            Text(text = stringResource(id = R.string.delete_all_tasks))
-                        }
-                        DropdownMenuItem(
-                            onClick = {
-                                navigator.navigate(AboutScreenDestination)
-                                viewmodel.onMenuCollapsed()
-                            }
-                        ) {
-                            Text(text = stringResource(id = R.string.about_me))
-                        }
-                    }
+                    )
                 }
             )
         },
