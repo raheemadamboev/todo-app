@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.dialog
 
 import androidx.annotation.StringRes
 import androidx.compose.material.AlertDialog
