@@ -22,7 +22,6 @@ import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.theme.Black
 import xyz.teamgravity.todo.presentation.theme.White
-import xyz.teamgravity.todo.presentation.theme.textButton
 import xyz.teamgravity.todo.presentation.theme.textError
 
 @Composable
