@@ -20,8 +20,8 @@ import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.checkbox.TodoImportantCheckbox
-import xyz.teamgravity.todo.presentation.component.textfield.TodoTextField
+import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
@@ -56,12 +56,11 @@ fun EditTodoScreen(
             TopAppBar(
                 title = { TopBarTitle(title = R.string.edit_task) },
                 navigationIcon = {
-                    IconButton(onClick = navigator::popBackStack) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(id = R.string.cd_back_button)
-                        )
-                    }
+                    TopBarIconButton(
+                        onClick = navigator::popBackStack,
+                        icon = Icons.Default.ArrowBack,
+                        contentDescription = R.string.cd_back_button
+                    )
                 }
             )
         },
@@ -77,12 +76,9 @@ fun EditTodoScreen(
             .background(SuperLightWhite)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            TodoTextField(
-                value = viewmodel.name,
-                onValueChange = viewmodel::onNameChange
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            TodoImportantCheckbox(
+            TodoConfigure(
+                name = viewmodel.name,
+                onNameChange = viewmodel::onNameChange,
                 important = viewmodel.important,
                 onImportantChange = viewmodel::onImportantChange
             )
