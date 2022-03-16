@@ -1,6 +1,5 @@
 package xyz.teamgravity.todo.presentation.screen
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -19,12 +17,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.util.TodoSort
 import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
 import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
@@ -56,33 +55,18 @@ fun TodoListScreen(
                 },
                 actions = {
                     if (!viewmodel.searchExpanded) {
-                        IconButton(onClick = viewmodel::onSearchExpanded) {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = stringResource(id = R.string.cd_search_button)
-                            )
-                        }
-                    }
-                    IconButton(onClick = viewmodel::onSortExpanded) {
-                        Icon(
-                            imageVector = Icons.Default.Sort,
-                            contentDescription = stringResource(id = R.string.cd_sort)
+                        TopBarIconButton(
+                            onClick = viewmodel::onSearchExpanded,
+                            icon = Icons.Default.Search,
+                            contentDescription = R.string.cd_search_button
                         )
                     }
-                    DropdownMenu(
+                    TopBarSortMenu(
                         expanded = viewmodel.sortExpanded,
-                        onDismissRequest = viewmodel::onSortCollapsed
-                    ) {
-                        sortMenuItems.forEach { menu ->
-                            DropdownMenuItem(
-                                onClick = {
-                                    viewmodel.onSort(sort = menu.sort)
-                                }
-                            ) {
-                                Text(text = stringResource(id = menu.title))
-                            }
-                        }
-                    }
+                        onExpand = viewmodel::onSortExpanded,
+                        onDismiss = viewmodel::onSortCollapsed,
+                        onSort = viewmodel::onSort
+                    )
                     IconButton(onClick = viewmodel::onMenuExpanded) {
                         Icon(
                             imageVector = Icons.Default.MoreVert,
@@ -162,13 +146,3 @@ fun TodoListScreen(
         }
     }
 }
-
-data class SortMenu(
-    @StringRes val title: Int,
-    val sort: TodoSort
-)
-
-private val sortMenuItems = listOf(
-    SortMenu(title = R.string.sort_by_name, TodoSort.BY_NAME),
-    SortMenu(title = R.string.sort_by_date, TodoSort.BY_DATE)
-)
