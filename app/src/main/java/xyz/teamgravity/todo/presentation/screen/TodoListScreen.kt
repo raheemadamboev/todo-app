@@ -10,11 +10,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
@@ -33,6 +36,23 @@ fun TodoListScreen(
     scaffold: ScaffoldState = rememberScaffoldState(),
     navigator: DestinationsNavigator
 ) {
+
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = viewmodel.event) {
+        viewmodel.event.collectLatest { event ->
+            when (event) {
+                TodoListViewModel.TodoListEvent.TodoDeleted -> {
+                    val result = scaffold.snackbarHostState.showSnackbar(
+                        message = context.getString(R.string.deleted_successfully),
+                        actionLabel = context.getString(R.string.undo)
+                    )
+                    if (result == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedTodo()
+                }
+            }
+        }
+    }
+
     Scaffold(
         scaffoldState = scaffold,
         topBar = {

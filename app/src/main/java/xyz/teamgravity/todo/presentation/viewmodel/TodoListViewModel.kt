@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.core.util.Preferences
@@ -19,6 +20,9 @@ class TodoListViewModel @Inject constructor(
     private val repository: TodoRepository,
     private val preferences: Preferences
 ) : ViewModel() {
+
+    private val _event = Channel<TodoListEvent> { }
+    val event: Flow<TodoListEvent> = _event.receiveAsFlow()
 
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
@@ -43,6 +47,8 @@ class TodoListViewModel @Inject constructor(
 
     var deleteAllDialog: Boolean by mutableStateOf(false)
         private set
+
+    private var deletedTodo: TodoModel? = null
 
     init {
         observeTodos()
@@ -75,8 +81,14 @@ class TodoListViewModel @Inject constructor(
 
     fun onTodoDelete(todo: TodoModel) {
         viewModelScope.launch {
+            deletedTodo = todo
             repository.deleteTodoSync(todo)
+            _event.send(TodoListEvent.TodoDeleted)
         }
+    }
+
+    fun onUndoDeletedTodo() {
+        viewModelScope.launch { deletedTodo?.let { repository.insertTodoSync(it.copy(_id = 0)) } }
     }
 
     fun onSearchExpanded() {
@@ -150,5 +162,9 @@ class TodoListViewModel @Inject constructor(
             repository.deleteAllTodo()
             onDeleteAllDialogDismiss()
         }
+    }
+
+    sealed class TodoListEvent {
+        object TodoDeleted : TodoListEvent()
     }
 }
