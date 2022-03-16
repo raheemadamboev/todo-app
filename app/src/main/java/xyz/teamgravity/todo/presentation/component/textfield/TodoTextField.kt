@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.textfield
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
