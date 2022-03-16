@@ -8,7 +8,7 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
+import xyz.teamgravity.todo.presentation.component.checkbox.CheckableMenuItem
 
 @Composable
 fun TopBarMoreMenu(

@@ -21,8 +21,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.TodoImportantCheckbox
 import xyz.teamgravity.todo.presentation.component.TodoTextField
+import xyz.teamgravity.todo.presentation.component.checkbox.TodoImportantCheckbox
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.theme.SuperLightWhite
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel

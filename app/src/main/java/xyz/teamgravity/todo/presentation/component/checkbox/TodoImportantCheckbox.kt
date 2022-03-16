@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.checkbox
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
