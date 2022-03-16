@@ -1,10 +1,12 @@
-package xyz.teamgravity.todo.presentation.component
+package xyz.teamgravity.todo.presentation.component.button
 
+import androidx.annotation.StringRes
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import xyz.teamgravity.todo.presentation.theme.Brown500
 import xyz.teamgravity.todo.presentation.theme.White
@@ -13,7 +15,7 @@ import xyz.teamgravity.todo.presentation.theme.White
 fun TodoFloatingActionButton(
     onClick: () -> Unit,
     icon: ImageVector,
-    contentDescription: String
+    @StringRes contentDescription: Int
 ) {
     FloatingActionButton(
         onClick = onClick,
@@ -22,7 +24,7 @@ fun TodoFloatingActionButton(
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = contentDescription,
+            contentDescription = stringResource(id = contentDescription),
             tint = White
         )
     }

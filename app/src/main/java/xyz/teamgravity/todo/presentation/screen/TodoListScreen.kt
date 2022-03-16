@@ -14,13 +14,12 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
-import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
 import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
@@ -83,11 +82,9 @@ fun TodoListScreen(
         },
         floatingActionButton = {
             TodoFloatingActionButton(
-                onClick = {
-                    navigator.navigate(AddTodoScreenDestination)
-                },
+                onClick = { navigator.navigate(AddTodoScreenDestination) },
                 icon = Icons.Default.Add,
-                contentDescription = stringResource(id = R.string.cd_task_add)
+                contentDescription = R.string.cd_task_add
             )
         },
         modifier = Modifier
