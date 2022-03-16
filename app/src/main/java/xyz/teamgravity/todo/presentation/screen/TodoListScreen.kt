@@ -2,7 +2,6 @@ package xyz.teamgravity.todo.presentation.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,8 +24,8 @@ import xyz.teamgravity.todo.presentation.component.CheckableMenuItem
 import xyz.teamgravity.todo.presentation.component.SwipeTodoCard
 import xyz.teamgravity.todo.presentation.component.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -70,11 +69,51 @@ fun TodoListScreen(
                             contentDescription = stringResource(id = R.string.cd_sort)
                         )
                     }
+                    DropdownMenu(
+                        expanded = viewmodel.sortExpanded,
+                        onDismissRequest = viewmodel::onSortCollapsed
+                    ) {
+                        sortMenuItems.forEach { menu ->
+                            DropdownMenuItem(
+                                onClick = {
+                                    viewmodel.onSort(sort = menu.sort)
+                                }
+                            ) {
+                                Text(text = stringResource(id = menu.title))
+                            }
+                        }
+                    }
                     IconButton(onClick = viewmodel::onMenuExpanded) {
                         Icon(
                             imageVector = Icons.Default.MoreVert,
                             contentDescription = stringResource(id = R.string.cd_more_vertical)
                         )
+                    }
+                    DropdownMenu(
+                        expanded = viewmodel.menuExpanded,
+                        onDismissRequest = viewmodel::onMenuCollapsed
+                    ) {
+                        DropdownMenuItem(onClick = viewmodel::onHideCompletedChange) {
+                            CheckableMenuItem(
+                                title = stringResource(id = R.string.hide_completed),
+                                checked = viewmodel.hideCompleted,
+                                onCheckedChange = viewmodel::onHideCompletedChange
+                            )
+                        }
+                        DropdownMenuItem(onClick = viewmodel::onDeleteCompletedDialogShow) {
+                            Text(text = stringResource(id = R.string.delete_all_completed))
+                        }
+                        DropdownMenuItem(onClick = viewmodel::onDeleteAllDialogShow) {
+                            Text(text = stringResource(id = R.string.delete_all_tasks))
+                        }
+                        DropdownMenuItem(
+                            onClick = {
+                                navigator.navigate(AboutScreenDestination)
+                                viewmodel.onMenuCollapsed()
+                            }
+                        ) {
+                            Text(text = stringResource(id = R.string.about_me))
+                        }
                     }
                 }
             )
@@ -92,76 +131,34 @@ fun TodoListScreen(
             .fillMaxSize()
             .background(SuperLightWhite)
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            DropdownMenu(
-                expanded = viewmodel.menuExpanded,
-                onDismissRequest = viewmodel::onMenuCollapsed
-            ) {
-                DropdownMenuItem(onClick = viewmodel::onHideCompletedChange) {
-                    CheckableMenuItem(
-                        title = stringResource(id = R.string.hide_completed),
-                        checked = viewmodel.hideCompleted,
-                        onCheckedChange = viewmodel::onHideCompletedChange
-                    )
-                }
-                DropdownMenuItem(onClick = viewmodel::onDeleteCompletedDialogShow) {
-                    Text(text = stringResource(id = R.string.delete_all_completed))
-                }
-                DropdownMenuItem(onClick = viewmodel::onDeleteAllDialogShow) {
-                    Text(text = stringResource(id = R.string.delete_all_tasks))
-                }
-                DropdownMenuItem(
-                    onClick = {
-                        navigator.navigate(AboutScreenDestination)
-                        viewmodel.onMenuCollapsed()
-                    }
-                ) {
-                    Text(text = stringResource(id = R.string.about_me))
-                }
-            }
-            DropdownMenu(
-                expanded = viewmodel.sortExpanded,
-                onDismissRequest = viewmodel::onSortCollapsed
-            ) {
-                sortMenuItems.forEach { menu ->
-                    DropdownMenuItem(
-                        onClick = {
-                            viewmodel.onSort(sort = menu.sort)
-                        }
-                    ) {
-                        Text(text = stringResource(id = menu.title))
-                    }
-                }
-            }
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(
-                    items = viewmodel.todos,
-                    key = { it._id }
-                ) { todo ->
-                    SwipeTodoCard(
-                        todo = todo,
-                        onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
-                        onTodoCheckedChange = viewmodel::onTodoChecked,
-                        onTodoDismissed = viewmodel::onTodoDelete
-                    )
-                }
-            }
-            if (viewmodel.deleteCompletedDialog) {
-                TodoAlertDialog(
-                    title = R.string.confirm_deletion,
-                    message = R.string.wanna_delete_completed,
-                    onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
-                    onConfirm = viewmodel::onDeleteCompleted
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(
+                items = viewmodel.todos,
+                key = { it._id }
+            ) { todo ->
+                SwipeTodoCard(
+                    todo = todo,
+                    onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
+                    onTodoCheckedChange = viewmodel::onTodoChecked,
+                    onTodoDismissed = viewmodel::onTodoDelete
                 )
             }
-            if (viewmodel.deleteAllDialog) {
-                TodoAlertDialog(
-                    title = R.string.confirm_deletion,
-                    message = R.string.wanna_delete_all,
-                    onDismiss = viewmodel::onDeleteAllDialogDismiss,
-                    onConfirm = viewmodel::onDeleteAll
-                )
-            }
+        }
+        if (viewmodel.deleteCompletedDialog) {
+            TodoAlertDialog(
+                title = R.string.confirm_deletion,
+                message = R.string.wanna_delete_completed,
+                onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
+                onConfirm = viewmodel::onDeleteCompleted
+            )
+        }
+        if (viewmodel.deleteAllDialog) {
+            TodoAlertDialog(
+                title = R.string.confirm_deletion,
+                message = R.string.wanna_delete_all,
+                onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                onConfirm = viewmodel::onDeleteAll
+            )
         }
     }
 }
