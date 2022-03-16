@@ -20,6 +20,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.checkbox.TodoImportantCheckbox
 import xyz.teamgravity.todo.presentation.component.textfield.TodoTextField
@@ -47,7 +48,7 @@ fun AddTodoScreen(
                 AddTodoViewModel.AddTodoEvent.TodoAdded -> {
                     navigator.popBackStack()
                 }
-            }
+            }.exhaustive
         }
     }
 
