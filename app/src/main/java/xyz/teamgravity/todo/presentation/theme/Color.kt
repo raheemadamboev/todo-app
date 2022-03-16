@@ -14,6 +14,8 @@ val PlayStoreGray = Color(0xFF474747)
 val DarkGray = Color(0xFF121212)
 val DarkGray200 = Color(0xFF1A1A1A)
 val White700 = Color(0xFFBBBBBB)
+val LightRed = Color(0xFFCF6679)
+val Red = Color(0xFFE74C3C)
 
 @get:Composable
 val Colors.backgroundLayout: Color
@@ -30,6 +32,10 @@ val Colors.textPrimary: Color
 @get:Composable
 val Colors.textSecondary: Color
     get() = if (isLight) PlayStoreGray else White700
+
+@get:Composable
+val Colors.textError: Color
+    get() = if (isLight) Red else LightRed
 
 @get:Composable
 val Colors.textButton: Color
