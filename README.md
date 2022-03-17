@@ -45,7 +45,7 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 - Jetpack DataStore Preferences. As SharedPreferences has problems, it is deprecated. Problem was SharedPreferences read values schronously which is crazy! (It could block Main/UI thread). Jetpack DataStore uses Kotlin Flows, so that we can continously observe for changes and integrate (combine) with other flows. Everything is done asynchronously in Jetpack DataStore.
 - Kotlin Flows. One of the greatest technology I have ever seen. Very powerful and very easy. Flow is used to observe changes in Jetpack DataStore Preferences and Room Database. StateFlow is used in order to hold states in flow and observe for changes. Channel is used to send only one time events, and Channel is cold flow so our event won't get lost if there is no consumer :)
 - Material Design (V2). You know why we need it, UI/UX.
-- Git. Because of legen Linus Torvalds invention, we are here. Version Control System is used to track changes in files.
+- Git. Because of legend Linus Torvalds invention, we are here. Version Control System is used to track changes in files.
 
 # 1.0 - View (XML)
 
@@ -72,4 +72,4 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 - Jetpack DataStore Preferences. As SharedPreferences has problems, it is deprecated. Problem was SharedPreferences read values schronously which is crazy! (It could block Main/UI thread). Jetpack DataStore uses Kotlin Flows, so that we can continously observe for changes and integrate (combine) with other flows. Everything is done asynchronously in Jetpack DataStore.
 - Kotlin Flows. One of the greatest technology I have ever seen. Very powerful and very easy. Flow is used to observe changes in Jetpack DataStore Preferences and Room Database. StateFlow is used in order to hold states in flow and observe for changes. Channel is used to send only one time events, and Channel is cold flow so our event won't get lost if there is no consumer :)
 - Material Design (V2). You know why we need it, UI/UX.
-- Git. Because of legen Linus Torvalds invention, we are here. Version Control System is used to track changes in files.
+- Git. Because of legend Linus Torvalds invention, we are here. Version Control System is used to track changes in files.
