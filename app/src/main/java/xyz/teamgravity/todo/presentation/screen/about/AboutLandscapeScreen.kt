@@ -1,11 +1,9 @@
-package xyz.teamgravity.todo.presentation.screen
+package xyz.teamgravity.todo.presentation.screen.about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -18,9 +16,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
@@ -29,11 +27,11 @@ import xyz.teamgravity.todo.presentation.theme.backgroundLayout
 import xyz.teamgravity.todo.presentation.theme.textPrimary
 import xyz.teamgravity.todo.presentation.theme.textSecondary
 
-@Destination
+
 @Composable
-fun AboutScreen(
-    scaffold: ScaffoldState = rememberScaffoldState(),
-    navigator: DestinationsNavigator
+fun AboutLandscapeScreen(
+    scaffold: ScaffoldState,
+    onBackButtonClick: () -> Unit
 ) {
     Scaffold(
         scaffoldState = scaffold,
@@ -41,7 +39,7 @@ fun AboutScreen(
             TopAppBar(
                 title = { TopBarTitle(title = R.string.app_name) },
                 navigationIcon = {
-                    IconButton(onClick = navigator::popBackStack) {
+                    IconButton(onClick = onBackButtonClick) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(id = R.string.cd_back_button)
@@ -56,18 +54,19 @@ fun AboutScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colors.backgroundLayout)
         ) {
-            val (appI, appNameT, appVersionT, companyI, developerT) = createRefs()
+            val (appI, appNameT, appVersionT, oneS, companyI, developerT) = createRefs()
+            val oneG = createGuidelineFromStart(0.5F)
 
             Image(
                 painter = painterResource(id = R.drawable.icon),
                 contentDescription = stringResource(id = R.string.cd_app_icon),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .width(180.dp)
-                    .height(180.dp)
                     .constrainAs(appI) {
-                        linkTo(start = parent.start, end = parent.end)
-                        linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
+                        width = Dimension.value(180.dp)
+                        height = Dimension.value(180.dp)
+                        linkTo(start = parent.start, end = oneG)
+                        linkTo(top = parent.top, bottom = parent.bottom)
                     }
             )
             Text(
@@ -78,9 +77,9 @@ fun AboutScreen(
                 fontWeight = FontWeight.Black,
                 fontFamily = Muli,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .constrainAs(appNameT) {
-                        top.linkTo(appI.bottom, 20.dp)
+                        width = Dimension.fillToConstraints
+                        linkTo(start = oneG, end = parent.end)
                     }
             )
             Text(
@@ -89,20 +88,26 @@ fun AboutScreen(
                 color = MaterialTheme.colors.textSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .constrainAs(appVersionT) {
-                        top.linkTo(appNameT.bottom, 10.dp)
+                        width = Dimension.fillToConstraints
+                        linkTo(start = oneG, end = parent.end)
+                    }
+            )
+            Spacer(
+                modifier = Modifier
+                    .constrainAs(oneS) {
+                        height = Dimension.value(16.dp)
+                        linkTo(start = oneG, end = parent.end)
                     }
             )
             Image(
                 painter = painterResource(id = R.drawable.gravity),
                 contentDescription = stringResource(id = R.string.cd_company_logo),
                 modifier = Modifier
-                    .width(100.dp)
-                    .height(20.dp)
                     .constrainAs(companyI) {
-                        linkTo(start = parent.start, end = parent.end)
-                        bottom.linkTo(developerT.top, 5.dp)
+                        width = Dimension.value(100.dp)
+                        height = Dimension.value(20.dp)
+                        linkTo(start = oneG, end = parent.end)
                     }
             )
             Text(
@@ -112,11 +117,13 @@ fun AboutScreen(
                 color = MaterialTheme.colors.textPrimary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .constrainAs(developerT) {
-                        bottom.linkTo(parent.bottom, 16.dp)
+                        width = Dimension.fillToConstraints
+                        linkTo(start = oneG, end = parent.end)
                     }
             )
+
+            createVerticalChain(appNameT, appVersionT, oneS, companyI, developerT, chainStyle = ChainStyle.Packed)
         }
     }
 }
