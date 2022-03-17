@@ -26,11 +26,11 @@ import xyz.teamgravity.todo.presentation.theme.textError
 
 @Composable
 fun TodoSwipeCard(
-    dismiss: DismissState = rememberDismissState(),
     todo: TodoModel,
     onTodoClick: (todo: TodoModel) -> Unit,
     onTodoCheckedChange: (todo: TodoModel, checked: Boolean) -> Unit,
-    onTodoDismissed: (todo: TodoModel) -> Unit
+    onTodoDismissed: (todo: TodoModel) -> Unit,
+    dismiss: DismissState = rememberDismissState()
 ) {
 
     if (dismiss.isDismissed(DismissDirection.EndToStart) || dismiss.isDismissed(DismissDirection.StartToEnd)) {
