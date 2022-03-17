@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.todo.core.util.Preferences.PREFS)
 
 class Preferences(context: Context) {
 
@@ -18,7 +18,7 @@ class Preferences(context: Context) {
         /**
          *  Preferences name
          */
-        private const val PREFS = "prefs"
+        const val PREFS = "prefs"
 
         /**
          * Task sort order
@@ -29,11 +29,6 @@ class Preferences(context: Context) {
          * Task hide completed
          */
         private val HIDE_COMPLETED = booleanPreferencesKey("hideCompleted")
-
-        /**
-         * Language
-         */
-        private val LANGUAGE = stringPreferencesKey("language")
     }
 
     private val store = context.dataStore
@@ -45,9 +40,7 @@ class Preferences(context: Context) {
 
             val hideCompleted = preferences[HIDE_COMPLETED] ?: false
 
-            val language = preferences[LANGUAGE] ?: "def"
-
-            return@map PreferencesModel(sort = sort, hideCompleted = hideCompleted, language = language)
+            return@map PreferencesModel(sort = sort, hideCompleted = hideCompleted)
         }
 
     suspend fun updateTodoSort(sort: TodoSort) {
@@ -57,14 +50,9 @@ class Preferences(context: Context) {
     suspend fun updateHideCompleted(hideCompleted: Boolean) {
         store.edit { it[HIDE_COMPLETED] = hideCompleted }
     }
-
-    suspend fun updateLanguage(language: String) {
-        store.edit { it[LANGUAGE] = language }
-    }
 }
 
 data class PreferencesModel(
     val sort: TodoSort,
-    val hideCompleted: Boolean,
-    val language: String
+    val hideCompleted: Boolean
 )
