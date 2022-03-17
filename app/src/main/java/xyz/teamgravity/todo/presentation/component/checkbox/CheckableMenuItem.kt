@@ -4,11 +4,10 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Checkbox
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarMenuText
 
 @Composable
 fun CheckableMenuItem(
@@ -20,7 +19,7 @@ fun CheckableMenuItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(text = stringResource(id = title))
+        TopBarMenuText(text = title)
         Checkbox(
             checked = checked,
             onCheckedChange = { onCheckedChange() } // intentionally done!

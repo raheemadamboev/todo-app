@@ -2,11 +2,9 @@ package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.checkbox.CheckableMenuItem
 
@@ -38,13 +36,13 @@ fun TopBarMoreMenu(
             )
         }
         DropdownMenuItem(onClick = onDeleteCompletedClick) {
-            Text(text = stringResource(id = R.string.delete_all_completed))
+            TopBarMenuText(text = R.string.delete_all_completed)
         }
         DropdownMenuItem(onClick = onDeleteAllClick) {
-            Text(text = stringResource(id = R.string.delete_all_tasks))
+            TopBarMenuText(text = R.string.delete_all_tasks)
         }
         DropdownMenuItem(onClick = onAboutClick) {
-            Text(text = stringResource(id = R.string.about_me))
+            TopBarMenuText(text = R.string.about_me)
         }
     }
 }
