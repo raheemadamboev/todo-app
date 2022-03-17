@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ToDo</string>
-    <string name="raheem" translatable="false">Raheem</string>
 
     <!-- TodoList -->
     <string name="tasks">Tasks</string>

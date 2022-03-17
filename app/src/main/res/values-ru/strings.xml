@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Задания</string>
+
+    <!-- TodoList -->
+    <string name="tasks">Задания</string>
+    <string name="deleted_successfully">Задача успешно удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="search">Поиск…</string>
+    <string name="sort_by_name">Сортировать по имени</string>
+    <string name="sort_by_date">Сортировать по дате</string>
+    <string name="hide_completed">Скрыть завершено</string>
+    <string name="delete_all_completed">Удалить все завершено</string>
+    <string name="delete_all_tasks">Удалить все задачи</string>
+    <string name="about_me">Обо мне</string>
+
+    <!-- TodoAdd -->
+    <string name="new_task">Новое задание</string>
+    <string name="task_name">Название задачи</string>
+    <string name="important_task">Важная задача</string>
+    <string name="error_name">Имя не может быть пустым</string>
+
+    <!-- TodoEdit -->
+    <string name="edit_task">Редактировать задачу</string>
+    <string name="your_created_timestamp">Создано: %1$s</string>
+
+    <!-- TodoDialog -->
+    <string name="confirm_deletion">Подтвердить удаление</string>
+    <string name="wanna_delete_completed">Вы хотите удалить все выполненные задачи?</string>
+    <string name="wanna_delete_all">Вы хотите удалить все задачи?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+</resources>

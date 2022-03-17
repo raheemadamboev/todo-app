@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vazifalar</string>
+
+    <!-- TodoList -->
+    <string name="tasks">Vazifalar</string>
+    <string name="deleted_successfully">Vazifa muvaffaqiyatli o\'chirildi</string>
+    <string name="undo">Qaytarish</string>
+    <string name="search">Qidirish…</string>
+    <string name="sort_by_name">Nomdan saralash</string>
+    <string name="sort_by_date">Sanadan saralash</string>
+    <string name="hide_completed">Bajarilganlarni yashirish</string>
+    <string name="delete_all_completed">Bajarilganlarni o\'chirish</string>
+    <string name="delete_all_tasks">Hammasini o\'chirish</string>
+    <string name="about_me">Dastur haqida</string>
+
+    <!-- TodoAdd -->
+    <string name="new_task">Yangi vazifa</string>
+    <string name="task_name">Vazifa nomi</string>
+    <string name="important_task">Muhim vazifa</string>
+    <string name="error_name">Nomni to\'ldirish majburiy</string>
+
+    <!-- TodoEdit -->
+    <string name="edit_task">Vazifani o\'zgartirish</string>
+    <string name="your_created_timestamp">Yaratilgan: %1$s</string>
+
+    <!-- TodoDialog -->
+    <string name="confirm_deletion">O\'chirishni tasdiqlang</string>
+    <string name="wanna_delete_completed">Hamma bajarilgan vazifalarni o\'chirishga rozimisiz?</string>
+    <string name="wanna_delete_all">Hamma vazifalarni o\'chirishga rozimisiz?</string>
+    <string name="no">Yo\'q</string>
+    <string name="yes">Ha</string>
+</resources>
