@@ -54,7 +54,7 @@ fun AboutLandscapeScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colors.backgroundLayout)
         ) {
-            val (appI, appNameT, appVersionT, oneS, companyI, developerT) = createRefs()
+            val (appI, appNameT, appVersionT, oneS, companyI, twoS, developerT) = createRefs()
             val oneG = createGuidelineFromStart(0.5F)
 
             Image(
@@ -110,6 +110,13 @@ fun AboutLandscapeScreen(
                         linkTo(start = oneG, end = parent.end)
                     }
             )
+            Spacer(
+                modifier = Modifier
+                    .constrainAs(twoS) {
+                        height = Dimension.value(5.dp)
+                        linkTo(start = oneG, end = parent.end)
+                    }
+            )
             Text(
                 text = stringResource(id = R.string.raheem),
                 style = MaterialTheme.typography.body1,
@@ -123,7 +130,7 @@ fun AboutLandscapeScreen(
                     }
             )
 
-            createVerticalChain(appNameT, appVersionT, oneS, companyI, developerT, chainStyle = ChainStyle.Packed)
+            createVerticalChain(appNameT, appVersionT, oneS, companyI, twoS, developerT, chainStyle = ChainStyle.Packed)
         }
     }
 }
