@@ -28,7 +28,9 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 
 **Screenshots:**
 
-<img src="https://github.com/raheemadamboev/todo-app/blob/master/ToDo.jpg" width="869" height="416">
+<p align="center">
+ <img src="https://github.com/raheemadamboev/todo-app/blob/master/banner/ToDo%201.1.jpg" width="869" height="416" />
+</p>
 
 **Tech stack:**
 
@@ -53,7 +55,9 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 
 **Screenshots:**
 
-<img src="https://github.com/raheemadamboev/todo-app/blob/master/ToDo.jpg" width="869" height="416">
+<p align="center">
+<img src="https://github.com/raheemadamboev/todo-app/blob/master/banner/ToDo%201.0.jpg" width="869" height="416">
+</p>
 
 **Tech stack:**
 
