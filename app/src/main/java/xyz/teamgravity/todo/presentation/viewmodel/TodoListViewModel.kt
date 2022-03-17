@@ -68,15 +68,11 @@ class TodoListViewModel @Inject constructor(
     }
 
     fun onQueryChange(value: String) {
-        viewModelScope.launch {
-            _query.emit(value)
-        }
+        viewModelScope.launch { _query.emit(value) }
     }
 
     fun onTodoChecked(todo: TodoModel, checked: Boolean) {
-        viewModelScope.launch {
-            repository.updateTodoSync(todo.copy(completed = checked))
-        }
+        viewModelScope.launch { repository.updateTodoSync(todo.copy(completed = checked)) }
     }
 
     fun onTodoDelete(todo: TodoModel) {
