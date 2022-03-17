@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
     id 'com.google.devtools.ksp' version '1.6.10-1.0.2'
+    id 'com.google.firebase.crashlytics'
 }
 
 kotlin {
@@ -126,8 +127,11 @@ dependencies {
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
 
-    // firebase analytics
-    implementation 'com.google.firebase:firebase-analytics:20.1.0'
+    // firebase
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics:'
 
     // room
     implementation "androidx.room:room-runtime:2.4.2"
