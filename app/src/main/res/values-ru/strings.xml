@@ -29,4 +29,17 @@
     <string name="wanna_delete_all">Вы хотите удалить все задачи?</string>
     <string name="no">Нет</string>
     <string name="yes">Да</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_task_important">Важная задача</string>
+    <string name="cd_task_add">Добавить задание</string>
+    <string name="cd_back_button">Навигация назад</string>
+    <string name="cd_done_button">Сохранение задач</string>
+    <string name="cd_delete_button">Удалить задание</string>
+    <string name="cd_more_vertical">Дополнительные действия</string>
+    <string name="cd_app_icon">Значок приложения</string>
+    <string name="cd_company_logo">Логотип компании</string>
+    <string name="cd_sort">Сортировать задачи</string>
+    <string name="cd_search_button">Поиск задач</string>
+    <string name="cd_hide_completed">Скрыть завершено</string>
 </resources>

@@ -30,4 +30,17 @@
     <string name="wanna_delete_all">Hamma vazifalarni o\'chirishga rozimisiz?</string>
     <string name="no">Yo\'q</string>
     <string name="yes">Ha</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_task_important">Muhim vazifa</string>
+    <string name="cd_task_add">Vazifa yaratish</string>
+    <string name="cd_back_button">Orqaga qaytish</string>
+    <string name="cd_done_button">Vazifani saqlash</string>
+    <string name="cd_delete_button">Vazifani o\'chirish</string>
+    <string name="cd_more_vertical">Ko\'proq amallar</string>
+    <string name="cd_app_icon">Dastur belgisi</string>
+    <string name="cd_company_logo">Kompaniya emblemasi</string>
+    <string name="cd_sort">Vazifalarni saralash</string>
+    <string name="cd_search_button">Vazifalarni qidirish</string>
+    <string name="cd_hide_completed">Bajarilganlarni yashirish</string>
 </resources>
