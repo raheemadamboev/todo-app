@@ -21,6 +21,7 @@ import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
+import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
 
@@ -50,7 +51,7 @@ fun AddTodoScreen(
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            TopBar(
                 title = { TextPlain(id = R.string.new_task) },
                 navigationIcon = {
                     TopBarIconButton(
