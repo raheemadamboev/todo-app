@@ -22,10 +22,7 @@ import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButt
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarMoreMenu
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
+import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -57,7 +54,7 @@ fun TodoListScreen(
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            TopBar(
                 title = {
                     if (viewmodel.searchExpanded) {
                         TopBarSearch(
