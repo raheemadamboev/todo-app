@@ -23,12 +23,7 @@ fun TodoTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = { Text(text = stringResource(id = R.string.task_name)) },
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = Color.Transparent
-        ),
-        textStyle = TextStyle.Default.copy(
-            fontFamily = Muli
-        ),
+        colors = TextFieldDefaults.textFieldColors(containerColor = Color.Transparent),
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp, start = 8.dp, end = 8.dp),
