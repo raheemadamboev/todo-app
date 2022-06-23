@@ -10,4 +10,5 @@
     <string name="cd_company_logo" translatable="false">Company logo</string>
     <string name="cd_sort" translatable="false">Sort button</string>
     <string name="cd_search_button" translatable="false">Search button</string>
+    <string name="cd_hide_completed" translatable="false">Hide completed</string>
 </resources>

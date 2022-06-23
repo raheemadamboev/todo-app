@@ -10,8 +10,5 @@ import xyz.teamgravity.todo.presentation.theme.Muli
 fun TopBarMenuText(
     @StringRes text: Int
 ) {
-    Text(
-        text = stringResource(id = text),
-        fontFamily = Muli
-    )
+    Text(text = stringResource(id = text))
 }

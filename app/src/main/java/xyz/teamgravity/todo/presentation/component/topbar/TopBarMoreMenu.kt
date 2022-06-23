@@ -1,10 +1,13 @@
 package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import xyz.teamgravity.todo.R
 
 @Composable
@@ -27,26 +30,29 @@ fun TopBarMoreMenu(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        /* DropdownMenuItem(onClick = onHideCompletedChange) {
-             CheckableMenuItem(
-                 title = R.string.hide_completed,
-                 checked = hideCompleted,
-                 onCheckedChange = onHideCompletedChange
-             )
-         }
-
-         */
         DropdownMenuItem(
-            onClick = onDeleteCompletedClick,
-            text = { TopBarMenuText(text = R.string.delete_all_completed) }
+            text = { TopBarMenuText(text = R.string.hide_completed) },
+            onClick = onHideCompletedChange,
+            trailingIcon = {
+                if (hideCompleted) {
+                    Icon(
+                        imageVector = Icons.Default.Done,
+                        contentDescription = stringResource(id = R.string.cd_hide_completed)
+                    )
+                }
+            }
         )
         DropdownMenuItem(
-            onClick = onDeleteAllClick,
-            text = { TopBarMenuText(text = R.string.delete_all_tasks) }
+            text = { TopBarMenuText(text = R.string.delete_all_completed) },
+            onClick = onDeleteCompletedClick
         )
         DropdownMenuItem(
-            onClick = onAboutClick,
-            text = { TopBarMenuText(text = R.string.about_me) }
+            text = { TopBarMenuText(text = R.string.delete_all_tasks) },
+            onClick = onDeleteAllClick
+        )
+        DropdownMenuItem(
+            text = { TopBarMenuText(text = R.string.about_me) },
+            onClick = onAboutClick
         )
     }
 }
