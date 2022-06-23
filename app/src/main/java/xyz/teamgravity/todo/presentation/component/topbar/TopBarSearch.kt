@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -34,12 +35,18 @@ fun TopBarSearch(
             onValueChange = onQueryChange,
             singleLine = true,
             placeholder = {
-                Text(text = stringResource(id = R.string.search))
+                Text(
+                    text = stringResource(id = R.string.search),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = MaterialTheme.typography.bodyLarge
+                )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 unfocusedBorderColor = Color.Transparent,
-                focusedBorderColor = Color.Transparent
-            )
+                focusedBorderColor = Color.Transparent,
+                textColor = MaterialTheme.colorScheme.onPrimary
+            ),
+            textStyle = MaterialTheme.typography.bodyLarge
         )
     }
 }
