@@ -1,8 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -14,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -114,40 +113,37 @@ fun TodoListScreen(
             }
         }
     ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
+        LazyColumn(
+            contentPadding = padding,
+            modifier = Modifier.fillMaxSize(),
         ) {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(
-                    items = viewmodel.todos,
-                    key = { it._id }
-                ) { todo ->
-                    TodoSwipeCard(
-                        todo = todo,
-                        onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
-                        onTodoCheckedChange = viewmodel::onTodoChecked,
-                        onTodoDismissed = viewmodel::onTodoDelete
-                    )
-                }
-            }
-            if (viewmodel.deleteCompletedDialog) {
-                TodoAlertDialog(
-                    title = R.string.confirm_deletion,
-                    message = R.string.wanna_delete_completed,
-                    onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
-                    onConfirm = viewmodel::onDeleteCompleted
+            items(
+                items = viewmodel.todos,
+                key = { it._id }
+            ) { todo ->
+                TodoSwipeCard(
+                    todo = todo,
+                    onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
+                    onTodoCheckedChange = viewmodel::onTodoChecked,
+                    onTodoDismissed = viewmodel::onTodoDelete
                 )
             }
-            if (viewmodel.deleteAllDialog) {
-                TodoAlertDialog(
-                    title = R.string.confirm_deletion,
-                    message = R.string.wanna_delete_all,
-                    onDismiss = viewmodel::onDeleteAllDialogDismiss,
-                    onConfirm = viewmodel::onDeleteAll
-                )
-            }
+        }
+        if (viewmodel.deleteCompletedDialog) {
+            TodoAlertDialog(
+                title = R.string.confirm_deletion,
+                message = R.string.wanna_delete_completed,
+                onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
+                onConfirm = viewmodel::onDeleteCompleted
+            )
+        }
+        if (viewmodel.deleteAllDialog) {
+            TodoAlertDialog(
+                title = R.string.confirm_deletion,
+                message = R.string.wanna_delete_all,
+                onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                onConfirm = viewmodel::onDeleteAll
+            )
         }
     }
 }
