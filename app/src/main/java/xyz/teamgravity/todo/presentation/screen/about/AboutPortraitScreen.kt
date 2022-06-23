@@ -20,6 +20,7 @@ import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.theme.Muli
 
 @Composable
@@ -31,12 +32,11 @@ fun AboutPortraitScreen(
             SmallTopAppBar(
                 title = { TextPlain(id = R.string.app_name) },
                 navigationIcon = {
-                    IconButton(onClick = onBackButtonClick) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(id = R.string.cd_back_button)
-                        )
-                    }
+                    TopBarIconButton(
+                        onClick = onBackButtonClick,
+                        icon = Icons.Default.ArrowBack,
+                        contentDescription = R.string.cd_back_button
+                    )
                 }
             )
         }
