@@ -8,6 +8,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarSortMenu(
@@ -29,7 +30,7 @@ fun TopBarSortMenu(
         menus.forEach { menu ->
             DropdownMenuItem(
                 onClick = { onSort(menu.sort) },
-                text = { TopBarMenuText(text = menu.title) }
+                text = { TextPlain(id = menu.title) }
             )
         }
     }

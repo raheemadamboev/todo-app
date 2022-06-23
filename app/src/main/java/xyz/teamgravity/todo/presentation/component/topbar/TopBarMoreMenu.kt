@@ -9,6 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarMoreMenu(
@@ -31,7 +32,7 @@ fun TopBarMoreMenu(
         onDismissRequest = onDismiss
     ) {
         DropdownMenuItem(
-            text = { TopBarMenuText(text = R.string.hide_completed) },
+            text = { TextPlain(id = R.string.hide_completed) },
             onClick = onHideCompletedChange,
             trailingIcon = {
                 if (hideCompleted) {
@@ -43,15 +44,15 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TopBarMenuText(text = R.string.delete_all_completed) },
+            text = { TextPlain(id = R.string.delete_all_completed) },
             onClick = onDeleteCompletedClick
         )
         DropdownMenuItem(
-            text = { TopBarMenuText(text = R.string.delete_all_tasks) },
+            text = { TextPlain(id = R.string.delete_all_tasks) },
             onClick = onDeleteAllClick
         )
         DropdownMenuItem(
-            text = { TopBarMenuText(text = R.string.about_me) },
+            text = { TextPlain(id = R.string.about_me) },
             onClick = onAboutClick
         )
     }
