@@ -44,7 +44,8 @@ fun TopBarSearch(
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 unfocusedBorderColor = Color.Transparent,
                 focusedBorderColor = Color.Transparent,
-                textColor = MaterialTheme.colorScheme.onPrimary
+                textColor = MaterialTheme.colorScheme.onPrimary,
+                cursorColor = MaterialTheme.colorScheme.onPrimary
             ),
             textStyle = MaterialTheme.typography.bodyLarge
         )
