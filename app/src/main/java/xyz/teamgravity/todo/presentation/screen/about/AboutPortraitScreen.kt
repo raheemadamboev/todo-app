@@ -1,11 +1,11 @@
 package xyz.teamgravity.todo.presentation.screen.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -21,19 +21,14 @@ import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.theme.Muli
-import xyz.teamgravity.todo.presentation.theme.backgroundLayout
-import xyz.teamgravity.todo.presentation.theme.textPrimary
-import xyz.teamgravity.todo.presentation.theme.textSecondary
 
 @Composable
 fun AboutPortraitScreen(
-    scaffold: ScaffoldState,
     onBackButtonClick: () -> Unit
 ) {
     Scaffold(
-        scaffoldState = scaffold,
         topBar = {
-            TopAppBar(
+            SmallTopAppBar(
                 title = { TopBarTitle(title = R.string.app_name) },
                 navigationIcon = {
                     IconButton(onClick = onBackButtonClick) {
@@ -45,11 +40,11 @@ fun AboutPortraitScreen(
                 }
             )
         }
-    ) {
+    ) { padding ->
         ConstraintLayout(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colors.backgroundLayout)
+                .padding(padding)
         ) {
             val (appI, appNameT, appVersionT, companyI, developerT) = createRefs()
 
@@ -69,7 +64,6 @@ fun AboutPortraitScreen(
                 text = stringResource(id = R.string.app_name),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
-                color = MaterialTheme.colors.textPrimary,
                 fontWeight = FontWeight.Black,
                 fontFamily = Muli,
                 modifier = Modifier
@@ -80,8 +74,7 @@ fun AboutPortraitScreen(
             )
             Text(
                 text = BuildConfig.VERSION_NAME,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.textSecondary,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .constrainAs(appVersionT) {
@@ -102,9 +95,8 @@ fun AboutPortraitScreen(
             )
             Text(
                 text = stringResource(id = R.string.raheem),
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyMedium,
                 fontSize = 12.sp,
-                color = MaterialTheme.colors.textPrimary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .constrainAs(developerT) {

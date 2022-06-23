@@ -1,6 +1,4 @@
 <resources>
 
-    <style name="Theme.ToDo" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/brown_700</item>
-    </style>
+    <style name="Theme.ToDo" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

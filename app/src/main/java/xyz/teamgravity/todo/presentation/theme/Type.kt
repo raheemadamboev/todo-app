@@ -1,6 +1,6 @@
 package xyz.teamgravity.todo.presentation.theme
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -14,14 +14,11 @@ val Muli = FontFamily(
 )
 
 val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = Muli,
+    bodyLarge = TextStyle(
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    ),
-    button = TextStyle(
-        fontFamily = Muli,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
     )
 )

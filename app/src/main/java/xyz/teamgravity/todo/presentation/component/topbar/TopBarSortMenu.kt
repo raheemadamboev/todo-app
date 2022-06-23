@@ -1,10 +1,10 @@
 package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.annotation.StringRes
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.TodoSort
@@ -27,9 +27,10 @@ fun TopBarSortMenu(
         onDismissRequest = onDismiss
     ) {
         menus.forEach { menu ->
-            DropdownMenuItem(onClick = { onSort(menu.sort) }) {
-                TopBarMenuText(text = menu.title)
-            }
+            DropdownMenuItem(
+                onClick = { onSort(menu.sort) },
+                text = { TopBarMenuText(text = menu.title) }
+            )
         }
     }
 }

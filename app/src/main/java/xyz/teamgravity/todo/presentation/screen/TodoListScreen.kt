@@ -1,17 +1,18 @@
 package xyz.teamgravity.todo.presentation.screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,24 +27,23 @@ import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
-import xyz.teamgravity.todo.presentation.theme.backgroundLayout
 import xyz.teamgravity.todo.presentation.viewmodel.TodoListViewModel
 
 @Destination(start = true)
 @Composable
 fun TodoListScreen(
     viewmodel: TodoListViewModel = hiltViewModel(),
-    scaffold: ScaffoldState = rememberScaffoldState(),
     navigator: DestinationsNavigator
 ) {
 
+    val snackbar = remember { SnackbarHostState() }
     val context = LocalContext.current
 
     LaunchedEffect(key1 = viewmodel.event) {
         viewmodel.event.collectLatest { event ->
             when (event) {
                 TodoListViewModel.TodoListEvent.TodoDeleted -> {
-                    val result = scaffold.snackbarHostState.showSnackbar(
+                    val result = snackbar.showSnackbar(
                         message = context.getString(R.string.deleted_successfully),
                         actionLabel = context.getString(R.string.undo)
                     )
@@ -54,9 +54,8 @@ fun TodoListScreen(
     }
 
     Scaffold(
-        scaffoldState = scaffold,
         topBar = {
-            TopAppBar(
+            SmallTopAppBar(
                 title = {
                     if (viewmodel.searchExpanded) {
                         TopBarSearch(
@@ -104,12 +103,17 @@ fun TodoListScreen(
                 icon = Icons.Default.Add,
                 contentDescription = R.string.cd_task_add
             )
+        },
+        snackbarHost = {
+            SnackbarHost(hostState = snackbar) { data ->
+                Snackbar(snackbarData = data)
+            }
         }
-    ) {
+    ) { padding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colors.backgroundLayout)
+                .padding(padding)
         ) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(

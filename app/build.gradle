@@ -160,7 +160,9 @@ kapt {
 allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions {
-            freeCompilerArgs += ["-Xuse-experimental=androidx.compose.material.ExperimentalMaterialApi"]
+            freeCompilerArgs += [
+                    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+            ]
         }
     }
 }

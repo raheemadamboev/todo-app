@@ -2,9 +2,9 @@ package xyz.teamgravity.todo.presentation.component.textfield
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,7 +24,7 @@ fun TodoTextField(
         onValueChange = onValueChange,
         placeholder = { Text(text = stringResource(id = R.string.task_name)) },
         colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent
+            containerColor = Color.Transparent
         ),
         textStyle = TextStyle.Default.copy(
             fontFamily = Muli
