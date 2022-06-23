@@ -21,7 +21,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
+import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.theme.Muli
 
 @Composable
@@ -31,7 +31,7 @@ fun AboutLandscapeScreen(
     Scaffold(
         topBar = {
             SmallTopAppBar(
-                title = { TopBarTitle(title = R.string.app_name) },
+                title = { TextPlain(id = R.string.app_name) },
                 navigationIcon = {
                     IconButton(onClick = onBackButtonClick) {
                         Icon(

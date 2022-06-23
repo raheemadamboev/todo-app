@@ -21,8 +21,8 @@ import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
+import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarTitle
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
 
 @Destination(navArgsDelegate = EditScreenNavArgs::class)
@@ -52,7 +52,7 @@ fun EditTodoScreen(
     Scaffold(
         topBar = {
             SmallTopAppBar(
-                title = { TopBarTitle(title = R.string.edit_task) },
+                title = { TextPlain(id = R.string.edit_task) },
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = navigator::popBackStack,
