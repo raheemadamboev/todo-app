@@ -56,7 +56,7 @@ fun TopBarMoreMenu(
             onClick = onDeleteAllClick
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.connect_us) },
+            text = { TextPlain(id = R.string.support) },
             onClick = onSupportClick
         )
         DropdownMenuItem(
