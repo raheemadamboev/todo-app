@@ -18,7 +18,7 @@
     <string name="choose">Tanlang</string>
     <string name="rate">Baho berish</string>
     <string name="source_code">Manba kodi</string>
-    <string name="connect_us">Yordam</string>
+    <string name="support">Yordam</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Yangi vazifa</string>
@@ -37,6 +37,14 @@
     <string name="no">Yo\'q</string>
     <string name="yes">Ha</string>
 
+    <!-- Support -->
+    <string name="need_help">Yordam kerakmi?</string>
+    <string name="connect_us">Biz bilan bog\'laning</string>
+    <string name="connect_us_body">Taklifingizni yoki qanday muammoga duch kelayotganingizni bizga xabar bering. Biz foydalanuvchilarimiz haqida qayg\'uramiz!</string>
+    <string name="via_telegram">Telegram orqali</string>
+    <string name="via_email">Email orqali</string>
+    <string name="improvement">ToDo uchun fikr</string>
+
     <!-- Content Descriptions -->
     <string name="cd_task_important">Muhim vazifa</string>
     <string name="cd_task_add">Vazifa yaratish</string>
@@ -49,4 +57,7 @@
     <string name="cd_sort">Vazifalarni saralash</string>
     <string name="cd_search_button">Vazifalarni qidirish</string>
     <string name="cd_hide_completed">Bajarilganlarni yashirish</string>
+    <string name="cd_user_support">Foydalanuvchilarga yordam berish</string>
+    <string name="cd_via_telegram">Telegram orqali bog\'lanish</string>
+    <string name="cd_via_email">Email orqali bog\'lanish</string>
 </resources>

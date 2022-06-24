@@ -18,7 +18,7 @@
     <string name="choose">Choose</string>
     <string name="rate">Rate</string>
     <string name="source_code">Source code</string>
-    <string name="connect_us">Connect us</string>
+    <string name="support">Connect us</string>
 
     <!-- TodoAdd -->
     <string name="new_task">New task</string>
@@ -37,6 +37,14 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
 
+    <!-- Support -->
+    <string name="need_help">Need help</string>
+    <string name="connect_us">Connect us</string>
+    <string name="connect_us_body">Let us know if you face a problem or you have a suggestion to improve the application. We care about our users!</string>
+    <string name="via_telegram">via Telegram</string>
+    <string name="via_email">via Email</string>
+    <string name="improvement">Improvement for ToDo</string>
+
     <!-- Content Descriptions -->
     <string name="cd_task_important">Important task</string>
     <string name="cd_task_add">Add task</string>
@@ -49,4 +57,7 @@
     <string name="cd_sort">Sort ToDos</string>
     <string name="cd_search_button">Search ToDos</string>
     <string name="cd_hide_completed">Hide completed</string>
+    <string name="cd_user_support">User support</string>
+    <string name="cd_via_telegram">Connect us via Telegram</string>
+    <string name="cd_via_email">Connect us via Email</string>
 </resources>

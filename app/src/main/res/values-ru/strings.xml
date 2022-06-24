@@ -17,7 +17,7 @@
     <string name="choose">Выберите</string>
     <string name="rate">Оценивать</string>
     <string name="source_code">Исходный код</string>
-    <string name="connect_us">Подключите нас</string>
+    <string name="support">Подключите нас</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новое задание</string>
@@ -36,6 +36,14 @@
     <string name="no">Нет</string>
     <string name="yes">Да</string>
 
+    <!-- Support -->
+    <string name="need_help">Нужна помощь</string>
+    <string name="connect_us">Подключите нас</string>
+    <string name="connect_us_body">Сообщите нам, если вы столкнулись с проблемой или у вас есть предложение по улучшению приложения. Мы заботимся о наших пользователях!</string>
+    <string name="via_telegram">через Telegram</string>
+    <string name="via_email">через Email</string>
+    <string name="improvement">Улучшение для ToDo</string>
+
     <!-- Content Descriptions -->
     <string name="cd_task_important">Важная задача</string>
     <string name="cd_task_add">Добавить задание</string>
@@ -48,4 +56,7 @@
     <string name="cd_sort">Сортировать задачи</string>
     <string name="cd_search_button">Поиск задач</string>
     <string name="cd_hide_completed">Скрыть завершено</string>
+    <string name="cd_user_support">Поддержка пользователей</string>
+    <string name="cd_via_telegram">Подключайтесь к нам через Telegram</string>
+    <string name="cd_via_email">Подключайтесь к нам через Email</string>
 </resources>
