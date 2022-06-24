@@ -18,6 +18,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
@@ -88,6 +89,10 @@ fun TodoListScreen(
                         onHideCompletedChange = viewmodel::onHideCompletedChange,
                         onDeleteCompletedClick = viewmodel::onDeleteCompletedDialogShow,
                         onDeleteAllClick = viewmodel::onDeleteAllDialogShow,
+                        onShareClick = {
+                            Helper.shareApp(context)
+                            viewmodel.onMenuCollapsed()
+                        },
                         onAboutClick = {
                             navigator.navigate(AboutScreenDestination)
                             viewmodel.onMenuCollapsed()

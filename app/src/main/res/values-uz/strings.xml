@@ -13,6 +13,9 @@
     <string name="delete_all_completed">Bajarilganlarni o\'chirish</string>
     <string name="delete_all_tasks">Hammasini o\'chirish</string>
     <string name="about_me">Dastur haqida</string>
+    <string name="share">Ulashish</string>
+    <string name="share_app">Unumdorlikingizni oshirishni xohlaysizmi? Unda ToDo dan foydalanib ko\'ring -> %1$s</string>
+    <string name="choose">Tanlang</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Yangi vazifa</string>

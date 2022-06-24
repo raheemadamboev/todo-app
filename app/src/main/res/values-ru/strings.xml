@@ -12,6 +12,9 @@
     <string name="delete_all_completed">Удалить все завершено</string>
     <string name="delete_all_tasks">Удалить все задачи</string>
     <string name="about_me">Обо мне</string>
+    <string name="share">Поделиться</string>
+    <string name="share_app">Хотите повысить свою производительность? Попробуйте ToDo -> %1$s</string>
+    <string name="choose">Выберите</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новое задание</string>
