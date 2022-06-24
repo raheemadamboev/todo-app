@@ -12,10 +12,10 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Brown80,
-    onPrimary = Brown20,
+    primary = BrownGrey30,
+    onPrimary = White,
     primaryContainer = Brown30,
-    onPrimaryContainer = Brown90,
+    onPrimaryContainer = White700,
     inversePrimary = Brown40,
     secondary = DarkBrown80,
     onSecondary = DarkBrown20,
@@ -29,14 +29,14 @@ private val DarkColorScheme = darkColorScheme(
     onError = Red20,
     errorContainer = Red30,
     onErrorContainer = Red90,
-    background = Grey10,
-    onBackground = Grey90,
-    surface = BrownGrey30,
-    onSurface = BrownGrey80,
-    inverseSurface = Grey90,
-    inverseOnSurface = Grey10,
-    surfaceVariant = BrownGrey30,
-    onSurfaceVariant = BrownGrey80,
+    background = DarkGray,
+    onBackground = White700,
+    surface = DarkGray200,
+    onSurface = White700,
+    inverseSurface = Grey20,
+    inverseOnSurface = Grey95,
+    surfaceVariant = DarkGray200,
+    onSurfaceVariant = White700,
     outline = BrownGrey80
 )
 

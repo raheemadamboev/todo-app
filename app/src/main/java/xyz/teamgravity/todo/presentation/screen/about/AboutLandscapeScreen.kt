@@ -72,7 +72,6 @@ fun AboutLandscapeScreen(
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Black,
-                fontFamily = Muli,
                 modifier = Modifier
                     .constrainAs(appNameT) {
                         width = Dimension.fillToConstraints

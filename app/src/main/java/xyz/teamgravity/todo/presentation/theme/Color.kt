@@ -1,9 +1,15 @@
 package xyz.teamgravity.todo.presentation.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
+val White700 = Color(0xFFBBBBBB)
+val DarkGray = Color(0xFF121212)
+val DarkGray200 = Color(0xFF1A1A1A)
 
 val Brown10 = Color(0xFF24180F)
 val Brown20 = Color(0xFF482F1E)
@@ -44,3 +50,8 @@ val BrownGrey50 = Color(0xFF9E7A61)
 val BrownGrey60 = Color(0xFFB19581)
 val BrownGrey80 = Color(0xFFD8CAC0)
 val BrownGrey90 = Color(0xFFECE4DF)
+
+@Composable
+fun ColorScheme.backgroundDialogButton(): Color {
+    return if (isSystemInDarkTheme()) BrownGrey50 else primary
+}
