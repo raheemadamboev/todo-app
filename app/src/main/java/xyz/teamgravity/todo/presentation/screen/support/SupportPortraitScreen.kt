@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.theme.Brown200
 import xyz.teamgravity.todo.presentation.theme.Brown700
 import xyz.teamgravity.todo.presentation.theme.White
@@ -28,6 +30,9 @@ import xyz.teamgravity.todo.presentation.theme.White
 fun SupportPortraitScreen(
     onBackButtonClick: () -> Unit
 ) {
+
+    val context = LocalContext.current
+
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (gradientC, backB, headerT, headerI, connectT, bodyT) = createRefs()
         val (telegramB, mailB) = createRefs()
@@ -110,7 +115,7 @@ fun SupportPortraitScreen(
             }
         )
         ElevatedCard(
-            onClick = {},
+            onClick = { Helper.connectViaTelegram(context) },
             shape = MaterialTheme.shapes.extraLarge,
             modifier = Modifier.constrainAs(telegramB) {
                 width = Dimension.matchParent
@@ -140,7 +145,7 @@ fun SupportPortraitScreen(
             }
         }
         ElevatedCard(
-            onClick = {},
+            onClick = { Helper.connectViaEmail(context) },
             shape = MaterialTheme.shapes.extraLarge,
             modifier = Modifier.constrainAs(mailB) {
                 width = Dimension.matchParent

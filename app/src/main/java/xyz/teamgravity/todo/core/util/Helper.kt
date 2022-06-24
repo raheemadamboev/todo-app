@@ -46,4 +46,22 @@ object Helper {
     fun viewSourceCode(context: Context) {
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.GITHUB_SOURCE_CODE)))
     }
+
+    /**
+     * Navigates the user to connect us via Telegram
+     */
+    fun connectViaTelegram(context: Context) {
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.SUPPORT_TELEGRAM)))
+    }
+
+    /**
+     * Navigates the user to connect us via Email
+     */
+    fun connectViaEmail(context: Context) {
+        with(Intent()) {
+            data = Uri.fromParts("mailto", ConnectionConst.SUPPORT_MAIL, null)
+            putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.improvement))
+            context.startActivity(Intent.createChooser(this, context.getString(R.string.choose)))
+        }
+    }
 }
