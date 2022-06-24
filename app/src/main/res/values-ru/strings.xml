@@ -17,6 +17,7 @@
     <string name="choose">Выберите</string>
     <string name="rate">Оценивать</string>
     <string name="source_code">Исходный код</string>
+    <string name="connect_us">Подключите нас</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новое задание</string>

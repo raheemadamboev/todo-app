@@ -27,6 +27,7 @@ import xyz.teamgravity.todo.presentation.component.topbar.*
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
+import xyz.teamgravity.todo.presentation.screen.destinations.SupportScreenDestination
 import xyz.teamgravity.todo.presentation.viewmodel.TodoListViewModel
 
 @Destination(start = true)
@@ -89,6 +90,10 @@ fun TodoListScreen(
                         onHideCompletedChange = viewmodel::onHideCompletedChange,
                         onDeleteCompletedClick = viewmodel::onDeleteCompletedDialogShow,
                         onDeleteAllClick = viewmodel::onDeleteAllDialogShow,
+                        onSupportClick = {
+                            navigator.navigate(SupportScreenDestination)
+                            viewmodel.onMenuCollapsed()
+                        },
                         onShareClick = {
                             Helper.shareApp(context)
                             viewmodel.onMenuCollapsed()

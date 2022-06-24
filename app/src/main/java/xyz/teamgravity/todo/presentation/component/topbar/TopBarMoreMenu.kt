@@ -20,6 +20,7 @@ fun TopBarMoreMenu(
     onHideCompletedChange: () -> Unit,
     onDeleteCompletedClick: () -> Unit,
     onDeleteAllClick: () -> Unit,
+    onSupportClick: () -> Unit,
     onShareClick: () -> Unit,
     onRateClick: () -> Unit,
     onSourceCode: () -> Unit,
@@ -53,6 +54,10 @@ fun TopBarMoreMenu(
         DropdownMenuItem(
             text = { TextPlain(id = R.string.delete_all_tasks) },
             onClick = onDeleteAllClick
+        )
+        DropdownMenuItem(
+            text = { TextPlain(id = R.string.connect_us) },
+            onClick = onSupportClick
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.share) },
