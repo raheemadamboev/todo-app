@@ -93,6 +93,10 @@ fun TodoListScreen(
                             Helper.shareApp(context)
                             viewmodel.onMenuCollapsed()
                         },
+                        onRateClick = {
+                            Helper.rateApp(context)
+                            viewmodel.onMenuCollapsed()
+                        },
                         onAboutClick = {
                             navigator.navigate(AboutScreenDestination)
                             viewmodel.onMenuCollapsed()

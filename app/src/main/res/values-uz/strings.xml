@@ -16,6 +16,7 @@
     <string name="share">Ulashish</string>
     <string name="share_app">Unumdorlikingizni oshirishni xohlaysizmi? Unda ToDo dan foydalanib ko\'ring -> %1$s</string>
     <string name="choose">Tanlang</string>
+    <string name="rate">Baho berish</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Yangi vazifa</string>

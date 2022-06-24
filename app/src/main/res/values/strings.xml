@@ -16,6 +16,7 @@
     <string name="share">Share</string>
     <string name="share_app">Do you want to increase your productivity? Try ToDo ->  %1$s</string>
     <string name="choose">Choose</string>
+    <string name="rate">Rate</string>
 
     <!-- TodoAdd -->
     <string name="new_task">New task</string>

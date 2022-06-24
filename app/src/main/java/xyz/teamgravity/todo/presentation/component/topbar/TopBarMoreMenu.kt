@@ -21,6 +21,7 @@ fun TopBarMoreMenu(
     onDeleteCompletedClick: () -> Unit,
     onDeleteAllClick: () -> Unit,
     onShareClick: () -> Unit,
+    onRateClick: () -> Unit,
     onAboutClick: () -> Unit
 ) {
     TopBarIconButton(
@@ -55,6 +56,10 @@ fun TopBarMoreMenu(
         DropdownMenuItem(
             text = { TextPlain(id = R.string.share) },
             onClick = onShareClick
+        )
+        DropdownMenuItem(
+            text = { TextPlain(id = R.string.rate) },
+            onClick = onRateClick
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.about_me) },
