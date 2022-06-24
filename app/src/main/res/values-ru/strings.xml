@@ -16,6 +16,7 @@
     <string name="share_app">Хотите повысить свою производительность? Попробуйте ToDo -> %1$s</string>
     <string name="choose">Выберите</string>
     <string name="rate">Оценивать</string>
+    <string name="source_code">Исходный код</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новое задание</string>

@@ -39,4 +39,11 @@ object Helper {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${ConnectionConst.PLAY_STORE_DETAIL_PAGE}$appPackageName")))
         }
     }
+
+    /**
+     * Navigates the user to show source code on Github
+     */
+    fun viewSourceCode(context: Context) {
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.GITHUB_SOURCE_CODE)))
+    }
 }
