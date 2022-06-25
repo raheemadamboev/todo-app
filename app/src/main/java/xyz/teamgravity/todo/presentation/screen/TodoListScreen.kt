@@ -24,13 +24,15 @@ import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.*
+import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.SupportScreenDestination
 import xyz.teamgravity.todo.presentation.viewmodel.TodoListViewModel
 
-@Destination(start = true)
+@MainNavGraph(start = true)
+@Destination
 @Composable
 fun TodoListScreen(
     viewmodel: TodoListViewModel = hiltViewModel(),

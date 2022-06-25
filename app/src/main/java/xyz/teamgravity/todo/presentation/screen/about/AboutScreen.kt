@@ -5,7 +5,9 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.presentation.component.misc.WindowInfo
 import xyz.teamgravity.todo.presentation.component.misc.rememberWindowInfo
+import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 
+@MainNavGraph
 @Destination
 @Composable
 fun AboutScreen(

@@ -6,5 +6,5 @@ import xyz.teamgravity.todo.presentation.screen.NavGraphs
 
 @Composable
 fun Navigation() {
-    DestinationsNavHost(navGraph = NavGraphs.root)
+    DestinationsNavHost(navGraph = NavGraphs.main)
 }

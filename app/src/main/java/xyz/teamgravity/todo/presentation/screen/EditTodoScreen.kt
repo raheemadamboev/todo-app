@@ -24,8 +24,10 @@ import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
+import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
 
+@MainNavGraph
 @Destination(navArgsDelegate = EditScreenNavArgs::class)
 @Composable
 fun EditTodoScreen(
