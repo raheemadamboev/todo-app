@@ -12,6 +12,12 @@
     <string name="delete_all_completed">Delete all completed</string>
     <string name="delete_all_tasks">Delete all tasks</string>
     <string name="about_me">About me</string>
+    <string name="share">Share</string>
+    <string name="share_app">Do you want to increase your productivity? Try ToDo ->  %1$s</string>
+    <string name="choose">Choose</string>
+    <string name="rate">Rate</string>
+    <string name="source_code">Source code</string>
+    <string name="support">Connect us</string>
 
     <!-- TodoAdd -->
     <string name="new_task">New task</string>
@@ -29,4 +35,28 @@
     <string name="wanna_delete_all">Do you want to delete all tasks?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+
+    <!-- Support -->
+    <string name="need_help">Need help</string>
+    <string name="connect_us">Connect us</string>
+    <string name="connect_us_body">Let us know if you face a problem or you have a suggestion to improve the application. We care about our users!</string>
+    <string name="via_telegram">via Telegram</string>
+    <string name="via_email">via Email</string>
+    <string name="improvement">Improvement for ToDo</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_task_important">Important task</string>
+    <string name="cd_task_add">Add task</string>
+    <string name="cd_back_button">Navigate back</string>
+    <string name="cd_done_button">Save ToDo</string>
+    <string name="cd_delete_button">Delete ToDo</string>
+    <string name="cd_more_vertical">More actions</string>
+    <string name="cd_app_icon">App icon</string>
+    <string name="cd_company_logo">Company logo</string>
+    <string name="cd_sort">Sort ToDos</string>
+    <string name="cd_search_button">Search ToDos</string>
+    <string name="cd_hide_completed">Hide completed</string>
+    <string name="cd_user_support">User support</string>
+    <string name="cd_via_telegram">Connect us via Telegram</string>
+    <string name="cd_via_email">Connect us via Email</string>
 </resources>

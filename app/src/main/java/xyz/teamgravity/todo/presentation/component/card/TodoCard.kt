@@ -2,10 +2,10 @@ package xyz.teamgravity.todo.presentation.component.card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Checkbox
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,8 +16,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.presentation.theme.backgroundCard
-import xyz.teamgravity.todo.presentation.theme.textPrimary
 
 @Composable
 fun TodoCard(
@@ -27,9 +25,6 @@ fun TodoCard(
 ) {
     Card(
         onClick = { onTodoClick(todo) },
-        shape = MaterialTheme.shapes.large,
-        elevation = 8.dp,
-        backgroundColor = MaterialTheme.colors.backgroundCard,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 5.dp, vertical = 2.dp)
@@ -50,8 +45,7 @@ fun TodoCard(
                 text = todo.name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.textPrimary,
+                style = MaterialTheme.typography.bodyMedium,
                 textDecoration = if (todo.completed) TextDecoration.LineThrough else TextDecoration.None,
                 modifier = Modifier.weight(1F)
             )

@@ -1,42 +1,60 @@
 package xyz.teamgravity.todo.presentation.theme
 
-import androidx.compose.material.Colors
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
-val SuperLightWhite = Color(0xFFF2F2F2)
+val White700 = Color(0xFFBBBBBB)
+val DarkGray = Color(0xFF121212)
+val DarkGray200 = Color(0xFF1A1A1A)
 val Brown200 = Color(0xFFB07E5D)
 val Brown500 = Color(0xFF7E5233)
 val Brown700 = Color(0xFF4F290C)
-val PlayStoreGray = Color(0xFF474747)
-val DarkGray = Color(0xFF121212)
-val DarkGray200 = Color(0xFF1A1A1A)
-val White700 = Color(0xFFBBBBBB)
-val LightRed = Color(0xFFCF6679)
-val Red = Color(0xFFE74C3C)
 
-@get:Composable
-val Colors.backgroundLayout: Color
-    get() = if (isLight) SuperLightWhite else DarkGray
+val Brown10 = Color(0xFF24180F)
+val Brown20 = Color(0xFF482F1E)
+val Brown30 = Color(0xFF6D472C)
+val Brown40 = Color(0xFF915F3B)
+val Brown80 = Color(0xFFE1C8B7)
+val Brown90 = Color(0xFFF0E4DB)
 
-@get:Composable
-val Colors.backgroundCard: Color
-    get() = if (isLight) White else DarkGray200
+val DarkBrown10 = Color(0xFF2C1707)
+val DarkBrown20 = Color(0xFF592E0D)
+val DarkBrown30 = Color(0xFF854514)
+val DarkBrown40 = Color(0xFFB15C1B)
+val DarkBrown80 = Color(0xFFF2C7A6)
+val DarkBrown90 = Color(0xFFF8E3D3)
 
-@get:Composable
-val Colors.textPrimary: Color
-    get() = if (isLight) Black else White
+val Violet10 = Color(0xFF330033)
+val Violet20 = Color(0xFF660066)
+val Violet30 = Color(0xFF990099)
+val Violet40 = Color(0xFFCC00CC)
+val Violet80 = Color(0xFFFF99FF)
+val Violet90 = Color(0xFFFFCCFF)
 
-@get:Composable
-val Colors.textSecondary: Color
-    get() = if (isLight) PlayStoreGray else White700
+val Red10 = Color(0xFF410001)
+val Red20 = Color(0xFF680003)
+val Red30 = Color(0xFF930006)
+val Red40 = Color(0xFFBA1B1B)
+val Red80 = Color(0xFFFFB4A9)
+val Red90 = Color(0xFFFFDAD4)
 
-@get:Composable
-val Colors.textError: Color
-    get() = if (isLight) Red else LightRed
+val Grey10 = Color(0xFF191C1D)
+val Grey20 = Color(0xFF2D3132)
+val Grey90 = Color(0xFFE0E3E3)
+val Grey95 = Color(0xFFEFF1F1)
+val Grey99 = Color(0xFFFBFDFD)
 
-@get:Composable
-val Colors.textButton: Color
-    get() = if (isLight) White else Black
+val BrownGrey30 = Color(0xFF5F493A)
+val BrownGrey50 = Color(0xFF9E7A61)
+val BrownGrey60 = Color(0xFFB19581)
+val BrownGrey80 = Color(0xFFD8CAC0)
+val BrownGrey90 = Color(0xFFECE4DF)
+
+@Composable
+fun ColorScheme.backgroundDialogButton(): Color {
+    return if (isSystemInDarkTheme()) BrownGrey50 else primary
+}

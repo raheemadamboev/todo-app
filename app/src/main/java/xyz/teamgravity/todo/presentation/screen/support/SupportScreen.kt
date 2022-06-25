@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.screen.about
+package xyz.teamgravity.todo.presentation.screen.support
 
 import androidx.compose.runtime.Composable
 import com.ramcosta.composedestinations.annotation.Destination
@@ -10,11 +10,11 @@ import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 @MainNavGraph
 @Destination
 @Composable
-fun AboutScreen(
+fun SupportScreen(
     navigator: DestinationsNavigator
 ) {
     when (rememberWindowInfo().screenWidthInfo) {
-        WindowInfo.WindowType.Compact -> AboutPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> AboutLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+        WindowInfo.WindowType.Compact -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
+        else -> SupportLandscapeScreen(onBackButtonClick = navigator::popBackStack)
     }
 }

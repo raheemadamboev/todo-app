@@ -6,9 +6,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.rememberDismissState
+import androidx.compose.material.SwipeToDismiss
+import androidx.compose.material.FractionalThreshold
+import androidx.compose.material.DismissValue
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -22,7 +29,6 @@ import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.theme.Black
 import xyz.teamgravity.todo.presentation.theme.White
-import xyz.teamgravity.todo.presentation.theme.textError
 
 @Composable
 fun TodoSwipeCard(
@@ -32,7 +38,6 @@ fun TodoSwipeCard(
     onTodoDismissed: (todo: TodoModel) -> Unit,
     dismiss: DismissState = rememberDismissState()
 ) {
-
     if (dismiss.isDismissed(DismissDirection.EndToStart) || dismiss.isDismissed(DismissDirection.StartToEnd)) {
         LaunchedEffect(key1 = todo) {
             onTodoDismissed(todo)
@@ -48,7 +53,7 @@ fun TodoSwipeCard(
             val color by animateColorAsState(
                 targetValue = when (dismiss.targetValue) {
                     DismissValue.Default -> Color.LightGray
-                    else -> MaterialTheme.colors.textError
+                    else -> MaterialTheme.colorScheme.error
                 }
             )
             val alignment = when (direction) {
