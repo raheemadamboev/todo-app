@@ -45,35 +45,83 @@ fun TopBarMoreMenu(
                         contentDescription = stringResource(id = R.string.cd_hide_completed)
                     )
                 }
+            },
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_hide,
+                    contentDescription = R.string.hide_completed
+                )
             }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.delete_all_completed) },
-            onClick = onDeleteCompletedClick
+            onClick = onDeleteCompletedClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_delete,
+                    contentDescription = R.string.delete_all_completed
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.delete_all_tasks) },
-            onClick = onDeleteAllClick
+            onClick = onDeleteAllClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_delete,
+                    contentDescription = R.string.delete_all_tasks
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.support) },
-            onClick = onSupportClick
+            onClick = onSupportClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_customer_service,
+                    contentDescription = R.string.support
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.share) },
-            onClick = onShareClick
+            onClick = onShareClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_share,
+                    contentDescription = R.string.share
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.rate) },
-            onClick = onRateClick
+            onClick = onRateClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_star,
+                    contentDescription = R.string.rate
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.source_code) },
-            onClick = onSourceCode
+            onClick = onSourceCode,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_github,
+                    contentDescription = R.string.source_code,
+                )
+            }
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.about_me) },
-            onClick = onAboutClick
+            onClick = onAboutClick,
+            leadingIcon = {
+                TopBarIcon(
+                    icon = R.drawable.ic_info,
+                    contentDescription = R.string.about_me
+                )
+            }
         )
     }
 }
