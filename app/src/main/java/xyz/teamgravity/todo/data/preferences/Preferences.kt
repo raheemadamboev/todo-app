@@ -8,7 +8,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import xyz.teamgravity.todo.core.util.TodoSort
 import java.io.IOException
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.todo.data.preferences.Preferences.PREFS)

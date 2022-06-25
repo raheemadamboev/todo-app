@@ -3,7 +3,7 @@ package xyz.teamgravity.todo.data.local
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.data.preferences.TodoSort
 
 @Dao
 interface TodoDao {

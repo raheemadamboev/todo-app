@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.data.preferences.TodoSort
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
