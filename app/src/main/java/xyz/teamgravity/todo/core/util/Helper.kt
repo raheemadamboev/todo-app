@@ -64,4 +64,17 @@ object Helper {
             context.startActivity(Intent.createChooser(this, context.getString(R.string.choose)))
         }
     }
+
+    /**
+     * Navigates the user to Gravity Play Store page
+     */
+    fun viewGravityPage(context: Context) {
+        try {
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://${ConnectionConst.GRAVITY}")))
+        } catch (e: ActivityNotFoundException) {
+            context.startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/${ConnectionConst.GRAVITY}"))
+            )
+        }
+    }
 }
