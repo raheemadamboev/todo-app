@@ -11,11 +11,11 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.util.Preferences
 import xyz.teamgravity.todo.data.local.TodoCallback
 import xyz.teamgravity.todo.data.local.TodoConst
 import xyz.teamgravity.todo.data.local.TodoDao
 import xyz.teamgravity.todo.data.local.TodoDatabase
+import xyz.teamgravity.todo.data.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import java.text.DateFormatSymbols
 import javax.inject.Provider
