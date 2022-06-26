@@ -2,10 +2,7 @@ package xyz.teamgravity.todo.presentation.screen.support
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ElevatedCard
@@ -37,7 +34,7 @@ fun SupportPortraitScreen(
     val context = LocalContext.current
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (gradientC, backB, headerT, headerI, connectT, bodyT) = createRefs()
+        val (gradientC, backB, headerT, headerI, bodyC) = createRefs()
         val (telegramB, mailB) = createRefs()
         val oneG = createGuidelineFromTop(0.3F)
         val twoG = createGuidelineFromTop(0.5F)
@@ -84,27 +81,27 @@ fun SupportPortraitScreen(
                 linkTo(top = headerT.bottom, bottom = oneG, topMargin = 20.dp)
             }
         )
-        Text(
-            text = stringResource(id = R.string.connect_us),
-            textAlign = TextAlign.Center,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.constrainAs(connectT) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.constrainAs(bodyC) {
                 width = Dimension.matchParent
+                height = Dimension.fillToConstraints
                 linkTo(start = parent.start, end = parent.end, startMargin = 30.dp, endMargin = 30.dp)
-                linkTo(top = oneG, bottom = bodyT.top)
+                linkTo(top = oneG, bottom = twoG)
             }
-        )
-        Text(
-            text = stringResource(id = R.string.connect_us_body),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.constrainAs(bodyT) {
-                width = Dimension.matchParent
-                linkTo(start = parent.start, end = parent.end, startMargin = 30.dp, endMargin = 30.dp)
-                linkTo(top = connectT.bottom, bottom = twoG)
-            }
-        )
+        ) {
+            Text(
+                text = stringResource(id = R.string.connect_us),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = stringResource(id = R.string.connect_us_body),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
         ElevatedCard(
             onClick = { Helper.connectViaTelegram(context) },
             shape = MaterialTheme.shapes.extraLarge,
