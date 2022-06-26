@@ -6,14 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.DismissDirection
-import androidx.compose.material.DismissState
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.rememberDismissState
-import androidx.compose.material.SwipeToDismiss
-import androidx.compose.material.FractionalThreshold
-import androidx.compose.material.DismissValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -38,7 +33,7 @@ fun TodoSwipeCard(
     onTodoDismissed: (todo: TodoModel) -> Unit,
     dismiss: DismissState = rememberDismissState()
 ) {
-    if (dismiss.isDismissed(DismissDirection.EndToStart) || dismiss.isDismissed(DismissDirection.StartToEnd)) {
+    if (dismiss.isDismissed(DismissDirection.StartToEnd) || dismiss.isDismissed(DismissDirection.EndToStart)) {
         LaunchedEffect(key1 = todo) {
             onTodoDismissed(todo)
         }
