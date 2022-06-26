@@ -1,11 +1,7 @@
 package xyz.teamgravity.todo.presentation.component.card
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Card
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,7 +47,7 @@ fun TodoCard(
             )
             if (todo.important) {
                 Spacer(modifier = Modifier.width(10.dp))
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.ic_warn),
                     contentDescription = stringResource(id = R.string.cd_task_important),
                     modifier = Modifier
