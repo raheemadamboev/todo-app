@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.component.card
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -47,7 +48,7 @@ fun TodoCard(
             )
             if (todo.important) {
                 Spacer(modifier = Modifier.width(10.dp))
-                Icon(
+                Image(
                     painter = painterResource(id = R.drawable.ic_warn),
                     contentDescription = stringResource(id = R.string.cd_task_important),
                     modifier = Modifier
