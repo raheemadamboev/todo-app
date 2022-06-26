@@ -53,7 +53,7 @@ class AddTodoViewModel @Inject constructor(
     fun onSaveTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(AddTodoEvent.InvalidInput(R.string.error_name))
+                _event.send(AddTodoEvent.InvalidInput(message = R.string.error_name))
                 return@launch
             }
 
