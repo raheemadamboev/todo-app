@@ -23,7 +23,7 @@ fun TopBarMoreMenu(
     onSupportClick: () -> Unit,
     onShareClick: () -> Unit,
     onRateClick: () -> Unit,
-    onSourceCode: () -> Unit,
+    onSourceCodeClick: () -> Unit,
     onAboutClick: () -> Unit
 ) {
     TopBarIconButton(
@@ -105,7 +105,7 @@ fun TopBarMoreMenu(
         )
         DropdownMenuItem(
             text = { TextPlain(id = R.string.source_code) },
-            onClick = onSourceCode,
+            onClick = onSourceCodeClick,
             leadingIcon = {
                 TopBarIcon(
                     icon = R.drawable.ic_github,
