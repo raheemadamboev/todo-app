@@ -1,12 +1,12 @@
 # To-Do
 
-<a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.todo">
-  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200"/>
-</a>
-
 A beautifully simple ToDo application that emphasises simplicity and ease of use. Whether you want a shopping list, grocery list or you just have lots of things to remember ToDo is built for you. ToDo is fully offline as it does not require internet connection. Also, ToDo is very fast and very light! The size of APK is lighter than 2 MB. It also supports Dark Mode and multiple languages (English, Russian, Uzbek).
 
 Personally, I use ToDo application to save the urls of articles that I plan to read later. So, I can mark them as completed and everything is tracked also saved in the database. So ToDo can be used for different problems, I hope it can solve your problem or make your life easier!
+
+<a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.todo">
+  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200"/>
+</a>
 
 **Features:**
 
