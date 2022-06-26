@@ -22,9 +22,24 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 - Light that is less than 2 MB.
 - Simplicity that has only three screens and the functions that is needed.
 
-# 1.1 - Jetpack Compose
+# 1.1.1 - Jetpack Compose (Material3)
 
-<a href="https://github.com/raheemadamboev/todo-app/blob/1.1/app/release/app-release.apk">Demo app 1.1 Jetpack Compose</a>
+<a href="https://github.com/raheemadamboev/todo-app/blob/1.1.1/app/release/app-release.apk">Demo app 1.1.1 Jetpack Compose (Material3)</a>
+
+**Screenshoots:**
+
+<p align="center">
+ <img src="https://github.com/raheemadamboev/todo-app/blob/master/banner/ToDo%201.1.1.jpg" width="869" height="416" />
+</p>
+
+**Tech stack:**
+
+- Material3. The newest and coolest way building UI by Google.
+- All the other tech stack from (1.1 Jetpack Compose) also included.
+
+# 1.1 - Jetpack Compose (Material2)
+
+<a href="https://github.com/raheemadamboev/todo-app/blob/1.1/app/release/app-release.apk">Demo app 1.1 Jetpack Compose (Material2)</a>
 
 **Screenshots:**
 
@@ -49,9 +64,9 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 - Material Design (V2). You know why we need it, UI/UX.
 - Git. Because of legend Linus Torvalds invention, we are here. Version Control System is used to track changes in files.
 
-# 1.0 - View (XML)
+# 1.0 - View (XML, Material2)
 
-<a href="https://github.com/raheemadamboev/todo-app/blob/1.0/app/release/app-release.apk">Demo app 1.0 View (XML)</a>
+<a href="https://github.com/raheemadamboev/todo-app/blob/1.0/app/release/app-release.apk">Demo app 1.0 View (XML, Material2)</a>
 
 **Screenshots:**
 
