@@ -20,6 +20,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
@@ -44,17 +45,12 @@ fun SupportLandscapeScreen(
                     top.linkTo(parent.top)
                 },
         ) {
-            IconButton(
+            TopBarIconButton(
                 onClick = onBackButtonClick,
-                modifier = Modifier.size(28.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.cd_back_button),
-                    tint = White,
-                    modifier = Modifier.size(28.dp)
-                )
-            }
+                icon = Icons.Default.ArrowBack,
+                contentDescription = R.string.cd_back_button,
+                tint = White
+            )
             Text(
                 text = stringResource(id = R.string.need_help),
                 textAlign = TextAlign.Center,
