@@ -5,7 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,7 +67,6 @@ fun SupportLandscapeScreen(
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.constrainAs(connectT) {
                 width = Dimension.matchParent
                 linkTo(start = parent.start, end = parent.end, startMargin = 30.dp, endMargin = 30.dp)
@@ -75,8 +76,7 @@ fun SupportLandscapeScreen(
         Text(
             text = stringResource(id = R.string.connect_us_body),
             textAlign = TextAlign.Center,
-            fontSize = 14.sp,
-            color = MaterialTheme.colorScheme.onBackground,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.constrainAs(bodyT) {
                 width = Dimension.matchParent
                 height = Dimension.value(40.dp)
