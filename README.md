@@ -34,7 +34,7 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 
 **Tech stack:**
 
-- Material3. The newest and coolest way building UI by Google.
+- Material3. The newest and coolest way of building UI by Google.
 - All the other tech stack from (1.1 Jetpack Compose) also included.
 
 # 1.1 - Jetpack Compose (Material2)
