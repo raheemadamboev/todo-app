@@ -58,7 +58,7 @@ fun SupportLandscapeScreen(
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
                 color = White,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.weight(1F)
             )
             Spacer(modifier = Modifier.width(38.dp))
         }
