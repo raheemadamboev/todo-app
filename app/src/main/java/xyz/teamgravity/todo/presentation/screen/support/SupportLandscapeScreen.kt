@@ -5,7 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +22,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
+import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
@@ -44,17 +47,12 @@ fun SupportLandscapeScreen(
                     top.linkTo(parent.top)
                 },
         ) {
-            IconButton(
+            TopBarIconButton(
                 onClick = onBackButtonClick,
-                modifier = Modifier.size(28.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.cd_back_button),
-                    tint = White,
-                    modifier = Modifier.size(28.dp)
-                )
-            }
+                icon = Icons.Default.ArrowBack,
+                contentDescription = R.string.cd_back_button,
+                tint = White
+            )
             Text(
                 text = stringResource(id = R.string.need_help),
                 textAlign = TextAlign.Center,
@@ -69,7 +67,6 @@ fun SupportLandscapeScreen(
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.constrainAs(connectT) {
                 width = Dimension.matchParent
                 linkTo(start = parent.start, end = parent.end, startMargin = 30.dp, endMargin = 30.dp)
@@ -79,8 +76,7 @@ fun SupportLandscapeScreen(
         Text(
             text = stringResource(id = R.string.connect_us_body),
             textAlign = TextAlign.Center,
-            fontSize = 14.sp,
-            color = MaterialTheme.colorScheme.onBackground,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.constrainAs(bodyT) {
                 width = Dimension.matchParent
                 height = Dimension.value(40.dp)

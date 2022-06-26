@@ -7,7 +7,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.data.preferences.TodoSort
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable

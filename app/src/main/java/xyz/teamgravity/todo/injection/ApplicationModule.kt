@@ -11,11 +11,11 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.util.Preferences
 import xyz.teamgravity.todo.data.local.TodoCallback
 import xyz.teamgravity.todo.data.local.TodoConst
 import xyz.teamgravity.todo.data.local.TodoDao
 import xyz.teamgravity.todo.data.local.TodoDatabase
+import xyz.teamgravity.todo.data.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import java.text.DateFormatSymbols
 import javax.inject.Provider
@@ -27,10 +27,10 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideTodoDatabase(app: Application, callback: TodoCallback): TodoDatabase =
-        Room.databaseBuilder(app, TodoDatabase::class.java, TodoConst.NAME)
+    fun provideTodoDatabase(application: Application, todoCallback: TodoCallback): TodoDatabase =
+        Room.databaseBuilder(application, TodoDatabase::class.java, TodoConst.NAME)
             .addMigrations()
-            .addCallback(callback)
+            .addCallback(todoCallback)
             .build()
 
     @Provides
@@ -41,25 +41,25 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideTodoCallback(
-        db: Provider<TodoDatabase>,
+        todoDatabase: Provider<TodoDatabase>,
         @ApplicationScope applicationScope: CoroutineScope
-    ): TodoCallback = TodoCallback(db = db, scope = applicationScope)
+    ): TodoCallback = TodoCallback(db = todoDatabase, scope = applicationScope)
 
     @Provides
     @Singleton
-    fun provideTodoDao(db: TodoDatabase): TodoDao = db.todoDao()
+    fun provideTodoDao(todoDatabase: TodoDatabase): TodoDao = todoDatabase.todoDao()
 
     @Provides
     @Singleton
-    fun provideTodoRepository(dao: TodoDao): TodoRepository = TodoRepository(dao)
+    fun provideTodoRepository(todoDao: TodoDao): TodoRepository = TodoRepository(todoDao)
 
     @Provides
     @Singleton
-    fun providePreferences(@ApplicationContext context: Context): Preferences = Preferences(context)
+    fun providePreferences(@ApplicationContext applicationContext: Context): Preferences = Preferences(applicationContext)
 
     @Provides
     @Singleton
-    fun provideMonthFormatter(app: Application): DateFormatSymbols = DateFormatSymbols().apply {
-        months = app.resources.getStringArray(R.array.months)
+    fun provideMonthFormatter(application: Application): DateFormatSymbols = DateFormatSymbols().apply {
+        months = application.resources.getStringArray(R.array.months)
     }
 }

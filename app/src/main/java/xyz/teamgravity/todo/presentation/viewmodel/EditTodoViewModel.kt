@@ -28,34 +28,34 @@ class EditTodoViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        private const val TASK = "task"
-        private const val TASK_NAME = "task_name"
-        private const val TASK_IMPORTANT = "task_important"
+        private const val TODO = "todo"
+        private const val TODO_NAME = "todo_name"
+        private const val TODO_IMPORTANT = "todo_important"
     }
 
     private val args = EditTodoScreenDestination.argsFrom(handle)
 
-    private var _event = Channel<EditTodoEvent> { }
+    private val _event = Channel<EditTodoEvent> { }
     val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
 
-    private val todo: TodoModel by mutableStateOf(handle.get<TodoModel>(TASK) ?: args.todo)
+    private val todo: TodoModel by mutableStateOf(handle.get<TodoModel>(TODO) ?: args.todo)
 
-    var name: String by mutableStateOf(handle.get<String>(TASK_NAME) ?: todo.name)
+    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: todo.name)
         private set
 
-    var important: Boolean by mutableStateOf(handle.get<Boolean>(TASK_IMPORTANT) ?: todo.important)
+    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: todo.important)
         private set
 
     val timestamp: String by mutableStateOf(formatter.format(todo.timestamp))
 
     fun onNameChange(value: String) {
         name = value
-        handle[TASK_NAME] = value
+        handle[TODO_NAME] = value
     }
 
     fun onImportantChange(value: Boolean) {
         important = value
-        handle[TASK_IMPORTANT] = value
+        handle[TODO_IMPORTANT] = value
     }
 
     fun onUpdateTodo() {

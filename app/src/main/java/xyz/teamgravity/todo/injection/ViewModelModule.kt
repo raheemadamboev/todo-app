@@ -16,8 +16,8 @@ object ViewModelModule {
     @Provides
     @ViewModelScoped
     @FullTimeFormatter
-    fun provideFullTimeFormatter(months: DateFormatSymbols): SimpleDateFormat =
+    fun provideFullTimeFormatter(dateFormatSymbols: DateFormatSymbols): SimpleDateFormat =
         SimpleDateFormat("yyyy, MMMM d, HH:mm", Locale.getDefault()).apply {
-            dateFormatSymbols = months
+            this.dateFormatSymbols = dateFormatSymbols
         }
 }

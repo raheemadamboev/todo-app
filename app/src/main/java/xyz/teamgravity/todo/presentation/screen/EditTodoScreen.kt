@@ -28,7 +28,7 @@ import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 import xyz.teamgravity.todo.presentation.viewmodel.EditTodoViewModel
 
 @MainNavGraph
-@Destination(navArgsDelegate = EditScreenNavArgs::class)
+@Destination(navArgsDelegate = EditTodoScreenNavArgs::class)
 @Composable
 fun EditTodoScreen(
     viewmodel: EditTodoViewModel = hiltViewModel(),
@@ -99,6 +99,6 @@ fun EditTodoScreen(
     }
 }
 
-data class EditScreenNavArgs(
+data class EditTodoScreenNavArgs(
     val todo: TodoModel
 )

@@ -63,41 +63,37 @@ fun AboutLandscapeScreen(
                 painter = painterResource(id = R.drawable.icon),
                 contentDescription = stringResource(id = R.string.cd_app_icon),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .constrainAs(appI) {
-                        width = Dimension.value(180.dp)
-                        height = Dimension.value(180.dp)
-                        linkTo(start = parent.start, end = oneG)
-                        linkTo(top = parent.top, bottom = parent.bottom)
-                    }
+                modifier = Modifier.constrainAs(appI) {
+                    width = Dimension.value(180.dp)
+                    height = Dimension.value(180.dp)
+                    linkTo(start = parent.start, end = oneG)
+                    linkTo(top = parent.top, bottom = parent.bottom)
+                }
             )
             Text(
                 text = stringResource(id = R.string.app_name),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Black,
-                modifier = Modifier
-                    .constrainAs(appNameT) {
-                        width = Dimension.fillToConstraints
-                        linkTo(start = oneG, end = parent.end)
-                    }
+                modifier = Modifier.constrainAs(appNameT) {
+                    width = Dimension.fillToConstraints
+                    linkTo(start = oneG, end = parent.end)
+                }
             )
             Text(
                 text = BuildConfig.VERSION_NAME,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .constrainAs(appVersionT) {
-                        width = Dimension.fillToConstraints
-                        linkTo(start = oneG, end = parent.end)
-                    }
+                modifier = Modifier.constrainAs(appVersionT) {
+                    width = Dimension.fillToConstraints
+                    linkTo(start = oneG, end = parent.end)
+                }
             )
             Spacer(
-                modifier = Modifier
-                    .constrainAs(oneS) {
-                        height = Dimension.value(16.dp)
-                        linkTo(start = oneG, end = parent.end)
-                    }
+                modifier = Modifier.constrainAs(oneS) {
+                    height = Dimension.value(16.dp)
+                    linkTo(start = oneG, end = parent.end)
+                }
             )
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

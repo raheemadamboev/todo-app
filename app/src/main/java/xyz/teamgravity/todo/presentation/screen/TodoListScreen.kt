@@ -104,7 +104,7 @@ fun TodoListScreen(
                             Helper.rateApp(context)
                             viewmodel.onMenuCollapsed()
                         },
-                        onSourceCode = {
+                        onSourceCodeClick = {
                             Helper.viewSourceCode(context)
                             viewmodel.onMenuCollapsed()
                         },

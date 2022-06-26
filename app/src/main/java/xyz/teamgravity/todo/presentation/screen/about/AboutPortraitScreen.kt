@@ -61,34 +61,31 @@ fun AboutPortraitScreen(
                 painter = painterResource(id = R.drawable.icon),
                 contentDescription = stringResource(id = R.string.cd_app_icon),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .constrainAs(appI) {
-                        width = Dimension.value(180.dp)
-                        height = Dimension.value(180.dp)
-                        linkTo(start = parent.start, end = parent.end)
-                        linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
-                    }
+                modifier = Modifier.constrainAs(appI) {
+                    width = Dimension.value(180.dp)
+                    height = Dimension.value(180.dp)
+                    linkTo(start = parent.start, end = parent.end)
+                    linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
+                }
             )
             Text(
                 text = stringResource(id = R.string.app_name),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Black,
-                modifier = Modifier
-                    .constrainAs(appNameT) {
-                        width = Dimension.matchParent
-                        top.linkTo(appI.bottom, 20.dp)
-                    }
+                modifier = Modifier.constrainAs(appNameT) {
+                    width = Dimension.matchParent
+                    top.linkTo(anchor = appI.bottom, margin = 20.dp)
+                }
             )
             Text(
                 text = BuildConfig.VERSION_NAME,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .constrainAs(appVersionT) {
-                        width = Dimension.matchParent
-                        top.linkTo(appNameT.bottom, 10.dp)
-                    }
+                modifier = Modifier.constrainAs(appVersionT) {
+                    width = Dimension.matchParent
+                    top.linkTo(anchor = appNameT.bottom, margin = 10.dp)
+                }
             )
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -98,7 +95,7 @@ fun AboutPortraitScreen(
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .constrainAs(companyC) {
                         linkTo(start = parent.start, end = parent.end)
-                        bottom.linkTo(parent.bottom, 16.dp)
+                        bottom.linkTo(anchor = parent.bottom, margin = 16.dp)
                     }
             ) {
                 Image(

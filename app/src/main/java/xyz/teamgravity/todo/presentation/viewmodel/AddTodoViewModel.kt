@@ -24,33 +24,36 @@ class AddTodoViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        private const val TASK_NAME = "task_name"
-        private const val TASK_IMPORTANT = "task_important"
+        private const val TODO_NAME = "todo_name"
+        private const val DEFAULT_TODO_NAME = ""
+
+        private const val TODO_IMPORTANT = "todo_important"
+        private const val DEFAULT_TODO_IMPORTANT = false
     }
 
     private val _event = Channel<AddTodoEvent> { }
     val event: Flow<AddTodoEvent> = _event.receiveAsFlow()
 
-    var name: String by mutableStateOf(handle.get<String>(TASK_NAME) ?: "")
+    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: DEFAULT_TODO_NAME)
         private set
 
-    var important: Boolean by mutableStateOf(handle.get<Boolean>(TASK_IMPORTANT) ?: false)
+    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: DEFAULT_TODO_IMPORTANT)
         private set
 
     fun onNameChange(value: String) {
         name = value
-        handle[TASK_NAME] = value
+        handle[TODO_NAME] = value
     }
 
     fun onImportantChange(value: Boolean) {
         important = value
-        handle[TASK_IMPORTANT] = value
+        handle[TODO_IMPORTANT] = value
     }
 
     fun onSaveTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(AddTodoEvent.InvalidInput(R.string.error_name))
+                _event.send(AddTodoEvent.InvalidInput(message = R.string.error_name))
                 return@launch
             }
 

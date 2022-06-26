@@ -3,7 +3,7 @@ package xyz.teamgravity.todo.data.local
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.core.util.TodoSort
+import xyz.teamgravity.todo.data.preferences.TodoSort
 
 @Dao
 interface TodoDao {
@@ -48,6 +48,6 @@ interface TodoDao {
     @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, name ASC")
     fun getTodosSortedByName(query: String, hideCompleted: Boolean): Flow<List<TodoModel>>
 
-    @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted or completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
+    @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
     fun getTodosSortedByDate(query: String, hideCompleted: Boolean): Flow<List<TodoModel>>
 }
