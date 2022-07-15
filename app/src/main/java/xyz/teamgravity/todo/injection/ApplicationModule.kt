@@ -59,7 +59,7 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideMonthFormatter(application: Application): DateFormatSymbols = DateFormatSymbols().apply {
+    fun provideDateFormatSymbols(application: Application): DateFormatSymbols = DateFormatSymbols().apply {
         months = application.resources.getStringArray(R.array.months)
     }
 }
