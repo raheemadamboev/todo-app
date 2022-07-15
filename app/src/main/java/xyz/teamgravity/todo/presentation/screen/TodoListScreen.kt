@@ -135,7 +135,7 @@ fun TodoListScreen(
         ) {
             items(
                 items = viewmodel.todos,
-                key = { it._id }
+                key = { it.id }
             ) { todo ->
                 TodoSwipeCard(
                     todo = todo,

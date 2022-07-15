@@ -9,9 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import xyz.teamgravity.todo.data.preferences.TodoSort
+import xyz.teamgravity.todo.data.local.preferences.TodoSort
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.data.preferences.Preferences
+import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
 
@@ -84,7 +84,7 @@ class TodoListViewModel @Inject constructor(
     }
 
     fun onUndoDeletedTodo() {
-        viewModelScope.launch { deletedTodo?.let { repository.insertTodoSync(it.copy(_id = 0)) } }
+        viewModelScope.launch { deletedTodo?.let { repository.insertTodoSync(it.copy(id = 0)) } }
     }
 
     fun onSearchExpanded() {

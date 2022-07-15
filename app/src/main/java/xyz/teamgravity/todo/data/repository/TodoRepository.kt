@@ -1,36 +1,39 @@
 package xyz.teamgravity.todo.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import xyz.teamgravity.todo.data.local.TodoDao
+import kotlinx.coroutines.flow.map
+import xyz.teamgravity.todo.data.local.dao.TodoDao
+import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.data.mapper.toEntity
+import xyz.teamgravity.todo.data.mapper.toModel
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.data.preferences.TodoSort
 
 class TodoRepository(
     private val dao: TodoDao
 ) {
 
     ///////////////////////////////////////////////////////////////////////////
-    // Insert
+    // INSERT
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun insertTodoSync(todo: TodoModel) {
-        dao.insertTodo(todo)
+        dao.insertTodo(todo.toEntity())
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Update
+    // UPDATE
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun updateTodoSync(todo: TodoModel) {
-        dao.updateTodo(todo)
+        dao.updateTodo(todo.toEntity())
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Delete
+    // DELETE
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun deleteTodoSync(todo: TodoModel) {
-        dao.deleteTodo(todo)
+        dao.deleteTodo(todo.toEntity())
     }
 
     suspend fun deleteAllCompletedTodo() {
@@ -42,10 +45,10 @@ class TodoRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Get
+    // GET
     ///////////////////////////////////////////////////////////////////////////
 
     fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoModel>> {
-        return dao.getTodos(query = query, hideCompleted = hideCompleted, sort = sort)
+        return dao.getTodos(query = query, hideCompleted = hideCompleted, sort = sort).map { todos -> todos.map { it.toModel() } }
     }
 }

@@ -1,9 +1,9 @@
-package xyz.teamgravity.todo.data.local
+package xyz.teamgravity.todo.data.local.converter
 
 import androidx.room.TypeConverter
 import java.util.*
 
-class TodoConverters {
+class TodoConverter {
 
     @TypeConverter
     fun fromDate(date: Date): Long {
