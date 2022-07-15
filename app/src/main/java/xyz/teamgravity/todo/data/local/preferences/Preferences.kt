@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.data.preferences
+package xyz.teamgravity.todo.data.local.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.todo.data.preferences.Preferences.PREFS)
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.todo.data.local.preferences.Preferences.PREFS)
 
 class Preferences(context: Context) {
 

@@ -1,33 +1,35 @@
-package xyz.teamgravity.todo.data.local
+package xyz.teamgravity.todo.data.local.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import xyz.teamgravity.todo.data.local.constant.TodoConst
+import xyz.teamgravity.todo.data.local.entity.TodoEntity
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.data.preferences.TodoSort
+import xyz.teamgravity.todo.data.local.preferences.TodoSort
 
 @Dao
 interface TodoDao {
 
     ///////////////////////////////////////////////////////////////////////////
-    // Insert
+    // INSERT
     ///////////////////////////////////////////////////////////////////////////
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTodo(todo: TodoModel)
+    suspend fun insertTodo(todo: TodoEntity)
 
     ///////////////////////////////////////////////////////////////////////////
-    // Update
+    // UPDATE
     ///////////////////////////////////////////////////////////////////////////
 
     @Update
-    suspend fun updateTodo(todo: TodoModel)
+    suspend fun updateTodo(todo: TodoEntity)
 
     ///////////////////////////////////////////////////////////////////////////
-    // Delete
+    // DELETE
     ///////////////////////////////////////////////////////////////////////////
 
     @Delete
-    suspend fun deleteTodo(todo: TodoModel)
+    suspend fun deleteTodo(todo: TodoEntity)
 
     @Query("DELETE FROM ${TodoConst.TABLE_TODO} WHERE completed = 1")
     suspend fun deleteAllCompletedTodo()
@@ -36,18 +38,18 @@ interface TodoDao {
     suspend fun deleteAllTodo()
 
     ///////////////////////////////////////////////////////////////////////////
-    // Get
+    // GET
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoModel>> =
+    fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoEntity>> =
         when (sort) {
             TodoSort.BY_NAME -> getTodosSortedByName(query, hideCompleted)
             TodoSort.BY_DATE -> getTodosSortedByDate(query, hideCompleted)
         }
 
     @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, name ASC")
-    fun getTodosSortedByName(query: String, hideCompleted: Boolean): Flow<List<TodoModel>>
+    fun getTodosSortedByName(query: String, hideCompleted: Boolean): Flow<List<TodoEntity>>
 
     @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
-    fun getTodosSortedByDate(query: String, hideCompleted: Boolean): Flow<List<TodoModel>>
+    fun getTodosSortedByDate(query: String, hideCompleted: Boolean): Flow<List<TodoEntity>>
 }
