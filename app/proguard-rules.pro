@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class xyz.teamgravity.todo.data.model.** { *; }
+-keep class xyz.teamgravity.todo.data.local.entity.** { *; }
