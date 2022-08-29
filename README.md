@@ -65,16 +65,18 @@ Personally, I use ToDo application to save the urls of articles that I plan to r
 - Mark tasks as completed. Completed tasks have "Checked/Done" indicator and it is possible to hide them from list.
 - Mark tasks as "Important". Important tasks are listed first and they will have red "Warning" indicator.
 - Hide completed tasks from the list.
-- Sort task by name and by created date.
+- Sort tasks by name and by created date.
 - Your preferences are saved.
 - Search for your tasks easily.
 - Delete all tasks at once, delete all completed tasks at once, or delete a task by swiping it away.
 - Beautiful animations and indicators.
 - Dark/Light theme support.
+- Dynamic theme support.
 - Multiple language support.
 - Multiple screen sizes support.
 - Light that is less than 2 MB.
 - Simplicity that has only three screens and the functions that is needed.
+- Adaptive screens that change according to screen orientation.
 
 # License
 
