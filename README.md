@@ -75,7 +75,8 @@ Personally, I use ToDo app to save the urls of articles that I plan to read late
 - Multiple language support.
 - Multiple screen sizes support.
 - Light that is less than 2 MB.
-- Simplicity that has only three screens and the functions that is needed.
+- Works without the internet.
+- Simplicity that has only five screens.
 - Adaptive screens that change according to screen orientation.
 
 # License
