@@ -56,7 +56,7 @@ You can download the release app on Google Play Store:
 
 A beautifully simple ToDo application that emphasises simplicity and ease of use. Whether you want a shopping list, grocery list or you just have lots of things to remember ToDo is built for you. ToDo is fully offline as it does not require internet connection. Also, ToDo is very fast and very light! The size of APK is lighter than 2 MB. It also supports Dark Mode and multiple languages (English, Russian, Uzbek).
 
-Personally, I use ToDo app to save the urls of articles that I plan to read later. So, I can mark them as completed and everything is tracked also saved in the database. So ToDo can be used for different problems, I hope it can solve your problem or make your life easier!
+Personally, I use ToDo app to save the urls of articles that I plan to read later. So, I can mark them as completed and everything is tracked also saved in the database. So, ToDo can be used in different situations. I hope it can solve your problem and make your life easier!
 
 # Features
 
