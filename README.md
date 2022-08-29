@@ -52,6 +52,30 @@ You can download the release app on Google Play Store:
   <img src="/preview/summary_2.png"/>
 </p>
 
+# About
+
+A beautifully simple ToDo application that emphasises simplicity and ease of use. Whether you want a shopping list, grocery list or you just have lots of things to remember ToDo is built for you. ToDo is fully offline as it does not require internet connection. Also, ToDo is very fast and very light! The size of APK is lighter than 2 MB. It also supports Dark Mode and multiple languages (English, Russian, Uzbek).
+
+Personally, I use ToDo application to save the urls of articles that I plan to read later. So, I can mark them as completed and everything is tracked also saved in the database. So ToDo can be used for different problems, I hope it can solve your problem or make your life easier!
+
+# Features
+
+- Add, edit and delete tasks.
+- Undo deleted tasks.
+- Mark tasks as completed. Completed tasks have "Checked/Done" indicator and it is possible to hide them from list.
+- Mark tasks as "Important". Important tasks are listed first and they will have red "Warning" indicator.
+- Hide completed tasks from the list.
+- Sort task by name and by created date.
+- Your preferences are saved.
+- Search for your tasks easily.
+- Delete all tasks at once, delete all completed tasks at once, or delete a task by swiping it away.
+- Beautiful animations and indicators.
+- Dark/Light theme support.
+- Multiple language support.
+- Multiple screen sizes support.
+- Light that is less than 2 MB.
+- Simplicity that has only three screens and the functions that is needed.
+
 # License
 
 ```xml
@@ -69,34 +93,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-# To-Do
-
-A beautifully simple ToDo application that emphasises simplicity and ease of use. Whether you want a shopping list, grocery list or you just have lots of things to remember ToDo is built for you. ToDo is fully offline as it does not require internet connection. Also, ToDo is very fast and very light! The size of APK is lighter than 2 MB. It also supports Dark Mode and multiple languages (English, Russian, Uzbek).
-
-Personally, I use ToDo application to save the urls of articles that I plan to read later. So, I can mark them as completed and everything is tracked also saved in the database. So ToDo can be used for different problems, I hope it can solve your problem or make your life easier!
-
-<a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.todo">
-  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200"/>
-</a>
-
-**Features:**
-
-- Add, edit and delete tasks.
-- Undo deleted tasks.
-- Mark tasks as completed. Completed tasks have "Checked/Done" indicator and it is possible to hide them from list.
-- Mark tasks as "Important". Important tasks are listed first and they will have red "Warning" indicator.
-- Hide completed tasks from the list.
-- Sort task by name and by created date.
-- Your preferences are saved.
-- Search for your tasks easily.
-- Delete all tasks at once, delete all completed tasks at once, or delete a task by swiping it away.
-- Beautiful animations and indicators.
-- Dark/Light theme support.
-- Multiple language support.
-- Multiple screen sizes support.
-- Light that is less than 2 MB.
-- Simplicity that has only three screens and the functions that is needed.
 
 # 1.1.1 - Jetpack Compose (Material3)
 
