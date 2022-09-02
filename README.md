@@ -78,6 +78,8 @@ Personally, I use ToDo app to save the urls of articles that I plan to read late
 - Works without the internet.
 - Simplicity that has only five screens.
 - Adaptive screens that change according to screen orientation.
+- Completely robust to process death.
+- Completely robust to configuration change.
 
 # License
 
