@@ -15,7 +15,7 @@ import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 
 @Composable
-fun TodoCard(
+fun CardTodo(
     todo: TodoModel,
     onTodoClick: (todo: TodoModel) -> Unit,
     onTodoCheckedChange: (todo: TodoModel, checked: Boolean) -> Unit
