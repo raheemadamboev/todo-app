@@ -1,11 +1,11 @@
-package xyz.teamgravity.todo.data.local.callback
+package xyz.teamgravity.todo.data.local.todo.callback
 
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import xyz.teamgravity.todo.data.local.database.TodoDatabase
-import xyz.teamgravity.todo.data.local.entity.TodoEntity
+import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
+import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 import javax.inject.Provider
 
 class TodoCallback(

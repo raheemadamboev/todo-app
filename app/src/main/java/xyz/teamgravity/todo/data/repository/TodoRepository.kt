@@ -2,7 +2,7 @@ package xyz.teamgravity.todo.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import xyz.teamgravity.todo.data.local.dao.TodoDao
+import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
 import xyz.teamgravity.todo.data.mapper.toEntity
 import xyz.teamgravity.todo.data.mapper.toModel

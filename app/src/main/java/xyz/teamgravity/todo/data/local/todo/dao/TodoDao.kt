@@ -1,10 +1,9 @@
-package xyz.teamgravity.todo.data.local.dao
+package xyz.teamgravity.todo.data.local.todo.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import xyz.teamgravity.todo.data.local.constant.TodoConst
-import xyz.teamgravity.todo.data.local.entity.TodoEntity
-import xyz.teamgravity.todo.data.model.TodoModel
+import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
+import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
 
 @Dao
