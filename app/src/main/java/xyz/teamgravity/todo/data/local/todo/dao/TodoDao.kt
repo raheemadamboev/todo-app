@@ -2,9 +2,9 @@ package xyz.teamgravity.todo.data.local.todo.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
-import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.data.local.todo.constant.TodoConst.TABLE_TODO
+import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 
 @Dao
 interface TodoDao {
@@ -30,10 +30,10 @@ interface TodoDao {
     @Delete
     suspend fun deleteTodo(todo: TodoEntity)
 
-    @Query("DELETE FROM ${TodoConst.TABLE_TODO} WHERE completed = 1")
+    @Query("DELETE FROM $TABLE_TODO WHERE completed = 1")
     suspend fun deleteAllCompletedTodo()
 
-    @Query("DELETE FROM ${TodoConst.TABLE_TODO}")
+    @Query("DELETE FROM $TABLE_TODO")
     suspend fun deleteAllTodo()
 
     ///////////////////////////////////////////////////////////////////////////
@@ -46,9 +46,9 @@ interface TodoDao {
             TodoSort.BY_DATE -> getTodosSortedByDate(query, hideCompleted)
         }
 
-    @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, name ASC")
+    @Query("SELECT * FROM $TABLE_TODO WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, name ASC")
     fun getTodosSortedByName(query: String, hideCompleted: Boolean): Flow<List<TodoEntity>>
 
-    @Query("SELECT * FROM ${TodoConst.TABLE_TODO} WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
+    @Query("SELECT * FROM $TABLE_TODO WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
     fun getTodosSortedByDate(query: String, hideCompleted: Boolean): Flow<List<TodoEntity>>
 }
