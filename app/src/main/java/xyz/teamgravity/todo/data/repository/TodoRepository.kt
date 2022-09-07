@@ -1,9 +1,11 @@
 package xyz.teamgravity.todo.data.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
+import kotlinx.coroutines.withContext
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.mapper.toEntity
 import xyz.teamgravity.todo.data.mapper.toModel
 import xyz.teamgravity.todo.data.model.TodoModel
@@ -17,7 +19,9 @@ class TodoRepository(
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun insertTodoSync(todo: TodoModel) {
-        dao.insertTodo(todo.toEntity())
+        withContext(Dispatchers.IO) {
+            dao.insertTodo(todo.toEntity())
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -25,7 +29,9 @@ class TodoRepository(
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun updateTodoSync(todo: TodoModel) {
-        dao.updateTodo(todo.toEntity())
+        withContext(Dispatchers.IO) {
+            dao.updateTodo(todo.toEntity())
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -33,15 +39,21 @@ class TodoRepository(
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun deleteTodoSync(todo: TodoModel) {
-        dao.deleteTodo(todo.toEntity())
+        withContext(Dispatchers.IO) {
+            dao.deleteTodo(todo.toEntity())
+        }
     }
 
     suspend fun deleteAllCompletedTodo() {
-        dao.deleteAllCompletedTodo()
+        withContext(Dispatchers.IO) {
+            dao.deleteAllCompletedTodo()
+        }
     }
 
     suspend fun deleteAllTodo() {
-        dao.deleteAllTodo()
+        withContext(Dispatchers.IO) {
+            dao.deleteAllTodo()
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
