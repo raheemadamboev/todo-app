@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.injection
+package xyz.teamgravity.todo.injection.provide
 
 import android.app.Application
 import android.content.Context
@@ -11,12 +11,13 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.data.local.callback.TodoCallback
-import xyz.teamgravity.todo.data.local.constant.TodoConst
-import xyz.teamgravity.todo.data.local.dao.TodoDao
-import xyz.teamgravity.todo.data.local.database.TodoDatabase
+import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
+import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
+import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
+import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
 import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
+import xyz.teamgravity.todo.injection.name.ApplicationScope
 import java.text.DateFormatSymbols
 import javax.inject.Provider
 import javax.inject.Singleton
