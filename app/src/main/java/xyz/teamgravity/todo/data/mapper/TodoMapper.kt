@@ -1,6 +1,6 @@
 package xyz.teamgravity.todo.data.mapper
 
-import xyz.teamgravity.todo.data.local.entity.TodoEntity
+import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 import xyz.teamgravity.todo.data.model.TodoModel
 
 fun TodoEntity.toModel(): TodoModel {

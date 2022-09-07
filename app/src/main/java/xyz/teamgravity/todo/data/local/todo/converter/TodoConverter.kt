@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.data.local.converter
+package xyz.teamgravity.todo.data.local.todo.converter
 
 import androidx.room.TypeConverter
 import java.util.*

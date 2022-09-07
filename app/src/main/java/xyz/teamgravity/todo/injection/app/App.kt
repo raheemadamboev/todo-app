@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.injection
+package xyz.teamgravity.todo.injection.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -26,7 +26,7 @@ import xyz.teamgravity.todo.presentation.theme.Black
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
-fun TodoSwipeCard(
+fun CardTodoSwipe(
     todo: TodoModel,
     onTodoClick: (todo: TodoModel) -> Unit,
     onTodoCheckedChange: (todo: TodoModel, checked: Boolean) -> Unit,
@@ -79,7 +79,7 @@ fun TodoSwipeCard(
             }
         },
         dismissContent = {
-            TodoCard(
+            CardTodo(
                 todo = todo,
                 onTodoClick = onTodoClick,
                 onTodoCheckedChange = onTodoCheckedChange

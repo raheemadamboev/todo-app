@@ -116,7 +116,7 @@ class TodoListViewModel @Inject constructor(
 
     fun onSort(sort: TodoSort) {
         viewModelScope.launch {
-            preferences.updateTodoSort(sort = sort)
+            preferences.updateTodoSort(value = sort)
             onSortCollapsed()
         }
     }

@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
-import xyz.teamgravity.todo.injection.FullTimeFormatter
+import xyz.teamgravity.todo.injection.name.FullTimeFormatter
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
 import java.text.SimpleDateFormat
 import javax.inject.Inject

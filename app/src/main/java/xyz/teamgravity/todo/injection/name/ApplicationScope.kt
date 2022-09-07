@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.injection
+package xyz.teamgravity.todo.injection.name
 
 import javax.inject.Qualifier
 

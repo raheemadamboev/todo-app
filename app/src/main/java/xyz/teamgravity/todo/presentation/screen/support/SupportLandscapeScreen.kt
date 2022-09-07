@@ -1,18 +1,15 @@
 package xyz.teamgravity.todo.presentation.screen.support
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -22,6 +19,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
+import xyz.teamgravity.todo.presentation.component.card.CardConnection
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.theme.White
 
@@ -84,65 +82,31 @@ fun SupportLandscapeScreen(
                 linkTo(top = connectT.bottom, bottom = telegramB.top)
             },
         )
-        ElevatedCard(
-            shape = MaterialTheme.shapes.extraLarge,
+        CardConnection(
             onClick = { Helper.connectViaTelegram(context) },
+            icon = R.drawable.ic_telegram,
+            title = R.string.via_telegram,
+            contentDescription = R.string.cd_via_telegram,
+            fillMaxSize = false,
             modifier = Modifier.constrainAs(telegramB) {
                 width = Dimension.fillToConstraints
                 height = Dimension.preferredWrapContent
                 linkTo(start = parent.start, end = oneG, startMargin = 16.dp, endMargin = 8.dp)
                 linkTo(top = bodyT.bottom, bottom = parent.bottom)
             }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .wrapContentSize()
-                    .padding(16.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_telegram_round),
-                    contentDescription = stringResource(id = R.string.cd_via_telegram),
-                    modifier = Modifier.weight(0.2F)
-                )
-                Text(
-                    text = stringResource(id = R.string.via_telegram),
-                    textAlign = TextAlign.Center,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(0.8F)
-                )
-            }
-        }
-        ElevatedCard(
-            shape = MaterialTheme.shapes.extraLarge,
+        )
+        CardConnection(
             onClick = { Helper.connectViaEmail(context) },
+            icon = R.drawable.ic_mail,
+            title = R.string.via_email,
+            contentDescription = R.string.cd_via_email,
+            fillMaxSize = false,
             modifier = Modifier.constrainAs(emailB) {
                 width = Dimension.fillToConstraints
                 height = Dimension.preferredWrapContent
                 linkTo(start = oneG, end = parent.end, startMargin = 8.dp, endMargin = 16.dp)
                 linkTo(top = bodyT.bottom, bottom = parent.bottom)
             }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .wrapContentSize()
-                    .padding(16.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_mail_round),
-                    contentDescription = stringResource(id = R.string.cd_via_email),
-                    modifier = Modifier.weight(0.2F)
-                )
-                Text(
-                    text = stringResource(id = R.string.via_email),
-                    textAlign = TextAlign.Center,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(0.8F)
-                )
-            }
-        }
+        )
     }
 }

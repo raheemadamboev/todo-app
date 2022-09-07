@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.card.TodoSwipeCard
+import xyz.teamgravity.todo.presentation.component.card.CardTodoSwipe
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.*
@@ -137,7 +137,7 @@ fun TodoListScreen(
                 items = viewmodel.todos,
                 key = { it.id }
             ) { todo ->
-                TodoSwipeCard(
+                CardTodoSwipe(
                     todo = todo,
                     onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
                     onTodoCheckedChange = viewmodel::onTodoChecked,

@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.data.local.constant
+package xyz.teamgravity.todo.data.local.todo.constant
 
 object TodoConst {
 
