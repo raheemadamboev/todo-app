@@ -27,13 +27,13 @@ import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
-import xyz.teamgravity.todo.presentation.viewmodel.AddTodoViewModel
+import xyz.teamgravity.todo.presentation.viewmodel.TodoAddViewModel
 
 @MainNavGraph
 @Destination
 @Composable
 fun AddTodoScreen(
-    viewmodel: AddTodoViewModel = hiltViewModel(),
+    viewmodel: TodoAddViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
 
@@ -43,11 +43,11 @@ fun AddTodoScreen(
     LaunchedEffect(key1 = viewmodel.event) {
         viewmodel.event.collectLatest { event ->
             when (event) {
-                is AddTodoViewModel.AddTodoEvent.InvalidInput -> {
+                is TodoAddViewModel.AddTodoEvent.InvalidInput -> {
                     snackbar.showSnackbar(message = context.getString(event.message))
                 }
 
-                AddTodoViewModel.AddTodoEvent.TodoAdded -> {
+                TodoAddViewModel.AddTodoEvent.TodoAdded -> {
                     navigator.popBackStack()
                 }
             }.exhaustive
