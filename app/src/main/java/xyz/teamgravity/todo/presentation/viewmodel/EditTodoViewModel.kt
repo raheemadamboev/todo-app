@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import xyz.teamgravity.todo.injection.name.FullTimeFormatter
 import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
@@ -28,7 +27,6 @@ class EditTodoViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        private const val TODO = "todo"
         private const val TODO_NAME = "todo_name"
         private const val TODO_IMPORTANT = "todo_important"
     }
@@ -38,15 +36,13 @@ class EditTodoViewModel @Inject constructor(
     private val _event = Channel<EditTodoEvent> { }
     val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
 
-    private val todo: TodoModel by mutableStateOf(handle.get<TodoModel>(TODO) ?: args.todo)
-
-    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: todo.name)
+    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: args.todo.name)
         private set
 
-    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: todo.important)
+    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: args.todo.important)
         private set
 
-    val timestamp: String by mutableStateOf(formatter.format(todo.timestamp))
+    val timestamp: String by mutableStateOf(formatter.format(args.todo.timestamp))
 
     fun onNameChange(value: String) {
         name = value
@@ -66,7 +62,7 @@ class EditTodoViewModel @Inject constructor(
             }
 
             repository.updateTodoSync(
-                todo.copy(
+                args.todo.copy(
                     name = name,
                     important = important
                 )
