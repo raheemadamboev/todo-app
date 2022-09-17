@@ -1,7 +1,6 @@
 package xyz.teamgravity.todo.data.local.preferences
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -11,8 +10,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.IOException
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.todo.data.local.preferences.Preferences.PREFS)
 
 class Preferences(context: Context) {
 
@@ -35,7 +32,8 @@ class Preferences(context: Context) {
         private const val DEFAULT_HIDE_COMPLETED = false
     }
 
-    private val store = context.dataStore
+    private val Context.store by preferencesDataStore(name = PREFS)
+    private val store = context.store
 
     ///////////////////////////////////////////////////////////////////////////
     // UPDATE
@@ -58,7 +56,7 @@ class Preferences(context: Context) {
     ///////////////////////////////////////////////////////////////////////////
 
     val preferences: Flow<PreferencesModel> = store.data
-        .catch { handleIOException(it) }
+        .catch { emit(handleIOException(it)) }
         .map { preferences ->
             val sort = TodoSort.valueOf(preferences[TODO_SORT] ?: DEFAULT_TODO_SORT)
 
