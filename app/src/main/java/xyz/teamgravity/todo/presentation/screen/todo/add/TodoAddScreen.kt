@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.screen
+package xyz.teamgravity.todo.presentation.screen.todo.add
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,7 +27,6 @@ import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
-import xyz.teamgravity.todo.presentation.viewmodel.TodoAddViewModel
 
 @MainNavGraph
 @Destination

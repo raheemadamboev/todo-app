@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.viewmodel
+package xyz.teamgravity.todo.presentation.screen.todo.list
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,11 +7,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
 import xyz.teamgravity.todo.data.model.TodoModel
-import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
 
@@ -21,7 +28,7 @@ class TodoListViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModel() {
 
-    private val _event = Channel<TodoListEvent> { }
+    private val _event = Channel<TodoListEvent>()
     val event: Flow<TodoListEvent> = _event.receiveAsFlow()
 
     private val _query = MutableStateFlow("")

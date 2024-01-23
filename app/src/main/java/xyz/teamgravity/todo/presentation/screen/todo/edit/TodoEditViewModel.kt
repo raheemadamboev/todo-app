@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.viewmodel
+package xyz.teamgravity.todo.presentation.screen.todo.edit
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
@@ -13,32 +13,36 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
+import xyz.teamgravity.todo.injection.name.FullTimeFormatter
+import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoAddViewModel @Inject constructor(
+class TodoEditViewModel @Inject constructor(
     private val handle: SavedStateHandle,
-    private val repository: TodoRepository
+    private val repository: TodoRepository,
+    @FullTimeFormatter private val formatter: SimpleDateFormat
 ) : ViewModel() {
 
     companion object {
         private const val TODO_NAME = "todo_name"
-        private const val DEFAULT_TODO_NAME = ""
-
         private const val TODO_IMPORTANT = "todo_important"
-        private const val DEFAULT_TODO_IMPORTANT = false
     }
 
-    private val _event = Channel<AddTodoEvent> { }
-    val event: Flow<AddTodoEvent> = _event.receiveAsFlow()
+    private val args = EditTodoScreenDestination.argsFrom(handle)
 
-    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: DEFAULT_TODO_NAME)
+    private val _event = Channel<EditTodoEvent>()
+    val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
+
+    var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: args.todo.name)
         private set
 
-    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: DEFAULT_TODO_IMPORTANT)
+    var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: args.todo.important)
         private set
+
+    val timestamp: String by mutableStateOf(formatter.format(args.todo.timestamp))
 
     fun onNameChange(value: String) {
         name = value
@@ -50,26 +54,26 @@ class TodoAddViewModel @Inject constructor(
         handle[TODO_IMPORTANT] = value
     }
 
-    fun onSaveTodo() {
+    fun onUpdateTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(AddTodoEvent.InvalidInput(message = R.string.error_name))
+                _event.send(EditTodoEvent.InvalidInput(message = R.string.error_name))
                 return@launch
             }
 
-            repository.insertTodoSync(
-                TodoModel(
+            repository.updateTodoSync(
+                args.todo.copy(
                     name = name,
                     important = important
                 )
             )
 
-            _event.send(AddTodoEvent.TodoAdded)
+            _event.send(EditTodoEvent.TodoUpdated)
         }
     }
 
-    sealed class AddTodoEvent {
-        data class InvalidInput(@StringRes val message: Int) : AddTodoEvent()
-        object TodoAdded : AddTodoEvent()
+    sealed class EditTodoEvent {
+        data class InvalidInput(@StringRes val message: Int) : EditTodoEvent()
+        object TodoUpdated : EditTodoEvent()
     }
 }
