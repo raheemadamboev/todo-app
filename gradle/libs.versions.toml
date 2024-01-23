@@ -33,7 +33,6 @@ compose = { group = "androidx.compose", name = "compose-bom", version.ref = "com
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-compose-material2 = { group = "androidx.compose.material", name = "material" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintLayout" }

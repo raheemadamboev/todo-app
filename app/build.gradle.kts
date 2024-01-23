@@ -88,7 +88,6 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.graphics)
     implementation(libs.compose.preview)
-    implementation(libs.compose.material2)
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
 

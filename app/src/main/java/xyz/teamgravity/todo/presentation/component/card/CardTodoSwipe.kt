@@ -6,11 +6,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.DismissDirection
+import androidx.compose.material3.DismissState
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SwipeToDismiss
+import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -31,7 +35,11 @@ fun CardTodoSwipe(
     onTodoClick: (todo: TodoModel) -> Unit,
     onTodoCheckedChange: (todo: TodoModel, checked: Boolean) -> Unit,
     onTodoDismissed: (todo: TodoModel) -> Unit,
-    dismiss: DismissState = rememberDismissState()
+    dismiss: DismissState = rememberDismissState(
+        positionalThreshold = { distance ->
+            distance * 0.35F
+        }
+    )
 ) {
     if (dismiss.isDismissed(DismissDirection.StartToEnd) || dismiss.isDismissed(DismissDirection.EndToStart)) {
         LaunchedEffect(key1 = todo) {
@@ -42,14 +50,14 @@ fun CardTodoSwipe(
     SwipeToDismiss(
         state = dismiss,
         directions = setOf(DismissDirection.StartToEnd, DismissDirection.EndToStart),
-        dismissThresholds = { FractionalThreshold(fraction = 0.35F) },
         background = {
             val direction = dismiss.dismissDirection ?: return@SwipeToDismiss
             val color by animateColorAsState(
                 targetValue = when (dismiss.targetValue) {
                     DismissValue.Default -> Color.LightGray
                     else -> MaterialTheme.colorScheme.error
-                }
+                },
+                label = "color"
             )
             val alignment = when (direction) {
                 DismissDirection.StartToEnd -> Alignment.CenterStart
@@ -59,9 +67,13 @@ fun CardTodoSwipe(
                 targetValue = when (dismiss.targetValue) {
                     DismissValue.Default -> Black
                     else -> White
-                }
+                },
+                label = "tint"
             )
-            val scale by animateFloatAsState(if (dismiss.targetValue == DismissValue.Default) 0.75F else 1F)
+            val scale by animateFloatAsState(
+                targetValue = if (dismiss.targetValue == DismissValue.Default) 0.75F else 1F,
+                label = "scale"
+            )
 
             Box(
                 contentAlignment = alignment,
