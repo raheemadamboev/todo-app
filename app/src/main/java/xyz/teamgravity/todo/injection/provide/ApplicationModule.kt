@@ -10,12 +10,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import timber.log.Timber
 import xyz.teamgravity.todo.R
+import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
 import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
 import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
-import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import xyz.teamgravity.todo.injection.name.ApplicationScope
 import java.text.DateFormatSymbols
@@ -44,7 +45,10 @@ object ApplicationModule {
     fun provideTodoCallback(
         todoDatabase: Provider<TodoDatabase>,
         @ApplicationScope applicationScope: CoroutineScope
-    ): TodoCallback = TodoCallback(db = todoDatabase, scope = applicationScope)
+    ): TodoCallback = TodoCallback(
+        db = todoDatabase,
+        scope = applicationScope
+    )
 
     @Provides
     @Singleton
@@ -63,4 +67,8 @@ object ApplicationModule {
     fun provideDateFormatSymbols(application: Application): DateFormatSymbols = DateFormatSymbols().apply {
         months = application.resources.getStringArray(R.array.months)
     }
+
+    @Provides
+    @Singleton
+    fun provideTimberDebugTree(): Timber.DebugTree = Timber.DebugTree()
 }
