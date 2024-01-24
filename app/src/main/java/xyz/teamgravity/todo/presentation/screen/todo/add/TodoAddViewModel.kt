@@ -31,8 +31,8 @@ class TodoAddViewModel @Inject constructor(
         private const val DEFAULT_TODO_IMPORTANT = false
     }
 
-    private val _event = Channel<AddTodoEvent>()
-    val event: Flow<AddTodoEvent> = _event.receiveAsFlow()
+    private val _event = Channel<TodoAddEvent>()
+    val event: Flow<TodoAddEvent> = _event.receiveAsFlow()
 
     var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: DEFAULT_TODO_NAME)
         private set
@@ -53,7 +53,7 @@ class TodoAddViewModel @Inject constructor(
     fun onSaveTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(AddTodoEvent.InvalidInput(message = R.string.error_name))
+                _event.send(TodoAddEvent.InvalidInput(message = R.string.error_name))
                 return@launch
             }
 
@@ -64,12 +64,12 @@ class TodoAddViewModel @Inject constructor(
                 )
             )
 
-            _event.send(AddTodoEvent.TodoAdded)
+            _event.send(TodoAddEvent.TodoAdded)
         }
     }
 
-    sealed class AddTodoEvent {
-        data class InvalidInput(@StringRes val message: Int) : AddTodoEvent()
-        object TodoAdded : AddTodoEvent()
+    sealed class TodoAddEvent {
+        data class InvalidInput(@StringRes val message: Int) : TodoAddEvent()
+        data object TodoAdded : TodoAddEvent()
     }
 }

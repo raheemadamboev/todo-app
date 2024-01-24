@@ -11,16 +11,15 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.misc.ObserveEvent
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
@@ -30,27 +29,28 @@ import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 @MainNavGraph
 @Destination
 @Composable
-fun AddTodoScreen(
-    viewmodel: TodoAddViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
+fun TodoAddScreen(
+    snackbar: SnackbarHostState = remember { SnackbarHostState() },
+    navigator: DestinationsNavigator,
+    viewmodel: TodoAddViewModel = hiltViewModel()
 ) {
 
-    val snackbar = remember { SnackbarHostState() }
     val context = LocalContext.current
 
-    LaunchedEffect(key1 = viewmodel.event) {
-        viewmodel.event.collectLatest { event ->
+    ObserveEvent(
+        flow = viewmodel.event,
+        onEvent = { event ->
             when (event) {
-                is TodoAddViewModel.AddTodoEvent.InvalidInput -> {
-                    snackbar.showSnackbar(message = context.getString(event.message))
+                is TodoAddViewModel.TodoAddEvent.InvalidInput -> {
+                    snackbar.showSnackbar(context.getString(event.message))
                 }
 
-                TodoAddViewModel.AddTodoEvent.TodoAdded -> {
+                TodoAddViewModel.TodoAddEvent.TodoAdded -> {
                     navigator.popBackStack()
                 }
             }
         }
-    }
+    )
 
     Scaffold(
         topBar = {

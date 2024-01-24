@@ -33,8 +33,8 @@ class TodoEditViewModel @Inject constructor(
 
     private val args = EditTodoScreenDestination.argsFrom(handle)
 
-    private val _event = Channel<EditTodoEvent>()
-    val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
+    private val _event = Channel<TodoEditEvent>()
+    val event: Flow<TodoEditEvent> = _event.receiveAsFlow()
 
     var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: args.todo.name)
         private set
@@ -57,7 +57,7 @@ class TodoEditViewModel @Inject constructor(
     fun onUpdateTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(EditTodoEvent.InvalidInput(message = R.string.error_name))
+                _event.send(TodoEditEvent.InvalidInput(message = R.string.error_name))
                 return@launch
             }
 
@@ -68,12 +68,12 @@ class TodoEditViewModel @Inject constructor(
                 )
             )
 
-            _event.send(EditTodoEvent.TodoUpdated)
+            _event.send(TodoEditEvent.TodoUpdated)
         }
     }
 
-    sealed class EditTodoEvent {
-        data class InvalidInput(@StringRes val message: Int) : EditTodoEvent()
-        object TodoUpdated : EditTodoEvent()
+    sealed class TodoEditEvent {
+        data class InvalidInput(@StringRes val message: Int) : TodoEditEvent()
+        data object TodoUpdated : TodoEditEvent()
     }
 }
