@@ -13,7 +13,7 @@ import timber.log.Timber
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
-import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
+import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst
 import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
 import xyz.teamgravity.todo.data.repository.TodoRepository
@@ -34,7 +34,7 @@ object ApplicationModule {
     ): TodoDatabase = Room.databaseBuilder(
         context = application,
         klass = TodoDatabase::class.java,
-        name = TodoConst.NAME
+        name = TodoDatabaseConst.NAME
     ).addMigrations()
         .addCallback(todoCallback)
         .build()

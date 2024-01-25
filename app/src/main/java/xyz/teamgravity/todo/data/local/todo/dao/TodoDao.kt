@@ -8,7 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
-import xyz.teamgravity.todo.data.local.todo.constant.TodoConst.TABLE_TODO
+import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst.TABLE_TODO
 import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 
 @Dao

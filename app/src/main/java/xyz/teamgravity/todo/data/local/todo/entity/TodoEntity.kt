@@ -2,10 +2,10 @@ package xyz.teamgravity.todo.data.local.todo.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import xyz.teamgravity.todo.data.local.todo.constant.TodoConst
+import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst
 import java.util.Date
 
-@Entity(TodoConst.TABLE_TODO)
+@Entity(TodoDatabaseConst.TABLE_TODO)
 data class TodoEntity(
 
     @PrimaryKey(autoGenerate = true)

@@ -1,6 +1,6 @@
 package xyz.teamgravity.todo.data.local.todo.constant
 
-object TodoConst {
+object TodoDatabaseConst {
 
     /**
      * Database name.
