@@ -17,12 +17,16 @@ fun TodoConfigure(
     important: Boolean,
     onImportantChange: (important: Boolean) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
         TodoTextField(
             value = name,
             onValueChange = onNameChange
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
         TodoImportantCheckbox(
             important = important,
             onImportantChange = onImportantChange

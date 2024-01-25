@@ -18,7 +18,7 @@ class TodoRepository(
     // INSERT
     ///////////////////////////////////////////////////////////////////////////
 
-    suspend fun insertTodoSync(todo: TodoModel) {
+    suspend fun insertTodo(todo: TodoModel) {
         withContext(Dispatchers.IO) {
             dao.insertTodo(todo.toEntity())
         }
@@ -28,7 +28,7 @@ class TodoRepository(
     // UPDATE
     ///////////////////////////////////////////////////////////////////////////
 
-    suspend fun updateTodoSync(todo: TodoModel) {
+    suspend fun updateTodo(todo: TodoModel) {
         withContext(Dispatchers.IO) {
             dao.updateTodo(todo.toEntity())
         }
@@ -38,7 +38,7 @@ class TodoRepository(
     // DELETE
     ///////////////////////////////////////////////////////////////////////////
 
-    suspend fun deleteTodoSync(todo: TodoModel) {
+    suspend fun deleteTodo(todo: TodoModel) {
         withContext(Dispatchers.IO) {
             dao.deleteTodo(todo.toEntity())
         }
@@ -61,6 +61,14 @@ class TodoRepository(
     ///////////////////////////////////////////////////////////////////////////
 
     fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoModel>> {
-        return dao.getTodos(query = query, hideCompleted = hideCompleted, sort = sort).map { todos -> todos.map { it.toModel() } }
+        return dao.getTodos(
+            query = query,
+            hideCompleted = hideCompleted,
+            sort = sort
+        ).map { entities ->
+            entities.map { entity ->
+                entity.toModel()
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ package xyz.teamgravity.todo.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.util.*
+import java.util.Date
 
 @Parcelize
 data class TodoModel(

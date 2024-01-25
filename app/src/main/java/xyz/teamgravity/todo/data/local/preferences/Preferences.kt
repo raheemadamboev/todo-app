@@ -1,8 +1,11 @@
 package xyz.teamgravity.todo.data.local.preferences
 
 import android.content.Context
-import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,18 +18,18 @@ class Preferences(context: Context) {
 
     companion object {
         /**
-         *  Preferences name
+         *  Preferences name.
          */
         const val PREFS = "prefs"
 
         /**
-         * Task sort order
+         * Determines how to order ToDos.
          */
         private val TODO_SORT = stringPreferencesKey("taskSort")
         private val DEFAULT_TODO_SORT = TodoSort.BY_DATE.name
 
         /**
-         * Task hide completed
+         * Determines if completed ToDos are hidden on the List.
          */
         private val HIDE_COMPLETED = booleanPreferencesKey("hideCompleted")
         private const val DEFAULT_HIDE_COMPLETED = false
@@ -59,10 +62,11 @@ class Preferences(context: Context) {
         .catch { emit(handleIOException(it)) }
         .map { preferences ->
             val sort = TodoSort.valueOf(preferences[TODO_SORT] ?: DEFAULT_TODO_SORT)
-
             val hideCompleted = preferences[HIDE_COMPLETED] ?: DEFAULT_HIDE_COMPLETED
-
-            return@map PreferencesModel(sort = sort, hideCompleted = hideCompleted)
+            return@map PreferencesModel(
+                sort = sort,
+                hideCompleted = hideCompleted
+            )
         }
 
     ///////////////////////////////////////////////////////////////////////////

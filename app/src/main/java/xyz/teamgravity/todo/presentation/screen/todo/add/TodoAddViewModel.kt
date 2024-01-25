@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.viewmodel
+package xyz.teamgravity.todo.presentation.screen.todo.add
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
@@ -23,22 +23,26 @@ class TodoAddViewModel @Inject constructor(
     private val repository: TodoRepository
 ) : ViewModel() {
 
-    companion object {
-        private const val TODO_NAME = "todo_name"
-        private const val DEFAULT_TODO_NAME = ""
+    private companion object {
+        const val TODO_NAME = "todo_name"
+        const val DEFAULT_TODO_NAME = ""
 
-        private const val TODO_IMPORTANT = "todo_important"
-        private const val DEFAULT_TODO_IMPORTANT = false
+        const val TODO_IMPORTANT = "todo_important"
+        const val DEFAULT_TODO_IMPORTANT = false
     }
-
-    private val _event = Channel<AddTodoEvent> { }
-    val event: Flow<AddTodoEvent> = _event.receiveAsFlow()
 
     var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: DEFAULT_TODO_NAME)
         private set
 
     var important: Boolean by mutableStateOf(handle.get<Boolean>(TODO_IMPORTANT) ?: DEFAULT_TODO_IMPORTANT)
         private set
+
+    private val _event = Channel<TodoAddEvent>()
+    val event: Flow<TodoAddEvent> = _event.receiveAsFlow()
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
 
     fun onNameChange(value: String) {
         name = value
@@ -53,23 +57,27 @@ class TodoAddViewModel @Inject constructor(
     fun onSaveTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(AddTodoEvent.InvalidInput(message = R.string.error_name))
+                _event.send(TodoAddEvent.InvalidInput(R.string.error_name))
                 return@launch
             }
 
-            repository.insertTodoSync(
+            repository.insertTodo(
                 TodoModel(
                     name = name,
                     important = important
                 )
             )
 
-            _event.send(AddTodoEvent.TodoAdded)
+            _event.send(TodoAddEvent.TodoAdded)
         }
     }
 
-    sealed class AddTodoEvent {
-        data class InvalidInput(@StringRes val message: Int) : AddTodoEvent()
-        object TodoAdded : AddTodoEvent()
+    ///////////////////////////////////////////////////////////////////////////
+    // MISC
+    ///////////////////////////////////////////////////////////////////////////
+
+    sealed interface TodoAddEvent {
+        data class InvalidInput(@StringRes val message: Int) : TodoAddEvent
+        data object TodoAdded : TodoAddEvent
     }
 }

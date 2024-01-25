@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
 import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
+import java.util.Date
 import javax.inject.Provider
 
 class TodoCallback(
@@ -19,9 +20,30 @@ class TodoCallback(
         val dao = this.db.get().todoDao()
 
         scope.launch {
-            dao.insertTodo(TodoEntity(name = "Be organized and efficient", important = true))
-            dao.insertTodo(TodoEntity(name = "Будьте организованы и эффективны", important = true))
-            dao.insertTodo(TodoEntity(name = "Tartibli va samarali bo'ling", important = true))
+            dao.insertTodo(
+                TodoEntity(
+                    name = "Be organized and efficient",
+                    important = true,
+                    completed = false,
+                    timestamp = Date()
+                )
+            )
+            dao.insertTodo(
+                TodoEntity(
+                    name = "Будьте организованы и эффективны",
+                    important = true,
+                    completed = false,
+                    timestamp = Date()
+                )
+            )
+            dao.insertTodo(
+                TodoEntity(
+                    name = "Tartibli va samarali bo'ling",
+                    important = true,
+                    completed = false,
+                    timestamp = Date()
+                )
+            )
         }
     }
 }

@@ -1,12 +1,20 @@
-package xyz.teamgravity.todo.presentation.screen
+package xyz.teamgravity.todo.presentation.screen.todo.edit
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -15,47 +23,49 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.extension.exhaustive
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
+import xyz.teamgravity.todo.presentation.component.misc.ObserveEvent
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
-import xyz.teamgravity.todo.presentation.viewmodel.TodoEditViewModel
 
 @MainNavGraph
-@Destination(navArgsDelegate = EditTodoScreenNavArgs::class)
+@Destination(navArgsDelegate = TodoEditScreenArgs::class)
 @Composable
-fun EditTodoScreen(
-    viewmodel: TodoEditViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
+fun TodoEditScreen(
+    snackbar: SnackbarHostState = remember { SnackbarHostState() },
+    navigator: DestinationsNavigator,
+    viewmodel: TodoEditViewModel = hiltViewModel()
 ) {
-
-    val snackbar = remember { SnackbarHostState() }
     val context = LocalContext.current
 
-    LaunchedEffect(key1 = viewmodel.event) {
-        viewmodel.event.collectLatest { event ->
+    ObserveEvent(
+        flow = viewmodel.event,
+        onEvent = { event ->
             when (event) {
-                is TodoEditViewModel.EditTodoEvent.InvalidInput -> {
-                    snackbar.showSnackbar(message = context.getString(event.message))
+                is TodoEditViewModel.TodoEditEvent.InvalidInput -> {
+                    snackbar.showSnackbar(context.getString(event.message))
                 }
 
-                TodoEditViewModel.EditTodoEvent.TodoUpdated -> {
+                TodoEditViewModel.TodoEditEvent.TodoUpdated -> {
                     navigator.popBackStack()
                 }
-            }.exhaustive
+            }
         }
-    }
+    )
 
     Scaffold(
         topBar = {
             TopBar(
-                title = { TextPlain(id = R.string.edit_task) },
+                title = {
+                    TextPlain(
+                        id = R.string.edit_task
+                    )
+                },
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = navigator::popBackStack,
@@ -73,8 +83,12 @@ fun EditTodoScreen(
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbar) { data ->
-                Snackbar(snackbarData = data)
+            SnackbarHost(
+                hostState = snackbar
+            ) { data ->
+                Snackbar(
+                    snackbarData = data
+                )
             }
         }
     ) { padding ->
@@ -89,7 +103,9 @@ fun EditTodoScreen(
                 important = viewmodel.important,
                 onImportantChange = viewmodel::onImportantChange
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
             Text(
                 text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp),
                 style = MaterialTheme.typography.bodyMedium,
@@ -99,6 +115,6 @@ fun EditTodoScreen(
     }
 }
 
-data class EditTodoScreenNavArgs(
+data class TodoEditScreenArgs(
     val todo: TodoModel
 )

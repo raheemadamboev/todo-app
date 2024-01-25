@@ -33,7 +33,6 @@ import xyz.teamgravity.todo.presentation.theme.White
 fun SupportPortraitScreen(
     onBackButtonClick: () -> Unit
 ) {
-
     val context = LocalContext.current
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
@@ -107,7 +106,9 @@ fun SupportPortraitScreen(
             )
         }
         CardConnection(
-            onClick = { Helper.connectViaTelegram(context) },
+            onClick = {
+                Helper.connectViaTelegram(context)
+            },
             icon = R.drawable.ic_telegram,
             title = R.string.via_telegram,
             contentDescription = R.string.cd_via_telegram,
@@ -120,7 +121,9 @@ fun SupportPortraitScreen(
             }
         )
         CardConnection(
-            onClick = { Helper.connectViaEmail(context) },
+            onClick = {
+                Helper.connectViaEmail(context)
+            },
             icon = R.drawable.ic_mail,
             title = R.string.via_email,
             contentDescription = R.string.cd_via_email,

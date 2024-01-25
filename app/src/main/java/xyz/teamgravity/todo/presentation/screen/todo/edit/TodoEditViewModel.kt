@@ -1,4 +1,4 @@
-package xyz.teamgravity.todo.presentation.viewmodel
+package xyz.teamgravity.todo.presentation.screen.todo.edit
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import xyz.teamgravity.todo.injection.name.FullTimeFormatter
-import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
+import xyz.teamgravity.todo.presentation.screen.destinations.TodoEditScreenDestination
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
@@ -26,15 +26,12 @@ class TodoEditViewModel @Inject constructor(
     @FullTimeFormatter private val formatter: SimpleDateFormat
 ) : ViewModel() {
 
-    companion object {
-        private const val TODO_NAME = "todo_name"
-        private const val TODO_IMPORTANT = "todo_important"
+    private companion object {
+        const val TODO_NAME = "todo_name"
+        const val TODO_IMPORTANT = "todo_important"
     }
 
-    private val args = EditTodoScreenDestination.argsFrom(handle)
-
-    private val _event = Channel<EditTodoEvent> { }
-    val event: Flow<EditTodoEvent> = _event.receiveAsFlow()
+    private val args: TodoEditScreenArgs = TodoEditScreenDestination.argsFrom(handle)
 
     var name: String by mutableStateOf(handle.get<String>(TODO_NAME) ?: args.todo.name)
         private set
@@ -43,6 +40,13 @@ class TodoEditViewModel @Inject constructor(
         private set
 
     val timestamp: String by mutableStateOf(formatter.format(args.todo.timestamp))
+
+    private val _event = Channel<TodoEditEvent>()
+    val event: Flow<TodoEditEvent> = _event.receiveAsFlow()
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
 
     fun onNameChange(value: String) {
         name = value
@@ -57,23 +61,27 @@ class TodoEditViewModel @Inject constructor(
     fun onUpdateTodo() {
         viewModelScope.launch {
             if (name.isBlank()) {
-                _event.send(EditTodoEvent.InvalidInput(message = R.string.error_name))
+                _event.send(TodoEditEvent.InvalidInput(R.string.error_name))
                 return@launch
             }
 
-            repository.updateTodoSync(
+            repository.updateTodo(
                 args.todo.copy(
                     name = name,
                     important = important
                 )
             )
 
-            _event.send(EditTodoEvent.TodoUpdated)
+            _event.send(TodoEditEvent.TodoUpdated)
         }
     }
 
-    sealed class EditTodoEvent {
-        data class InvalidInput(@StringRes val message: Int) : EditTodoEvent()
-        object TodoUpdated : EditTodoEvent()
+    ///////////////////////////////////////////////////////////////////////////
+    // MISC
+    ///////////////////////////////////////////////////////////////////////////
+
+    sealed interface TodoEditEvent {
+        data class InvalidInput(@StringRes val message: Int) : TodoEditEvent
+        data object TodoUpdated : TodoEditEvent
     }
 }
