@@ -20,13 +20,19 @@ fun TodoAlertDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = stringResource(id = title))
+            Text(
+                text = stringResource(id = title)
+            )
         },
         text = {
-            Text(text = stringResource(id = message))
+            Text(
+                text = stringResource(id = message)
+            )
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            TextButton(
+                onClick = onDismiss
+            ) {
                 Text(
                     text = stringResource(id = R.string.no),
                     color = MaterialTheme.colorScheme.backgroundDialogButton()
@@ -34,7 +40,9 @@ fun TodoAlertDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onConfirm) {
+            TextButton(
+                onClick = onConfirm
+            ) {
                 Text(
                     text = stringResource(id = R.string.yes),
                     color = MaterialTheme.colorScheme.backgroundDialogButton()

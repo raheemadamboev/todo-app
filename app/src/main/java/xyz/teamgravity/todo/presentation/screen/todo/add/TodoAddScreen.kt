@@ -34,7 +34,6 @@ fun TodoAddScreen(
     navigator: DestinationsNavigator,
     viewmodel: TodoAddViewModel = hiltViewModel()
 ) {
-
     val context = LocalContext.current
 
     ObserveEvent(
@@ -55,7 +54,11 @@ fun TodoAddScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = { TextPlain(id = R.string.new_task) },
+                title = {
+                    TextPlain(
+                        id = R.string.new_task
+                    )
+                },
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = navigator::popBackStack,
@@ -73,8 +76,12 @@ fun TodoAddScreen(
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbar) { data ->
-                Snackbar(snackbarData = data)
+            SnackbarHost(
+                hostState = snackbar
+            ) { data ->
+                Snackbar(
+                    snackbarData = data
+                )
             }
         }
     ) { padding ->

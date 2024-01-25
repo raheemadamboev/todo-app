@@ -1,7 +1,11 @@
 package xyz.teamgravity.todo.presentation.screen.support
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +31,6 @@ import xyz.teamgravity.todo.presentation.theme.White
 fun SupportLandscapeScreen(
     onBackButtonClick: () -> Unit
 ) {
-
     val context = LocalContext.current
 
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
@@ -58,7 +61,9 @@ fun SupportLandscapeScreen(
                 color = White,
                 modifier = Modifier.weight(1F)
             )
-            Spacer(modifier = Modifier.width(38.dp))
+            Spacer(
+                modifier = Modifier.width(38.dp)
+            )
         }
         Text(
             text = stringResource(id = R.string.connect_us),
@@ -83,7 +88,9 @@ fun SupportLandscapeScreen(
             },
         )
         CardConnection(
-            onClick = { Helper.connectViaTelegram(context) },
+            onClick = {
+                Helper.connectViaTelegram(context)
+            },
             icon = R.drawable.ic_telegram,
             title = R.string.via_telegram,
             contentDescription = R.string.cd_via_telegram,
@@ -96,7 +103,9 @@ fun SupportLandscapeScreen(
             }
         )
         CardConnection(
-            onClick = { Helper.connectViaEmail(context) },
+            onClick = {
+                Helper.connectViaEmail(context)
+            },
             icon = R.drawable.ic_mail,
             title = R.string.via_email,
             contentDescription = R.string.cd_via_email,

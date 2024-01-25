@@ -109,6 +109,9 @@ dependencies {
     // core
     implementation(libs.core)
 
+    // collections
+    implementation(libs.collections)
+
     // firebase
     implementation(platform(libs.firebase))
     implementation(libs.firebase.analytics)

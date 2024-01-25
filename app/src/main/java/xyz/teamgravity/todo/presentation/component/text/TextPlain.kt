@@ -9,5 +9,7 @@ import androidx.compose.ui.res.stringResource
 fun TextPlain(
     @StringRes id: Int
 ) {
-    Text(text = stringResource(id = id))
+    Text(
+        text = stringResource(id = id)
+    )
 }

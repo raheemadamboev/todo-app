@@ -26,7 +26,11 @@ fun TodoImportantCheckbox(
             checked = important,
             onCheckedChange = onImportantChange
         )
-        Text(text = stringResource(id = R.string.important_task))
-        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = stringResource(id = R.string.important_task)
+        )
+        Spacer(
+            modifier = Modifier.width(8.dp)
+        )
     }
 }

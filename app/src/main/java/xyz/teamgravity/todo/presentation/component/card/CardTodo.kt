@@ -1,8 +1,16 @@
 package xyz.teamgravity.todo.presentation.component.card
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +29,9 @@ fun CardTodo(
     onTodoCheckedChange: (todo: TodoModel, checked: Boolean) -> Unit
 ) {
     Card(
-        onClick = { onTodoClick(todo) },
+        onClick = {
+            onTodoClick(todo)
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 5.dp, vertical = 2.dp)

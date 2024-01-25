@@ -12,7 +12,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -20,12 +19,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.CardTodoSwipe
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
+import xyz.teamgravity.todo.presentation.component.misc.ObserveEvent
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
@@ -34,23 +33,23 @@ import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
-import xyz.teamgravity.todo.presentation.screen.destinations.AddTodoScreenDestination
-import xyz.teamgravity.todo.presentation.screen.destinations.EditTodoScreenDestination
 import xyz.teamgravity.todo.presentation.screen.destinations.SupportScreenDestination
+import xyz.teamgravity.todo.presentation.screen.destinations.TodoAddScreenDestination
+import xyz.teamgravity.todo.presentation.screen.destinations.TodoEditScreenDestination
 
 @MainNavGraph(start = true)
 @Destination
 @Composable
 fun TodoListScreen(
+    snackbar: SnackbarHostState = remember { SnackbarHostState() },
+    navigator: DestinationsNavigator,
     viewmodel: TodoListViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator
 ) {
-
-    val snackbar = remember { SnackbarHostState() }
     val context = LocalContext.current
 
-    LaunchedEffect(key1 = viewmodel.event) {
-        viewmodel.event.collectLatest { event ->
+    ObserveEvent(
+        flow = viewmodel.event,
+        onEvent = { event ->
             when (event) {
                 TodoListViewModel.TodoListEvent.TodoDeleted -> {
                     val result = snackbar.showSnackbar(
@@ -61,7 +60,7 @@ fun TodoListScreen(
                 }
             }
         }
-    }
+    )
 
     Scaffold(
         topBar = {
@@ -74,7 +73,9 @@ fun TodoListScreen(
                             onCancel = viewmodel::onSearchCollapsed
                         )
                     } else {
-                        TextPlain(id = R.string.tasks)
+                        TextPlain(
+                            id = R.string.tasks
+                        )
                     }
                 },
                 actions = {
@@ -97,8 +98,8 @@ fun TodoListScreen(
                         onDismiss = viewmodel::onMenuCollapsed,
                         hideCompleted = viewmodel.hideCompleted,
                         onHideCompletedChange = viewmodel::onHideCompletedChange,
-                        onDeleteCompletedClick = viewmodel::onDeleteCompletedDialogShow,
-                        onDeleteAllClick = viewmodel::onDeleteAllDialogShow,
+                        onDeleteCompletedClick = viewmodel::onDeleteCompletedShow,
+                        onDeleteAllClick = viewmodel::onDeleteAllShow,
                         onSupportClick = {
                             navigator.navigate(SupportScreenDestination)
                             viewmodel.onMenuCollapsed()
@@ -125,20 +126,26 @@ fun TodoListScreen(
         },
         floatingActionButton = {
             TodoFloatingActionButton(
-                onClick = { navigator.navigate(AddTodoScreenDestination) },
+                onClick = {
+                    navigator.navigate(TodoAddScreenDestination)
+                },
                 icon = Icons.Default.Add,
                 contentDescription = R.string.cd_task_add
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbar) { data ->
-                Snackbar(snackbarData = data)
+            SnackbarHost(
+                hostState = snackbar
+            ) { data ->
+                Snackbar(
+                    snackbarData = data
+                )
             }
         }
     ) { padding ->
         LazyColumn(
             contentPadding = padding,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize()
         ) {
             items(
                 items = viewmodel.todos,
@@ -146,25 +153,27 @@ fun TodoListScreen(
             ) { todo ->
                 CardTodoSwipe(
                     todo = todo,
-                    onTodoClick = { navigator.navigate(EditTodoScreenDestination(todo = it)) },
+                    onTodoClick = {
+                        navigator.navigate(TodoEditScreenDestination(it))
+                    },
                     onTodoCheckedChange = viewmodel::onTodoChecked,
                     onTodoDismissed = viewmodel::onTodoDelete
                 )
             }
         }
-        if (viewmodel.deleteCompletedDialog) {
+        if (viewmodel.deleteCompletedShown) {
             TodoAlertDialog(
                 title = R.string.confirm_deletion,
                 message = R.string.wanna_delete_completed,
-                onDismiss = viewmodel::onDeleteCompletedDialogDismiss,
+                onDismiss = viewmodel::onDeleteCompletedDismiss,
                 onConfirm = viewmodel::onDeleteCompleted
             )
         }
-        if (viewmodel.deleteAllDialog) {
+        if (viewmodel.deleteAllShown) {
             TodoAlertDialog(
                 title = R.string.confirm_deletion,
                 message = R.string.wanna_delete_all,
-                onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                onDismiss = viewmodel::onDeleteAllDismiss,
                 onConfirm = viewmodel::onDeleteAll
             )
         }

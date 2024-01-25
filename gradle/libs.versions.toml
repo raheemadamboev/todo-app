@@ -7,6 +7,7 @@ compose-lifecycle = "2.7.0"
 compose-viewmodel = "2.7.0"
 compose-hilt = "1.1.0"
 core = "1.12.0"
+collections = "0.3.7"
 firebase = "32.7.1"
 hilt = "2.50"
 coroutines = "1.7.3"
@@ -41,6 +42,7 @@ compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-co
 compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
 compose-hilt = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "compose-hilt" }
 core = { group = "androidx.core", name = "core-ktx", version.ref = "core" }
+collections = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "collections" }
 firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }

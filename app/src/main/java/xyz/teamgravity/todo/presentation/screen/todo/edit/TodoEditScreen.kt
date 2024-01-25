@@ -41,7 +41,6 @@ fun TodoEditScreen(
     navigator: DestinationsNavigator,
     viewmodel: TodoEditViewModel = hiltViewModel()
 ) {
-
     val context = LocalContext.current
 
     ObserveEvent(
@@ -62,7 +61,11 @@ fun TodoEditScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = { TextPlain(id = R.string.edit_task) },
+                title = {
+                    TextPlain(
+                        id = R.string.edit_task
+                    )
+                },
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = navigator::popBackStack,
@@ -80,8 +83,12 @@ fun TodoEditScreen(
             )
         },
         snackbarHost = {
-            SnackbarHost(hostState = snackbar) { data ->
-                Snackbar(snackbarData = data)
+            SnackbarHost(
+                hostState = snackbar
+            ) { data ->
+                Snackbar(
+                    snackbarData = data
+                )
             }
         }
     ) { padding ->
@@ -96,7 +103,9 @@ fun TodoEditScreen(
                 important = viewmodel.important,
                 onImportantChange = viewmodel::onImportantChange
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
             Text(
                 text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp),
                 style = MaterialTheme.typography.bodyMedium,

@@ -6,6 +6,8 @@ import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
@@ -16,7 +18,7 @@ fun TopBarSortMenu(
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
     onSort: (sort: TodoSort) -> Unit,
-    menus: List<SortMenu> = sortMenuItems
+    menus: List<SortMenu> = SORT_MENUS
 ) {
     TopBarIconButton(
         onClick = onExpand,
@@ -29,8 +31,14 @@ fun TopBarSortMenu(
     ) {
         menus.forEach { menu ->
             DropdownMenuItem(
-                onClick = { onSort(menu.sort) },
-                text = { TextPlain(id = menu.title) }
+                onClick = {
+                    onSort(menu.sort)
+                },
+                text = {
+                    TextPlain(
+                        id = menu.title
+                    )
+                }
             )
         }
     }
@@ -41,7 +49,13 @@ data class SortMenu(
     val sort: TodoSort
 )
 
-private val sortMenuItems = listOf(
-    SortMenu(title = R.string.sort_by_name, TodoSort.BY_NAME),
-    SortMenu(title = R.string.sort_by_date, TodoSort.BY_DATE)
+private val SORT_MENUS: ImmutableList<SortMenu> = persistentListOf(
+    SortMenu(
+        title = R.string.sort_by_name,
+        sort = TodoSort.BY_NAME
+    ),
+    SortMenu(
+        title = R.string.sort_by_date,
+        sort = TodoSort.BY_DATE
+    )
 )

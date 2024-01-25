@@ -1,14 +1,13 @@
 package xyz.teamgravity.todo.injection.provide
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import timber.log.Timber
 import xyz.teamgravity.todo.R
@@ -29,16 +28,21 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideTodoDatabase(application: Application, todoCallback: TodoCallback): TodoDatabase =
-        Room.databaseBuilder(application, TodoDatabase::class.java, TodoConst.NAME)
-            .addMigrations()
-            .addCallback(todoCallback)
-            .build()
+    fun provideTodoDatabase(
+        application: Application,
+        todoCallback: TodoCallback
+    ): TodoDatabase = Room.databaseBuilder(
+        context = application,
+        klass = TodoDatabase::class.java,
+        name = TodoConst.NAME
+    ).addMigrations()
+        .addCallback(todoCallback)
+        .build()
 
     @Provides
     @Singleton
     @ApplicationScope
-    fun provideApplicationScope(): CoroutineScope = CoroutineScope(SupervisorJob())
+    fun provideApplicationScope(): CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     @Provides
     @Singleton
@@ -60,7 +64,7 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun providePreferences(@ApplicationContext applicationContext: Context): Preferences = Preferences(applicationContext)
+    fun providePreferences(application: Application): Preferences = Preferences(application)
 
     @Provides
     @Singleton

@@ -3,18 +3,18 @@ package xyz.teamgravity.todo.data.local.todo.constant
 object TodoConst {
 
     /**
-     * Database name
+     * Database name.
      */
     const val NAME = "TodoListDatabase"
 
     /**
-     * Database version
+     * Database version.
      */
     const val VERSION = 1
 
     /**
-     * Table Todo
-     * Entity -> [xyz.teamgravity.todo.data.local.entity.TodoEntity]
+     * Table ToDo.
+     * Entity -> [xyz.teamgravity.todo.data.local.todo.entity.TodoEntity]
      * Model -> [xyz.teamgravity.todo.data.model.TodoModel]
      */
     const val TABLE_TODO = "task_table"

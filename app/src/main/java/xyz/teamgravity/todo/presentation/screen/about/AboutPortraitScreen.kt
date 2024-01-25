@@ -2,7 +2,12 @@ package xyz.teamgravity.todo.presentation.screen.about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
@@ -33,13 +38,16 @@ import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 fun AboutPortraitScreen(
     onBackButtonClick: () -> Unit
 ) {
-
     val context = LocalContext.current
 
     Scaffold(
         topBar = {
             TopBar(
-                title = { TextPlain(id = R.string.app_name) },
+                title = {
+                    TextPlain(
+                        id = R.string.app_name
+                    )
+                },
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = onBackButtonClick,
@@ -105,7 +113,9 @@ fun AboutPortraitScreen(
                         .width(100.dp)
                         .height(20.dp)
                 )
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(
+                    modifier = Modifier.height(5.dp)
+                )
                 Text(
                     text = stringResource(id = R.string.raheem),
                     style = MaterialTheme.typography.bodyMedium,

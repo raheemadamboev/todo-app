@@ -1,80 +1,92 @@
 package xyz.teamgravity.todo.core.util
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.core.app.ShareCompat
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.constant.ConnectionConst
+import xyz.teamgravity.todo.core.extension.safelyStartActivity
 
 object Helper {
 
+    private fun getShareAppText(context: Context): String {
+        return context.getString(R.string.share_app, getPlayStorePageUrl(context))
+    }
+
+    private fun getPlayStorePageUrl(context: Context): String {
+        return "${ConnectionConst.PLAY_STORE_DETAIL_PAGE}${context.packageName}"
+    }
+
+    private fun getGravityPlayStorePageUrl(): String {
+        return "https://play.google.com/store/apps/${ConnectionConst.GRAVITY}"
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
+
     /**
-     * Shares the app text with other apps
+     * Shares the app text with other apps.
      */
     fun shareApp(context: Context) {
-        Intent().apply {
-            action = Intent.ACTION_SEND
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, shareAppText(context))
-            context.startActivity(Intent.createChooser(this, context.getString(R.string.choose)))
-        }
+        ShareCompat.IntentBuilder(context)
+            .setType("text/plain")
+            .setText(getShareAppText(context))
+            .setChooserTitle(context.getString(R.string.choose))
+            .startChooser()
     }
 
-    /**
-     * Returns the share app text
-     */
-    private fun shareAppText(context: Context): String {
-        return context.getString(R.string.share_app, "${ConnectionConst.PLAY_STORE_DETAIL_PAGE}${context.packageName}")
-    }
 
     /**
-     * Navigates the user to rate the app
+     * Navigates the user to rate the app.
      */
     fun rateApp(context: Context) {
-        val appPackageName = context.packageName
-        try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
-        } catch (e: ActivityNotFoundException) {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${ConnectionConst.PLAY_STORE_DETAIL_PAGE}$appPackageName")))
-        }
+        context.safelyStartActivity(
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${context.packageName}")),
+            onError = {
+                context.safelyStartActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getPlayStorePageUrl(context))))
+            }
+        )
     }
 
     /**
-     * Navigates the user to show source code on Github
+     * Navigates the user to show source code on Github.
      */
     fun viewSourceCode(context: Context) {
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.GITHUB_SOURCE_CODE)))
+        context.safelyStartActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.GITHUB_SOURCE_CODE)))
     }
 
     /**
-     * Navigates the user to connect us via Telegram
+     * Navigates the user to connect us via Telegram.
      */
     fun connectViaTelegram(context: Context) {
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.SUPPORT_TELEGRAM)))
+        context.safelyStartActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.SUPPORT_TELEGRAM)))
     }
 
     /**
-     * Navigates the user to connect us via Email
+     * Navigates the user to connect us via Email.
      */
     fun connectViaEmail(context: Context) {
-        Intent().apply {
-            data = Uri.fromParts("mailto", ConnectionConst.SUPPORT_MAIL, null)
-            putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.improvement))
-            context.startActivity(Intent.createChooser(this, context.getString(R.string.choose)))
-        }
+        ShareCompat.IntentBuilder(context)
+            .setType("message/rfc822")
+            .addEmailTo(ConnectionConst.SUPPORT_MAIL)
+            .setSubject(context.getString(R.string.improvement))
+            .setChooserTitle(context.getString(R.string.choose))
+            .startChooser()
     }
 
     /**
-     * Navigates the user to Gravity Play Store page
+     * Navigates the user to Gravity Play Store page.
      */
     fun viewGravityPage(context: Context) {
-        try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://${ConnectionConst.GRAVITY}")))
-        } catch (e: ActivityNotFoundException) {
-            context.startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/${ConnectionConst.GRAVITY}"))
-            )
-        }
+        context.safelyStartActivity(
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://${ConnectionConst.GRAVITY}")),
+            onError = {
+                context.safelyStartActivity(
+                    Intent(Intent.ACTION_VIEW, Uri.parse(getGravityPlayStorePageUrl()))
+                )
+            }
+        )
     }
 }

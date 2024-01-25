@@ -36,7 +36,11 @@ fun TopBarMoreMenu(
         onDismissRequest = onDismiss
     ) {
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.hide_completed) },
+            text = {
+                TextPlain(
+                    id = R.string.hide_completed
+                )
+            },
             onClick = onHideCompletedChange,
             trailingIcon = {
                 if (hideCompleted) {
@@ -54,7 +58,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.delete_all_completed) },
+            text = {
+                TextPlain(
+                    id = R.string.delete_all_completed
+                )
+            },
             onClick = onDeleteCompletedClick,
             leadingIcon = {
                 TopBarIcon(
@@ -64,7 +72,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.delete_all_tasks) },
+            text = {
+                TextPlain(
+                    id = R.string.delete_all_tasks
+                )
+            },
             onClick = onDeleteAllClick,
             leadingIcon = {
                 TopBarIcon(
@@ -74,7 +86,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.support) },
+            text = {
+                TextPlain(
+                    id = R.string.support
+                )
+            },
             onClick = onSupportClick,
             leadingIcon = {
                 TopBarIcon(
@@ -84,7 +100,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.share) },
+            text = {
+                TextPlain(
+                    id = R.string.share
+                )
+            },
             onClick = onShareClick,
             leadingIcon = {
                 TopBarIcon(
@@ -94,7 +114,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.rate) },
+            text = {
+                TextPlain(
+                    id = R.string.rate
+                )
+            },
             onClick = onRateClick,
             leadingIcon = {
                 TopBarIcon(
@@ -104,7 +128,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.source_code) },
+            text = {
+                TextPlain(
+                    id = R.string.source_code
+                )
+            },
             onClick = onSourceCodeClick,
             leadingIcon = {
                 TopBarIcon(
@@ -114,7 +142,11 @@ fun TopBarMoreMenu(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.about_me) },
+            text = {
+                TextPlain(
+                    id = R.string.about_me
+                )
+            },
             onClick = onAboutClick,
             leadingIcon = {
                 TopBarIcon(
