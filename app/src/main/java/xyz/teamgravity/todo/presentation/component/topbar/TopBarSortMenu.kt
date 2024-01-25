@@ -18,7 +18,7 @@ fun TopBarSortMenu(
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
     onSort: (sort: TodoSort) -> Unit,
-    menus: List<SortMenu> = SORT_MENUS
+    menus: ImmutableList<SortMenu> = SORT_MENUS
 ) {
     TopBarIconButton(
         onClick = onExpand,
