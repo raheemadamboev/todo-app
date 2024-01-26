@@ -56,7 +56,7 @@ fun TodoListScreen(
                     val result = snackbar.showSnackbar(
                         message = context.getString(R.string.deleted_successfully),
                         actionLabel = context.getString(R.string.undo),
-                        duration = SnackbarDuration.Long
+                        duration = SnackbarDuration.Short
                     )
                     if (result == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedTodo()
                 }
