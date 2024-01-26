@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -54,7 +55,8 @@ fun TodoListScreen(
                 TodoListViewModel.TodoListEvent.TodoDeleted -> {
                     val result = snackbar.showSnackbar(
                         message = context.getString(R.string.deleted_successfully),
-                        actionLabel = context.getString(R.string.undo)
+                        actionLabel = context.getString(R.string.undo),
+                        duration = SnackbarDuration.Long
                     )
                     if (result == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedTodo()
                 }
