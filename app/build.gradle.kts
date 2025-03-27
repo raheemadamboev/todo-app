@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.gms)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.hilt)
-    id("kotlin-parcelize")
 }
 
 android {
@@ -16,8 +17,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 8
-        versionName = "1.1.6"
+        versionCode = 9
+        versionName = "1.1.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -69,10 +70,6 @@ android {
         buildConfig = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -91,7 +88,7 @@ dependencies {
     implementation(libs.compose.icons)
 
     // compose constraintlayout
-    implementation(libs.compose.constraintLayout)
+    implementation(libs.compose.constraintlayout)
 
     // compose activity
     implementation(libs.compose.activity)
@@ -119,7 +116,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt)
-    ksp(libs.dagger.compiler)
+    ksp(libs.hilt.compiler)
 
     // coroutines
     implementation(libs.coroutines)
