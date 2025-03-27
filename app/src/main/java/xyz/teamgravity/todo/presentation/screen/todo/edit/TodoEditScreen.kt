@@ -33,8 +33,7 @@ import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 
-@MainNavGraph
-@Destination(navArgsDelegate = TodoEditScreenArgs::class)
+@Destination<MainNavGraph>(navArgs = TodoEditScreenArgs::class)
 @Composable
 fun TodoEditScreen(
     snackbar: SnackbarHostState = remember { SnackbarHostState() },

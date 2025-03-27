@@ -19,6 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.TodoAddScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
@@ -33,13 +37,8 @@ import xyz.teamgravity.todo.presentation.component.topbar.TopBarMoreMenu
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
-import xyz.teamgravity.todo.presentation.screen.destinations.AboutScreenDestination
-import xyz.teamgravity.todo.presentation.screen.destinations.SupportScreenDestination
-import xyz.teamgravity.todo.presentation.screen.destinations.TodoAddScreenDestination
-import xyz.teamgravity.todo.presentation.screen.destinations.TodoEditScreenDestination
 
-@MainNavGraph(start = true)
-@Destination
+@Destination<MainNavGraph>(start = true)
 @Composable
 fun TodoListScreen(
     snackbar: SnackbarHostState = remember { SnackbarHostState() },

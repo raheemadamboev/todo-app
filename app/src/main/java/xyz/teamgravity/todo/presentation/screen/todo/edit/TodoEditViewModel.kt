@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +16,6 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import xyz.teamgravity.todo.injection.name.FullTimeFormatter
-import xyz.teamgravity.todo.presentation.screen.destinations.TodoEditScreenDestination
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
