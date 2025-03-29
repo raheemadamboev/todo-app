@@ -15,6 +15,8 @@ room = "2.6.1"
 preferences = "1.1.4"
 destinations = "2.1.0"
 timber = "5.0.1"
+gravity-core = "1.0.2"
+gravity-core-compose = "1.0.1"
 
 android = "8.9.1"
 kotlin = "2.1.20"
@@ -57,6 +59,8 @@ preferences = { group = "androidx.datastore", name = "datastore-preferences", ve
 destinations = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "destinations" }
 destinations-compiler = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "destinations" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+gravity-core = { group = "com.github.raheemadamboev", name = "core-sdk-android", version.ref = "gravity-core" }
+gravity-core-compose = { group = "com.github.raheemadamboev", name = "core-sdk-compose", version.ref = "gravity-core-compose" }
 
 [plugins]
 

@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +35,9 @@ fun SupportPortraitScreen(
 ) {
     val context = LocalContext.current
 
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
+    ) {
         val (gradientC, backB, headerT, headerI, bodyC) = createRefs()
         val (telegramB, mailB) = createRefs()
         val oneG = createGuidelineFromTop(0.3F)
@@ -53,7 +55,7 @@ fun SupportPortraitScreen(
         )
         TopBarIconButton(
             onClick = onBackButtonClick,
-            icon = Icons.Default.ArrowBack,
+            icon = Icons.AutoMirrored.Filled.ArrowBack,
             contentDescription = R.string.cd_back_button,
             tint = White,
             modifier = Modifier.constrainAs(backB) {

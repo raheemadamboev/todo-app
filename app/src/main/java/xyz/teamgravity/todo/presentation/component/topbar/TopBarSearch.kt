@@ -3,7 +3,7 @@ package xyz.teamgravity.todo.presentation.component.topbar
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -27,7 +27,7 @@ fun TopBarSearch(
     ) {
         TopBarIconButton(
             onClick = onCancel,
-            icon = Icons.Default.ArrowBack,
+            icon = Icons.AutoMirrored.Filled.ArrowBack,
             contentDescription = R.string.cd_back_button
         )
         OutlinedTextField(

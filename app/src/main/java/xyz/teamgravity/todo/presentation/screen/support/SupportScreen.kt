@@ -13,7 +13,7 @@ fun SupportScreen(
     navigator: DestinationsNavigator
 ) {
     when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> SupportLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+        Configuration.ORIENTATION_PORTRAIT -> SupportPortraitScreen(onBackButtonClick = navigator::navigateUp)
+        else -> SupportLandscapeScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

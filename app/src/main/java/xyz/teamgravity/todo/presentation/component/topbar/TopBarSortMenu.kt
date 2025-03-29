@@ -2,7 +2,7 @@ package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
@@ -22,7 +22,7 @@ fun TopBarSortMenu(
 ) {
     TopBarIconButton(
         onClick = onExpand,
-        icon = Icons.Default.Sort,
+        icon = Icons.AutoMirrored.Filled.Sort,
         contentDescription = R.string.cd_sort
     )
     DropdownMenu(
@@ -52,10 +52,10 @@ data class SortMenu(
 private val SORT_MENUS: ImmutableList<SortMenu> = persistentListOf(
     SortMenu(
         title = R.string.sort_by_name,
-        sort = TodoSort.BY_NAME
+        sort = TodoSort.Name
     ),
     SortMenu(
         title = R.string.sort_by_date,
-        sort = TodoSort.BY_DATE
+        sort = TodoSort.Date
     )
 )

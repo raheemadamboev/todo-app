@@ -13,7 +13,7 @@ fun AboutScreen(
     navigator: DestinationsNavigator
 ) {
     when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> AboutPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> AboutLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+        Configuration.ORIENTATION_PORTRAIT -> AboutPortraitScreen(onBackButtonClick = navigator::navigateUp)
+        else -> AboutLandscapeScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

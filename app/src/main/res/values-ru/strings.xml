@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Задания</string>
 
+    <!-- TodoCallback -->
+    <string name="predefined_todo_name">Будьте организованы и эффективны!</string>
+
     <!-- TodoList -->
     <string name="tasks">Задания</string>
     <string name="deleted_successfully">Задача успешно удалена</string>
@@ -49,7 +52,6 @@
     <string name="cd_task_add">Добавить задание</string>
     <string name="cd_back_button">Навигация назад</string>
     <string name="cd_done_button">Сохранение задач</string>
-    <string name="cd_delete_button">Удалить задание</string>
     <string name="cd_more_vertical">Дополнительные действия</string>
     <string name="cd_app_icon">Значок приложения</string>
     <string name="cd_company_logo">Логотип компании</string>

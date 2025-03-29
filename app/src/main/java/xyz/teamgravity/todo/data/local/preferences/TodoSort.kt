@@ -1,6 +1,12 @@
 package xyz.teamgravity.todo.data.local.preferences
 
 enum class TodoSort {
-    BY_NAME,
-    BY_DATE;
+    Name,
+    Date;
+
+    companion object {
+        fun fromName(name: String): TodoSort {
+            return entries.firstOrNull { it.name == name } ?: Name
+        }
+    }
 }

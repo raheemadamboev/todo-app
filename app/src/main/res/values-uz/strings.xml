@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Vazifalar</string>
 
+    <!-- TodoCallback -->
+    <string name="predefined_todo_name">Tartibli va samarali bo\'ling!</string>
+
     <!-- TodoList -->
     <string name="tasks">Vazifalar</string>
     <string name="deleted_successfully">Vazifa muvaffaqiyatli o\'chirildi</string>
@@ -50,7 +53,6 @@
     <string name="cd_task_add">Vazifa yaratish</string>
     <string name="cd_back_button">Orqaga qaytish</string>
     <string name="cd_done_button">Vazifani saqlash</string>
-    <string name="cd_delete_button">Vazifani o\'chirish</string>
     <string name="cd_more_vertical">Ko\'proq amallar</string>
     <string name="cd_app_icon">Dastur belgisi</string>
     <string name="cd_company_logo">Kompaniya emblemasi</string>

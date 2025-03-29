@@ -95,7 +95,10 @@ class TodoListViewModel @Inject constructor(
         }
     }
 
-    fun onTodoChecked(todo: TodoModel, checked: Boolean) {
+    fun onTodoChecked(
+        todo: TodoModel,
+        checked: Boolean
+    ) {
         viewModelScope.launch {
             repository.updateTodo(
                 todo.copy(
@@ -120,6 +123,7 @@ class TodoListViewModel @Inject constructor(
                     todo.copy(id = 0)
                 )
             }
+            deletedTodo = null
         }
     }
 

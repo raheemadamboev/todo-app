@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -17,9 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.misc.ObserveEvent
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
@@ -60,8 +60,8 @@ fun TodoAddScreen(
                 },
                 navigationIcon = {
                     TopBarIconButton(
-                        onClick = navigator::popBackStack,
-                        icon = Icons.Default.ArrowBack,
+                        onClick = navigator::navigateUp,
+                        icon = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = R.string.cd_back_button
                     )
                 }

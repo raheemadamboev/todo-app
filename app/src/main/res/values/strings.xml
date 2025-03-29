@@ -2,6 +2,9 @@
     <string name="app_name">ToDo</string>
     <string name="raheem" translatable="false">Raheem</string>
 
+    <!-- TodoCallback -->
+    <string name="predefined_todo_name">Be organized and efficient!</string>
+
     <!-- TodoList -->
     <string name="tasks">Tasks</string>
     <string name="deleted_successfully">Task deleted successfully</string>
@@ -50,7 +53,6 @@
     <string name="cd_task_add">Add task</string>
     <string name="cd_back_button">Navigate back</string>
     <string name="cd_done_button">Save ToDo</string>
-    <string name="cd_delete_button">Delete ToDo</string>
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_app_icon">App icon</string>
     <string name="cd_company_logo">Company logo</string>

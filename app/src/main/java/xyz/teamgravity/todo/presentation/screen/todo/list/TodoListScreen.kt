@@ -13,23 +13,25 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.TodoAddScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
+import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
-import xyz.teamgravity.todo.presentation.component.card.CardTodoSwipe
+import xyz.teamgravity.todo.presentation.component.card.CardTodo
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
-import xyz.teamgravity.todo.presentation.component.misc.ObserveEvent
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
@@ -43,9 +45,10 @@ import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 fun TodoListScreen(
     snackbar: SnackbarHostState = remember { SnackbarHostState() },
     navigator: DestinationsNavigator,
-    viewmodel: TodoListViewModel = hiltViewModel(),
+    viewmodel: TodoListViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val query by viewmodel.query.collectAsStateWithLifecycle()
 
     ObserveEvent(
         flow = viewmodel.event,
@@ -69,7 +72,7 @@ fun TodoListScreen(
                 title = {
                     if (viewmodel.searchExpanded) {
                         TopBarSearch(
-                            query = viewmodel.query.collectAsState().value,
+                            query = query,
                             onQueryChange = viewmodel::onQueryChange,
                             onCancel = viewmodel::onSearchCollapsed
                         )
@@ -110,7 +113,7 @@ fun TodoListScreen(
                             viewmodel.onMenuCollapsed()
                         },
                         onRateClick = {
-                            Helper.rateApp(context)
+                            ConnectUtil.viewAppPlayStorePage(context)
                             viewmodel.onMenuCollapsed()
                         },
                         onSourceCodeClick = {
@@ -152,13 +155,13 @@ fun TodoListScreen(
                 items = viewmodel.todos,
                 key = { it.id }
             ) { todo ->
-                CardTodoSwipe(
+                CardTodo(
                     todo = todo,
-                    onTodoClick = {
+                    onClick = {
                         navigator.navigate(TodoEditScreenDestination(it))
                     },
-                    onTodoCheckedChange = viewmodel::onTodoChecked,
-                    onTodoDismissed = viewmodel::onTodoDelete
+                    onCheckedChange = viewmodel::onTodoChecked,
+                    onDismiss = viewmodel::onTodoDelete
                 )
             }
         }

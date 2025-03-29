@@ -1,6 +1,7 @@
 package xyz.teamgravity.todo.data.local.preferences
 
 import android.content.Context
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -25,21 +26,25 @@ class Preferences(context: Context) {
         /**
          * Determines how to order ToDos.
          */
-        private val TODO_SORT = stringPreferencesKey("taskSort")
-        private val DEFAULT_TODO_SORT = TodoSort.BY_DATE.name
+        private val TODO_SORT: Preferences.Key<String> = stringPreferencesKey("todoSort")
+        private val DEFAULT_TODO_SORT: String = TodoSort.Date.name
 
         /**
          * Determines if completed ToDos are hidden on the List.
          */
-        private val HIDE_COMPLETED = booleanPreferencesKey("hideCompleted")
+        private val HIDE_COMPLETED: Preferences.Key<Boolean> = booleanPreferencesKey("hideCompleted")
         private const val DEFAULT_HIDE_COMPLETED = false
     }
 
-    private val Context.store by preferencesDataStore(name = PREFS)
-    private val store = context.store
+    private val Context.store: DataStore<Preferences> by preferencesDataStore(name = PREFS)
+    private val store: DataStore<Preferences> = context.store
+
+    private fun handleIOException(t: Throwable): Preferences {
+        return if (t is IOException) emptyPreferences() else throw t
+    }
 
     ///////////////////////////////////////////////////////////////////////////
-    // UPDATE
+    // Update
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun updateTodoSort(value: TodoSort) {
@@ -55,13 +60,13 @@ class Preferences(context: Context) {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // GET
+    // Get
     ///////////////////////////////////////////////////////////////////////////
 
     val preferences: Flow<PreferencesModel> = store.data
         .catch { emit(handleIOException(it)) }
         .map { preferences ->
-            val sort = TodoSort.valueOf(preferences[TODO_SORT] ?: DEFAULT_TODO_SORT)
+            val sort = TodoSort.fromName(preferences[TODO_SORT] ?: DEFAULT_TODO_SORT)
             val hideCompleted = preferences[HIDE_COMPLETED] ?: DEFAULT_HIDE_COMPLETED
             return@map PreferencesModel(
                 sort = sort,
@@ -70,15 +75,7 @@ class Preferences(context: Context) {
         }
 
     ///////////////////////////////////////////////////////////////////////////
-    // MISC
-    ///////////////////////////////////////////////////////////////////////////
-
-    private fun handleIOException(t: Throwable): Preferences {
-        return if (t is IOException) emptyPreferences() else throw t
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // MODEL
+    // Misc
     ///////////////////////////////////////////////////////////////////////////
 
     data class PreferencesModel(

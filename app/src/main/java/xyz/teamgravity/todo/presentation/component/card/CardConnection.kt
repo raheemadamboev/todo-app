@@ -41,10 +41,9 @@ fun CardConnection(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = run {
-                val rowModifier = if (fillMaxSize) Modifier.fillMaxSize() else Modifier
-                rowModifier.padding(16.dp)
-            }
+            modifier = Modifier
+                .then(if (fillMaxSize) Modifier.fillMaxSize() else Modifier)
+                .padding(16.dp)
         ) {
             Box(
                 contentAlignment = Alignment.Center,

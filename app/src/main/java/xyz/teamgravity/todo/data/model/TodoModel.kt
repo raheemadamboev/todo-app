@@ -2,7 +2,7 @@ package xyz.teamgravity.todo.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.util.Date
+import java.time.LocalDateTime
 
 @Parcelize
 data class TodoModel(
@@ -10,5 +10,5 @@ data class TodoModel(
     val name: String = "",
     val important: Boolean = false,
     val completed: Boolean = false,
-    val timestamp: Date = Date()
+    val timestamp: LocalDateTime = LocalDateTime.now()
 ) : Parcelable

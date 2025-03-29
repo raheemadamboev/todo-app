@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,9 +28,9 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.todo.BuildConfig
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
@@ -52,7 +52,7 @@ fun AboutLandscapeScreen(
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = onBackButtonClick,
-                        icon = Icons.Default.ArrowBack,
+                        icon = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = R.string.cd_back_button
                     )
                 }
@@ -107,7 +107,7 @@ fun AboutLandscapeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraLarge)
-                    .clickable { Helper.viewGravityPage(context) }
+                    .clickable { ConnectUtil.viewGravityPlayStorePage(context) }
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .constrainAs(companyC) {
                         linkTo(start = oneG, end = parent.end)

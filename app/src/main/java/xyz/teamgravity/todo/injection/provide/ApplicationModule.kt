@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import timber.log.Timber
-import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst
@@ -18,7 +17,6 @@ import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.local.todo.database.TodoDatabase
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import xyz.teamgravity.todo.injection.name.ApplicationScope
-import java.text.DateFormatSymbols
 import javax.inject.Provider
 import javax.inject.Singleton
 
@@ -42,14 +40,16 @@ object ApplicationModule {
     @Provides
     @Singleton
     @ApplicationScope
-    fun provideApplicationScope(): CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    fun provideApplicationScope(): CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     @Provides
     @Singleton
     fun provideTodoCallback(
+        application: Application,
         todoDatabase: Provider<TodoDatabase>,
         @ApplicationScope applicationScope: CoroutineScope
     ): TodoCallback = TodoCallback(
+        application = application,
         db = todoDatabase,
         scope = applicationScope
     )
@@ -65,12 +65,6 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun providePreferences(application: Application): Preferences = Preferences(application)
-
-    @Provides
-    @Singleton
-    fun provideDateFormatSymbols(application: Application): DateFormatSymbols = DateFormatSymbols().apply {
-        months = application.resources.getStringArray(R.array.months)
-    }
 
     @Provides
     @Singleton
