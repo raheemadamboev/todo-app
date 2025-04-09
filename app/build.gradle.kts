@@ -102,6 +102,9 @@ dependencies {
     // core
     implementation(libs.core)
 
+    // splash
+    implementation(libs.splash)
+
     // collections
     implementation(libs.collections)
 
