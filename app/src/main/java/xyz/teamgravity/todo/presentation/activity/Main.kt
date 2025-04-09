@@ -12,13 +12,18 @@ import xyz.teamgravity.todo.presentation.theme.TodoTheme
 @AndroidEntryPoint
 class Main : ComponentActivity() {
 
+    companion object {
+        const val EXTRA_SHORTCUT_ID = "Main_extraShortcutId"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val intent = intent
         setContent {
             TodoTheme {
-                Navigation()
+                Navigation(intent)
             }
         }
     }

@@ -62,4 +62,9 @@
     <string name="cd_user_support">Foydalanuvchilarga yordam berish</string>
     <string name="cd_via_telegram">Telegram orqali bog\'lanish</string>
     <string name="cd_via_email">Email orqali bog\'lanish</string>
+
+    <!-- Shortcut -->
+    <string name="shortcut_add_todo_short_label">Vazifa qo\'shish</string>
+    <string name="shortcut_add_todo_long_label">Tugmani bosish orqali darhol vazifa qo\'shing</string>
+    <string name="shortcut_add_todo_disabled_message">Vazifalarni darhol qo\'shish hozirda mavjud emas</string>
 </resources>
