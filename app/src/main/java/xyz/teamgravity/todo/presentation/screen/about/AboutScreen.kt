@@ -12,8 +12,9 @@ import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 fun AboutScreen(
     navigator: DestinationsNavigator
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> AboutPortraitScreen(onBackButtonClick = navigator::navigateUp)
-        else -> AboutLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> AboutLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> AboutPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

@@ -87,9 +87,6 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
 
-    // compose constraintlayout
-    implementation(libs.compose.constraintlayout)
-
     // compose activity
     implementation(libs.compose.activity)
 

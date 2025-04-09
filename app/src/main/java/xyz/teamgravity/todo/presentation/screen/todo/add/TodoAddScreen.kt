@@ -1,8 +1,10 @@
 package xyz.teamgravity.todo.presentation.screen.todo.add
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
@@ -82,7 +84,8 @@ fun TodoAddScreen(
                     snackbarData = data
                 )
             }
-        }
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { padding ->
         Box(
             modifier = Modifier

@@ -1,14 +1,13 @@
 [versions]
 
 compose = "2025.03.01"
-compose-constraintlayout = "1.1.1"
 compose-activity = "1.10.1"
 compose-lifecycle = "2.8.7"
 compose-viewmodel = "2.8.7"
 compose-hilt = "1.2.0"
-core = "1.15.0"
+core = "1.16.0"
 collections = "0.3.8"
-firebase = "33.11.0"
+firebase = "33.12.0"
 hilt = "2.56.1"
 coroutines = "1.10.1"
 room = "2.6.1"
@@ -37,7 +36,6 @@ compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "compose-constraintlayout" }
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
 compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "compose-lifecycle" }
 compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
