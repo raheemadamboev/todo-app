@@ -1,5 +1,7 @@
 package xyz.teamgravity.todo.presentation.screen.todo.list
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
@@ -20,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
@@ -29,6 +33,8 @@ import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDes
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
+import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
@@ -51,6 +57,10 @@ fun TodoListScreen(
 ) {
     val context = LocalContext.current
     val query by viewmodel.query.collectAsStateWithLifecycle()
+    val updateLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult(),
+        onResult = {}
+    )
 
     ObserveEvent(
         flow = viewmodel.event,
@@ -64,8 +74,17 @@ fun TodoListScreen(
                     )
                     if (result == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedTodo()
                 }
+
+                TodoListViewModel.TodoListEvent.DownloadAppUpdate -> {
+                    viewmodel.onUpdateDownload(updateLauncher)
+                }
             }
         }
+    )
+
+    LifecycleEventEffect(
+        event = Lifecycle.Event.ON_RESUME,
+        onEvent = viewmodel::onUpdateCheck
     )
 
     Scaffold(
@@ -184,5 +203,15 @@ fun TodoListScreen(
                 onConfirm = viewmodel::onDeleteAll
             )
         }
+        DialogUpdateAvailable(
+            type = viewmodel.updateAvailableType,
+            onDismiss = viewmodel::onUpdateAvailableDismiss,
+            onConfirm = viewmodel::onUpdateAvailableConfirm
+        )
+        DialogUpdateDownloaded(
+            visible = viewmodel.updateDownloadedShown,
+            onDismiss = viewmodel::onUpdateDownloadedDismiss,
+            onConfirm = viewmodel::onUpdateInstall
+        )
     }
 }

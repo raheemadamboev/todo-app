@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import timber.log.Timber
+import xyz.teamgravity.coresdkandroid.update.UpdateManager
 import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst
@@ -69,4 +70,8 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideTimberDebugTree(): Timber.DebugTree = Timber.DebugTree()
+
+    @Provides
+    @Singleton
+    fun provideUpdateManager(application: Application): UpdateManager = UpdateManager(application)
 }

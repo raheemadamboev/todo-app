@@ -1,5 +1,7 @@
 package xyz.teamgravity.todo.presentation.screen.todo.list
 
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,6 +21,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import xyz.teamgravity.coresdkandroid.update.UpdateManager
 import xyz.teamgravity.todo.data.local.preferences.Preferences
 import xyz.teamgravity.todo.data.local.preferences.TodoSort
 import xyz.teamgravity.todo.data.model.TodoModel
@@ -28,7 +31,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
     private val repository: TodoRepository,
-    private val preferences: Preferences
+    private val preferences: Preferences,
+    private val update: UpdateManager
 ) : ViewModel() {
 
     private val _query = MutableStateFlow("")
@@ -49,6 +53,12 @@ class TodoListViewModel @Inject constructor(
     var hideCompleted: Boolean by mutableStateOf(false)
         private set
 
+    var updateAvailableType: UpdateManager.Type by mutableStateOf(UpdateManager.Type.None)
+        private set
+
+    var updateDownloadedShown: Boolean by mutableStateOf(false)
+        private set
+
     var deleteCompletedShown: Boolean by mutableStateOf(false)
         private set
 
@@ -65,7 +75,32 @@ class TodoListViewModel @Inject constructor(
     }
 
     private fun observe() {
+        observeUpdateEvent()
         observeQueryAndPreferences()
+    }
+
+    private suspend fun handleObserveUpdateEvent(event: UpdateManager.UpdateEvent) {
+        when (event) {
+            is UpdateManager.UpdateEvent.Available -> {
+                updateAvailableType = event.type
+            }
+
+            UpdateManager.UpdateEvent.StartDownload -> {
+                _event.send(TodoListEvent.DownloadAppUpdate)
+            }
+
+            UpdateManager.UpdateEvent.Downloaded -> {
+                updateDownloadedShown = true
+            }
+        }
+    }
+
+    private fun observeUpdateEvent() {
+        viewModelScope.launch {
+            update.event.collect { event ->
+                handleObserveUpdateEvent(event)
+            }
+        }
     }
 
     private fun observeQueryAndPreferences() {
@@ -88,6 +123,32 @@ class TodoListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
     // API
     ///////////////////////////////////////////////////////////////////////////
+
+    fun onUpdateCheck() {
+        update.start()
+    }
+
+    fun onUpdateDownload(launcher: ActivityResultLauncher<IntentSenderRequest>) {
+        update.downloadAppUpdate(launcher)
+    }
+
+    fun onUpdateAvailableDismiss() {
+        updateAvailableType = UpdateManager.Type.None
+    }
+
+    fun onUpdateAvailableConfirm() {
+        viewModelScope.launch {
+            _event.send(TodoListEvent.DownloadAppUpdate)
+        }
+    }
+
+    fun onUpdateDownloadedDismiss() {
+        updateDownloadedShown = false
+    }
+
+    fun onUpdateInstall() {
+        update.installAppUpdate()
+    }
 
     fun onQueryChange(value: String) {
         viewModelScope.launch {
@@ -205,6 +266,7 @@ class TodoListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class TodoListEvent {
-        TodoDeleted;
+        TodoDeleted,
+        DownloadAppUpdate;
     }
 }
