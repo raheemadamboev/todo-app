@@ -5,10 +5,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,8 +33,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.card.CardConnection
@@ -35,105 +45,110 @@ fun SupportPortraitScreen(
 ) {
     val context = LocalContext.current
 
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (gradientC, backB, headerT, headerI, bodyC) = createRefs()
-        val (telegramB, mailB) = createRefs()
-        val oneG = createGuidelineFromTop(0.3F)
-        val twoG = createGuidelineFromTop(0.5F)
-        val threeG = createGuidelineFromTop(0.75F)
-
-        Box(
-            modifier = Modifier
-                .background(color = MaterialTheme.colorScheme.primary)
-                .constrainAs(gradientC) {
-                    width = Dimension.matchParent
-                    height = Dimension.fillToConstraints
-                    linkTo(top = parent.top, bottom = oneG)
+    Scaffold(
+        topBar = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.primary)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .windowInsetsTopHeight(WindowInsets.statusBars)
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp)
+                ) {
+                    TopBarIconButton(
+                        onClick = onBackButtonClick,
+                        icon = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = R.string.cd_back_button,
+                        tint = White
+                    )
+                    Text(
+                        text = stringResource(id = R.string.need_help),
+                        textAlign = TextAlign.Center,
+                        fontSize = 18.sp,
+                        color = White,
+                        modifier = Modifier.weight(1F)
+                    )
+                    Spacer(
+                        modifier = Modifier.width(38.dp)
+                    )
                 }
-        )
-        TopBarIconButton(
-            onClick = onBackButtonClick,
-            icon = Icons.Default.ArrowBack,
-            contentDescription = R.string.cd_back_button,
-            tint = White,
-            modifier = Modifier.constrainAs(backB) {
-                start.linkTo(anchor = parent.start, margin = 12.dp)
-                top.linkTo(anchor = parent.top, margin = 12.dp)
+                Image(
+                    painter = painterResource(id = R.drawable.sticker_customer_service),
+                    contentDescription = stringResource(id = R.string.cd_user_support),
+                    contentScale = ContentScale.Fit,
+                    alignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.2F)
+                )
             }
-        )
-        Text(
-            text = stringResource(id = R.string.need_help),
-            textAlign = TextAlign.Center,
-            fontSize = 18.sp,
-            color = White,
-            modifier = Modifier.constrainAs(headerT) {
-                width = Dimension.fillToConstraints
-                linkTo(start = backB.end, end = parent.end, endMargin = 38.dp)
-                linkTo(top = backB.top, bottom = backB.bottom)
-            }
-        )
-        Image(
-            painter = painterResource(id = R.drawable.sticker_customer_service),
-            contentDescription = stringResource(id = R.string.cd_user_support),
-            contentScale = ContentScale.Fit,
-            alignment = Alignment.Center,
-            modifier = Modifier.constrainAs(headerI) {
-                width = Dimension.matchParent
-                height = Dimension.fillToConstraints
-                linkTo(top = headerT.bottom, bottom = oneG, topMargin = 20.dp)
-            }
-        )
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
+    ) { padding ->
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.constrainAs(bodyC) {
-                width = Dimension.matchParent
-                height = Dimension.fillToConstraints
-                linkTo(start = parent.start, end = parent.end, startMargin = 30.dp, endMargin = 30.dp)
-                linkTo(top = oneG, bottom = twoG)
-            }
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(horizontal = 16.dp)
         ) {
-            Text(
-                text = stringResource(id = R.string.connect_us),
-                textAlign = TextAlign.Center,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
+            Column(
+                verticalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.connect_us),
+                    textAlign = TextAlign.Center,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = stringResource(id = R.string.connect_us_body),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+            CardConnection(
+                onClick = {
+                    Helper.connectViaTelegram(context)
+                },
+                icon = R.drawable.ic_telegram,
+                title = R.string.via_telegram,
+                contentDescription = R.string.cd_via_telegram,
+                fillMaxSize = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
             )
-            Text(
-                text = stringResource(id = R.string.connect_us_body),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium,
+            Spacer(
+                modifier = Modifier.height(20.dp)
+            )
+            CardConnection(
+                onClick = {
+                    Helper.connectViaEmail(context)
+                },
+                icon = R.drawable.ic_email,
+                title = R.string.via_email,
+                contentDescription = R.string.cd_via_email,
+                fillMaxSize = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
+            )
+            Spacer(
+                modifier = Modifier.height(20.dp)
             )
         }
-        CardConnection(
-            onClick = {
-                Helper.connectViaTelegram(context)
-            },
-            icon = R.drawable.ic_telegram,
-            title = R.string.via_telegram,
-            contentDescription = R.string.cd_via_telegram,
-            fillMaxSize = true,
-            modifier = Modifier.constrainAs(telegramB) {
-                width = Dimension.matchParent
-                height = Dimension.fillToConstraints
-                linkTo(start = parent.start, end = parent.end, startMargin = 16.dp, endMargin = 16.dp)
-                linkTo(top = twoG, bottom = threeG, topMargin = 20.dp, bottomMargin = 10.dp)
-            }
-        )
-        CardConnection(
-            onClick = {
-                Helper.connectViaEmail(context)
-            },
-            icon = R.drawable.ic_mail,
-            title = R.string.via_email,
-            contentDescription = R.string.cd_via_email,
-            fillMaxSize = true,
-            modifier = Modifier.constrainAs(mailB) {
-                width = Dimension.matchParent
-                height = Dimension.fillToConstraints
-                linkTo(start = parent.start, end = parent.end, startMargin = 16.dp, endMargin = 16.dp)
-                linkTo(top = threeG, bottom = parent.bottom, topMargin = 10.dp, bottomMargin = 20.dp)
-            }
-        )
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_add_todo"
+        android:shortcutDisabledMessage="@string/shortcut_add_todo_disabled_message"
+        android:shortcutId="add_todo"
+        android:shortcutLongLabel="@string/shortcut_add_todo_long_label"
+        android:shortcutShortLabel="@string/shortcut_add_todo_short_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="xyz.teamgravity.todo.presentation.activity.Main"
+            android:targetPackage="xyz.teamgravity.todo">
+            <extra
+                android:name="Main_extraShortcutId"
+                android:value="add_todo" />
+        </intent>
+    </shortcut>
+</shortcuts>

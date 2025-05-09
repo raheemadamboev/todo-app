@@ -1,5 +1,8 @@
 package xyz.teamgravity.todo.presentation.screen.todo.list
 
+import android.app.Activity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,6 +13,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,16 +23,22 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import xyz.teamgravity.todo.data.local.preferences.Preferences
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import timber.log.Timber
+import xyz.teamgravity.coresdkandroid.review.ReviewManager
+import xyz.teamgravity.coresdkandroid.update.UpdateManager
+import xyz.teamgravity.todo.core.constant.TodoSort
+import xyz.teamgravity.todo.data.local.preferences.AppPreferences
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
     private val repository: TodoRepository,
-    private val preferences: Preferences
+    private val preferences: AppPreferences,
+    private val review: ReviewManager,
+    private val update: UpdateManager
 ) : ViewModel() {
 
     private val _query = MutableStateFlow("")
@@ -49,6 +59,18 @@ class TodoListViewModel @Inject constructor(
     var hideCompleted: Boolean by mutableStateOf(false)
         private set
 
+    var sorting: TodoSort? by mutableStateOf(null)
+        private set
+
+    var reviewShown: Boolean by mutableStateOf(false)
+        private set
+
+    var updateAvailableType: UpdateManager.Type by mutableStateOf(UpdateManager.Type.None)
+        private set
+
+    var updateDownloadedShown: Boolean by mutableStateOf(false)
+        private set
+
     var deleteCompletedShown: Boolean by mutableStateOf(false)
         private set
 
@@ -62,22 +84,71 @@ class TodoListViewModel @Inject constructor(
 
     init {
         observe()
+        monitor()
     }
 
     private fun observe() {
+        observeReviewEvent()
+        observeUpdateEvent()
         observeQueryAndPreferences()
+    }
+
+    private fun monitor() {
+        review.monitor()
+    }
+
+    private suspend fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
+        when (event) {
+            ReviewManager.ReviewEvent.Eligible -> {
+                delay(1.seconds)
+                reviewShown = true
+            }
+        }
+    }
+
+    private suspend fun handleUpdateEvent(event: UpdateManager.UpdateEvent) {
+        when (event) {
+            is UpdateManager.UpdateEvent.Available -> {
+                updateAvailableType = event.type
+            }
+
+            UpdateManager.UpdateEvent.StartDownload -> {
+                _event.send(TodoListEvent.DownloadAppUpdate)
+            }
+
+            UpdateManager.UpdateEvent.Downloaded -> {
+                updateDownloadedShown = true
+            }
+        }
+    }
+
+    private fun observeReviewEvent() {
+        viewModelScope.launch {
+            review.event.collect { event ->
+                handleReviewEvent(event)
+            }
+        }
+    }
+
+    private fun observeUpdateEvent() {
+        viewModelScope.launch {
+            update.event.collect { event ->
+                handleUpdateEvent(event)
+            }
+        }
     }
 
     private fun observeQueryAndPreferences() {
         viewModelScope.launch {
-            combine(query, preferences.preferences) { query, preferences ->
-                Pair(query, preferences)
-            }.flatMapLatest { (query, preferences) ->
-                hideCompleted = preferences.hideCompleted
+            combine(query, preferences.getSorting(), preferences.getHideCompleted()) { query, sorting, hideCompleted ->
+                Triple(query, sorting, hideCompleted)
+            }.flatMapLatest { (query, sorting, hideCompleted) ->
+                this@TodoListViewModel.hideCompleted = hideCompleted
+                this@TodoListViewModel.sorting = sorting
                 repository.getTodos(
                     query = query,
-                    hideCompleted = preferences.hideCompleted,
-                    sort = preferences.sort
+                    hideCompleted = hideCompleted,
+                    sorting = sorting
                 )
             }.collectLatest { todos ->
                 this@TodoListViewModel.todos = todos.toImmutableList()
@@ -89,13 +160,69 @@ class TodoListViewModel @Inject constructor(
     // API
     ///////////////////////////////////////////////////////////////////////////
 
+    fun onReviewDismiss() {
+        reviewShown = false
+    }
+
+    fun onReviewDeny() {
+        review.deny()
+    }
+
+    fun onReviewLater() {
+        review.remindLater()
+    }
+
+    fun onReviewConfirm() {
+        viewModelScope.launch {
+            _event.send(TodoListEvent.Review)
+        }
+    }
+
+    fun onReview(activity: Activity?) {
+        if (activity == null) {
+            Timber.e("onReview(): activity is null! Aborted the operation.")
+            return
+        }
+
+        review.review(activity)
+    }
+
+    fun onUpdateCheck() {
+        update.monitor()
+    }
+
+    fun onUpdateDownload(launcher: ActivityResultLauncher<IntentSenderRequest>) {
+        update.downloadAppUpdate(launcher)
+    }
+
+    fun onUpdateAvailableDismiss() {
+        updateAvailableType = UpdateManager.Type.None
+    }
+
+    fun onUpdateAvailableConfirm() {
+        viewModelScope.launch {
+            _event.send(TodoListEvent.DownloadAppUpdate)
+        }
+    }
+
+    fun onUpdateDownloadedDismiss() {
+        updateDownloadedShown = false
+    }
+
+    fun onUpdateInstall() {
+        update.installAppUpdate()
+    }
+
     fun onQueryChange(value: String) {
         viewModelScope.launch {
             _query.emit(value)
         }
     }
 
-    fun onTodoChecked(todo: TodoModel, checked: Boolean) {
+    fun onTodoChecked(
+        todo: TodoModel,
+        checked: Boolean
+    ) {
         viewModelScope.launch {
             repository.updateTodo(
                 todo.copy(
@@ -120,6 +247,7 @@ class TodoListViewModel @Inject constructor(
                     todo.copy(id = 0)
                 )
             }
+            deletedTodo = null
         }
     }
 
@@ -152,14 +280,14 @@ class TodoListViewModel @Inject constructor(
 
     fun onSort(sort: TodoSort) {
         viewModelScope.launch {
-            preferences.updateTodoSort(sort)
+            preferences.upsertSorting(sort)
             onSortCollapsed()
         }
     }
 
     fun onHideCompletedChange() {
         viewModelScope.launch {
-            preferences.updateHideCompleted(!hideCompleted)
+            preferences.upsertHideCompleted(!hideCompleted)
             onMenuCollapsed()
         }
     }
@@ -201,6 +329,8 @@ class TodoListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class TodoListEvent {
-        TodoDeleted;
+        TodoDeleted,
+        Review,
+        DownloadAppUpdate;
     }
 }

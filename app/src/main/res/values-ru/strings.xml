@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Задания</string>
 
+    <!-- TodoCallback -->
+    <string name="predefined_todo_name">Будьте организованы и эффективны!</string>
+
     <!-- TodoList -->
     <string name="tasks">Задания</string>
     <string name="deleted_successfully">Задача успешно удалена</string>
@@ -49,14 +52,19 @@
     <string name="cd_task_add">Добавить задание</string>
     <string name="cd_back_button">Навигация назад</string>
     <string name="cd_done_button">Сохранение задач</string>
-    <string name="cd_delete_button">Удалить задание</string>
     <string name="cd_more_vertical">Дополнительные действия</string>
     <string name="cd_app_icon">Значок приложения</string>
     <string name="cd_company_logo">Логотип компании</string>
     <string name="cd_sort">Сортировать задачи</string>
+    <string name="cd_selected_sort">Задачи сортируются по %1$s</string>
     <string name="cd_search_button">Поиск задач</string>
     <string name="cd_hide_completed">Скрыть завершено</string>
     <string name="cd_user_support">Поддержка пользователей</string>
     <string name="cd_via_telegram">Подключайтесь к нам через Telegram</string>
     <string name="cd_via_email">Подключайтесь к нам через Email</string>
+
+    <!-- Shortcut -->
+    <string name="shortcut_add_todo_short_label">Добавить задачу</string>
+    <string name="shortcut_add_todo_long_label">Быстро добавьте задачу, нажав на действие</string>
+    <string name="shortcut_add_todo_disabled_message">Быстрое добавление задач на данный момент отключено</string>
 </resources>

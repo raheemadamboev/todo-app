@@ -7,14 +7,14 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 
-@MainNavGraph
-@Destination
+@Destination<MainNavGraph>
 @Composable
 fun SupportScreen(
     navigator: DestinationsNavigator
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> SupportLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> SupportLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> SupportPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

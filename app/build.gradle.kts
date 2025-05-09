@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.gms)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.hilt)
-    id("kotlin-parcelize")
+    alias(libs.plugins.room)
 }
 
 android {
@@ -16,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 8
-        versionName = "1.1.6"
+        versionCode = 10
+        versionName = "1.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -33,10 +35,6 @@ android {
             language {
                 enableSplit = false
             }
-        }
-
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -69,14 +67,14 @@ android {
         buildConfig = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
@@ -89,9 +87,6 @@ dependencies {
     implementation(libs.compose.preview)
     implementation(libs.compose.material3)
     implementation(libs.compose.icons)
-
-    // compose constraintlayout
-    implementation(libs.compose.constraintLayout)
 
     // compose activity
     implementation(libs.compose.activity)
@@ -108,6 +103,9 @@ dependencies {
     // core
     implementation(libs.core)
 
+    // splash
+    implementation(libs.splash)
+
     // collections
     implementation(libs.collections)
 
@@ -119,7 +117,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt)
-    ksp(libs.dagger.compiler)
+    ksp(libs.hilt.compiler)
 
     // coroutines
     implementation(libs.coroutines)
@@ -128,10 +126,6 @@ dependencies {
     // room
     implementation(libs.room)
     implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
-
-    // preferences
-    implementation(libs.preferences)
 
     // destinations
     implementation(libs.destinations)
@@ -139,4 +133,8 @@ dependencies {
 
     // timber
     implementation(libs.timber)
+
+    // gravity core
+    implementation(libs.gravity.core)
+    implementation(libs.gravity.core.compose)
 }

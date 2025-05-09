@@ -22,3 +22,5 @@
 
 -keep class xyz.teamgravity.todo.data.model.** { *; }
 -keep class xyz.teamgravity.todo.data.local.todo.entity.** { *; }
+-keep class xyz.teamgravity.coresdkandroid.** { *; }
+-keep class xyz.teamgravity.coresdkcompose.** { *; }

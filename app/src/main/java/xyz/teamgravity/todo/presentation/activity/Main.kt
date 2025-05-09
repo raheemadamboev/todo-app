@@ -3,10 +3,8 @@ package xyz.teamgravity.todo.presentation.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
+import androidx.activity.enableEdgeToEdge
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import xyz.teamgravity.todo.presentation.navigation.Navigation
 import xyz.teamgravity.todo.presentation.theme.TodoTheme
@@ -14,16 +12,18 @@ import xyz.teamgravity.todo.presentation.theme.TodoTheme
 @AndroidEntryPoint
 class Main : ComponentActivity() {
 
+    companion object {
+        const val EXTRA_SHORTCUT_ID = "Main_extraShortcutId"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        val intent = intent
         setContent {
             TodoTheme {
-                Surface(
-                    color = MaterialTheme.colorScheme.background,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Navigation()
-                }
+                Navigation(intent)
             }
         }
     }

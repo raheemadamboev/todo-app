@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.mapper.toEntity
 import xyz.teamgravity.todo.data.mapper.toModel
@@ -15,7 +15,7 @@ class TodoRepository(
 ) {
 
     ///////////////////////////////////////////////////////////////////////////
-    // INSERT
+    // Insert
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun insertTodo(todo: TodoModel) {
@@ -25,7 +25,7 @@ class TodoRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // UPDATE
+    // Update
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun updateTodo(todo: TodoModel) {
@@ -35,7 +35,7 @@ class TodoRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // DELETE
+    // Delete
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun deleteTodo(todo: TodoModel) {
@@ -57,14 +57,18 @@ class TodoRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // GET
+    // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getTodos(query: String, hideCompleted: Boolean, sort: TodoSort): Flow<List<TodoModel>> {
+    fun getTodos(
+        query: String,
+        hideCompleted: Boolean,
+        sorting: TodoSort
+    ): Flow<List<TodoModel>> {
         return dao.getTodos(
             query = query,
             hideCompleted = hideCompleted,
-            sort = sort
+            sorting = sorting
         ).map { entities ->
             entities.map { entity ->
                 entity.toModel()

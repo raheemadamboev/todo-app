@@ -1,17 +1,18 @@
 package xyz.teamgravity.todo.data.local.todo.converter
 
 import androidx.room.TypeConverter
-import java.util.Date
+import xyz.teamgravity.coresdkandroid.time.TimeUtil
+import java.time.LocalDateTime
 
 class TodoConverter {
 
     @TypeConverter
-    fun dateToLong(value: Date): Long {
-        return value.time
+    fun localDateTimeToLong(value: LocalDateTime): Long {
+        return TimeUtil.fromLocalDateTimeToLong(value)
     }
 
     @TypeConverter
-    fun longToDate(value: Long): Date {
-        return Date(value)
+    fun longToLocalDateTime(value: Long): LocalDateTime {
+        return TimeUtil.fromLongToLocalDateTime(value)
     }
 }
