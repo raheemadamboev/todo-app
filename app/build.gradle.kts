@@ -18,7 +18,7 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 10
+        versionCode = 11
         versionName = "1.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
