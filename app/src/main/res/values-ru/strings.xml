@@ -56,6 +56,7 @@
     <string name="cd_app_icon">Значок приложения</string>
     <string name="cd_company_logo">Логотип компании</string>
     <string name="cd_sort">Сортировать задачи</string>
+    <string name="cd_selected_sort">Задачи сортируются по %1$s</string>
     <string name="cd_search_button">Поиск задач</string>
     <string name="cd_hide_completed">Скрыть завершено</string>
     <string name="cd_user_support">Поддержка пользователей</string>

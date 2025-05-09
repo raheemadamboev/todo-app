@@ -56,6 +56,7 @@
     <string name="cd_app_icon">App icon</string>
     <string name="cd_company_logo">Company logo</string>
     <string name="cd_sort">Sort ToDos</string>
+    <string name="cd_selected_sort">ToDos are sorted by %1$s</string>
     <string name="cd_search_button">Search ToDos</string>
     <string name="cd_hide_completed">Hide completed</string>
     <string name="cd_user_support">User support</string>

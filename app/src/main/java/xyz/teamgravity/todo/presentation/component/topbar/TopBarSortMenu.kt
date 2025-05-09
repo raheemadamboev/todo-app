@@ -3,9 +3,12 @@ package xyz.teamgravity.todo.presentation.component.topbar
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import xyz.teamgravity.todo.R
@@ -15,6 +18,7 @@ import xyz.teamgravity.todo.presentation.component.text.TextPlain
 @Composable
 fun TopBarSortMenu(
     expanded: Boolean,
+    sorting: TodoSort?,
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
     onSort: (sort: TodoSort) -> Unit,
@@ -38,6 +42,14 @@ fun TopBarSortMenu(
                     TextPlain(
                         id = menu.title
                     )
+                },
+                trailingIcon = {
+                    if (sorting == menu.sort) {
+                        Icon(
+                            imageVector = Icons.Default.Done,
+                            contentDescription = stringResource(R.string.cd_selected_sort, stringResource(menu.title))
+                        )
+                    }
                 }
             )
         }

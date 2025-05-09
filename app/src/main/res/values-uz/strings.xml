@@ -57,6 +57,7 @@
     <string name="cd_app_icon">Dastur belgisi</string>
     <string name="cd_company_logo">Kompaniya emblemasi</string>
     <string name="cd_sort">Vazifalarni saralash</string>
+    <string name="cd_selected_sort">Vazifalar %1$s orqali saralangan</string>
     <string name="cd_search_button">Vazifalarni qidirish</string>
     <string name="cd_hide_completed">Bajarilganlarni yashirish</string>
     <string name="cd_user_support">Foydalanuvchilarga yordam berish</string>

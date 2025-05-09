@@ -120,6 +120,7 @@ fun TodoListScreen(
                     }
                     TopBarSortMenu(
                         expanded = viewmodel.sortExpanded,
+                        sorting = viewmodel.sorting,
                         onExpand = viewmodel::onSortExpanded,
                         onDismiss = viewmodel::onSortCollapsed,
                         onSort = viewmodel::onSort

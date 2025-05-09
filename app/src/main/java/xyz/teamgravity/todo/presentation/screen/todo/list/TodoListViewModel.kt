@@ -59,6 +59,9 @@ class TodoListViewModel @Inject constructor(
     var hideCompleted: Boolean by mutableStateOf(false)
         private set
 
+    var sorting: TodoSort? by mutableStateOf(null)
+        private set
+
     var reviewShown: Boolean by mutableStateOf(false)
         private set
 
@@ -141,6 +144,7 @@ class TodoListViewModel @Inject constructor(
                 Triple(query, sorting, hideCompleted)
             }.flatMapLatest { (query, sorting, hideCompleted) ->
                 this@TodoListViewModel.hideCompleted = hideCompleted
+                this@TodoListViewModel.sorting = sorting
                 repository.getTodos(
                     query = query,
                     hideCompleted = hideCompleted,
