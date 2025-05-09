@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst.TABLE_TODO
 import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
 
@@ -48,9 +48,9 @@ interface TodoDao {
     fun getTodos(
         query: String,
         hideCompleted: Boolean,
-        sort: TodoSort
+        sorting: TodoSort
     ): Flow<List<TodoEntity>> {
-        return when (sort) {
+        return when (sorting) {
             TodoSort.Name -> getTodosSortedByName(
                 query = query,
                 hideCompleted = hideCompleted

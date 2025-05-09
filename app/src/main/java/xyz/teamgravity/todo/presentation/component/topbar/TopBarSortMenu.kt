@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable

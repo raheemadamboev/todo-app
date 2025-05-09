@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.data.local.todo.dao.TodoDao
 import xyz.teamgravity.todo.data.mapper.toEntity
 import xyz.teamgravity.todo.data.mapper.toModel
@@ -63,12 +63,12 @@ class TodoRepository(
     fun getTodos(
         query: String,
         hideCompleted: Boolean,
-        sort: TodoSort
+        sorting: TodoSort
     ): Flow<List<TodoModel>> {
         return dao.getTodos(
             query = query,
             hideCompleted = hideCompleted,
-            sort = sort
+            sorting = sorting
         ).map { entities ->
             entities.map { entity ->
                 entity.toModel()
