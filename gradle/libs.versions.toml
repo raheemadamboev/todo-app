@@ -9,17 +9,17 @@ core = "1.16.0"
 splash = "1.0.1"
 collections = "0.3.8"
 firebase = "33.13.0"
-hilt = "2.56.1"
+hilt = "2.56.2"
 coroutines = "1.10.2"
 room = "2.7.1"
-destinations = "2.1.0"
+destinations = "2.2.0"
 timber = "5.0.1"
 gravity-core = "1.0.14"
 gravity-core-compose = "1.0.11"
 
-android = "8.9.2"
+android = "8.10.0"
 kotlin = "2.1.20"
-ksp = "2.1.20-1.0.32"
+ksp = "2.1.20-2.0.1"
 gms = "4.4.2"
 crashlytics = "3.0.3"
 
@@ -53,7 +53,6 @@ coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core"
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 destinations = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "destinations" }
 destinations-compiler = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "destinations" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
