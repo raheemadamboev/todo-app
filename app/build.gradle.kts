@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.gms)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -34,10 +35,6 @@ android {
             language {
                 enableSplit = false
             }
-        }
-
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -74,6 +71,10 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
