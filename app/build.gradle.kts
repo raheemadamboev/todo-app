@@ -127,9 +127,6 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
-    // preferences
-    implementation(libs.preferences)
-
     // destinations
     implementation(libs.destinations)
     ksp(libs.destinations.compiler)

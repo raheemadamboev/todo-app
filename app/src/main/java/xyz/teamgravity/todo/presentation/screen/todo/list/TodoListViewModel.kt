@@ -13,6 +13,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,6 +31,7 @@ import xyz.teamgravity.todo.data.local.preferences.AppPreferences
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
@@ -92,9 +94,10 @@ class TodoListViewModel @Inject constructor(
         review.monitor()
     }
 
-    private fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
+    private suspend fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
         when (event) {
             ReviewManager.ReviewEvent.Eligible -> {
+                delay(1.seconds)
                 reviewShown = true
             }
         }
