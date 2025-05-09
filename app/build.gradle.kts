@@ -126,6 +126,7 @@ dependencies {
     // room
     implementation(libs.room)
     implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     // destinations
     implementation(libs.destinations)
