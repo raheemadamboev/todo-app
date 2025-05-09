@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen.todo.list
 
+import android.app.Activity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.compose.runtime.getValue
@@ -21,9 +22,11 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
-import xyz.teamgravity.todo.data.local.preferences.Preferences
-import xyz.teamgravity.todo.data.local.preferences.TodoSort
+import xyz.teamgravity.todo.core.constant.TodoSort
+import xyz.teamgravity.todo.data.local.preferences.AppPreferences
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.data.repository.TodoRepository
 import javax.inject.Inject
@@ -31,7 +34,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
     private val repository: TodoRepository,
-    private val preferences: Preferences,
+    private val preferences: AppPreferences,
+    private val review: ReviewManager,
     private val update: UpdateManager
 ) : ViewModel() {
 
@@ -53,6 +57,9 @@ class TodoListViewModel @Inject constructor(
     var hideCompleted: Boolean by mutableStateOf(false)
         private set
 
+    var reviewShown: Boolean by mutableStateOf(false)
+        private set
+
     var updateAvailableType: UpdateManager.Type by mutableStateOf(UpdateManager.Type.None)
         private set
 
@@ -72,14 +79,28 @@ class TodoListViewModel @Inject constructor(
 
     init {
         observe()
+        monitor()
     }
 
     private fun observe() {
+        observeReviewEvent()
         observeUpdateEvent()
         observeQueryAndPreferences()
     }
 
-    private suspend fun handleObserveUpdateEvent(event: UpdateManager.UpdateEvent) {
+    private fun monitor() {
+        review.monitor()
+    }
+
+    private fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
+        when (event) {
+            ReviewManager.ReviewEvent.Eligible -> {
+                reviewShown = true
+            }
+        }
+    }
+
+    private suspend fun handleUpdateEvent(event: UpdateManager.UpdateEvent) {
         when (event) {
             is UpdateManager.UpdateEvent.Available -> {
                 updateAvailableType = event.type
@@ -95,24 +116,32 @@ class TodoListViewModel @Inject constructor(
         }
     }
 
+    private fun observeReviewEvent() {
+        viewModelScope.launch {
+            review.event.collect { event ->
+                handleReviewEvent(event)
+            }
+        }
+    }
+
     private fun observeUpdateEvent() {
         viewModelScope.launch {
             update.event.collect { event ->
-                handleObserveUpdateEvent(event)
+                handleUpdateEvent(event)
             }
         }
     }
 
     private fun observeQueryAndPreferences() {
         viewModelScope.launch {
-            combine(query, preferences.preferences) { query, preferences ->
-                Pair(query, preferences)
-            }.flatMapLatest { (query, preferences) ->
-                hideCompleted = preferences.hideCompleted
+            combine(query, preferences.getSorting(), preferences.getHideCompleted()) { query, sorting, hideCompleted ->
+                Triple(query, sorting, hideCompleted)
+            }.flatMapLatest { (query, sorting, hideCompleted) ->
+                this@TodoListViewModel.hideCompleted = hideCompleted
                 repository.getTodos(
                     query = query,
-                    hideCompleted = preferences.hideCompleted,
-                    sort = preferences.sort
+                    hideCompleted = hideCompleted,
+                    sorting = sorting
                 )
             }.collectLatest { todos ->
                 this@TodoListViewModel.todos = todos.toImmutableList()
@@ -124,8 +153,35 @@ class TodoListViewModel @Inject constructor(
     // API
     ///////////////////////////////////////////////////////////////////////////
 
+    fun onReviewDismiss() {
+        reviewShown = false
+    }
+
+    fun onReviewDeny() {
+        review.deny()
+    }
+
+    fun onReviewLater() {
+        review.remindLater()
+    }
+
+    fun onReviewConfirm() {
+        viewModelScope.launch {
+            _event.send(TodoListEvent.Review)
+        }
+    }
+
+    fun onReview(activity: Activity?) {
+        if (activity == null) {
+            Timber.e("onReview(): activity is null! Aborted the operation.")
+            return
+        }
+
+        review.review(activity)
+    }
+
     fun onUpdateCheck() {
-        update.start()
+        update.monitor()
     }
 
     fun onUpdateDownload(launcher: ActivityResultLauncher<IntentSenderRequest>) {
@@ -217,14 +273,14 @@ class TodoListViewModel @Inject constructor(
 
     fun onSort(sort: TodoSort) {
         viewModelScope.launch {
-            preferences.updateTodoSort(sort)
+            preferences.upsertSorting(sort)
             onSortCollapsed()
         }
     }
 
     fun onHideCompletedChange() {
         viewModelScope.launch {
-            preferences.updateHideCompleted(!hideCompleted)
+            preferences.upsertHideCompleted(!hideCompleted)
             onMenuCollapsed()
         }
     }
@@ -267,6 +323,7 @@ class TodoListViewModel @Inject constructor(
 
     enum class TodoListEvent {
         TodoDeleted,
+        Review,
         DownloadAppUpdate;
     }
 }

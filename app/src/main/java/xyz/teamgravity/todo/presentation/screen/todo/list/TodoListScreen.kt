@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen.todo.list
 
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.WindowInsets
@@ -33,6 +34,7 @@ import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDes
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.review.DialogReview
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.todo.R
@@ -56,6 +58,7 @@ fun TodoListScreen(
     viewmodel: TodoListViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val activity = LocalActivity.current
     val query by viewmodel.query.collectAsStateWithLifecycle()
     val updateLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -73,6 +76,10 @@ fun TodoListScreen(
                         duration = SnackbarDuration.Short
                     )
                     if (result == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedTodo()
+                }
+
+                TodoListViewModel.TodoListEvent.Review -> {
+                    viewmodel.onReview(activity)
                 }
 
                 TodoListViewModel.TodoListEvent.DownloadAppUpdate -> {
@@ -203,6 +210,13 @@ fun TodoListScreen(
                 onConfirm = viewmodel::onDeleteAll
             )
         }
+        DialogReview(
+            visible = viewmodel.reviewShown,
+            onDismiss = viewmodel::onReviewDismiss,
+            onDeny = viewmodel::onReviewDeny,
+            onRemindLater = viewmodel::onReviewLater,
+            onReview = viewmodel::onReviewConfirm
+        )
         DialogUpdateAvailable(
             type = viewmodel.updateAvailableType,
             onDismiss = viewmodel::onUpdateAvailableDismiss,
