@@ -31,8 +31,11 @@ class AppPreferences(
     // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getSorting(): Flow<TodoSort> = preferences.getString(AppPreferencesKey.Sorting).map { TodoSort.fromName(it) }
+    fun getSorting(): Flow<TodoSort> {
+        return preferences.getString(AppPreferencesKey.Sorting).map { TodoSort.fromName(it) }
+    }
 
-    fun getHideCompleted(): Flow<Boolean> =
-        preferences.getBoolean(AppPreferencesKey.HideCompleted).map { it ?: AppPreferencesKey.HideCompleted.default as Boolean }
+    fun getHideCompleted(): Flow<Boolean> {
+        return preferences.getBoolean(AppPreferencesKey.HideCompleted).map { it ?: AppPreferencesKey.HideCompleted.default as Boolean }
+    }
 }

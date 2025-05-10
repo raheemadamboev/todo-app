@@ -9,12 +9,12 @@ enum class AppPreferencesKey(
     override val encrypted: Boolean
 ) : PreferencesKey {
     Sorting(
-        key = "sorting",
+        key = "xyz.teamgravity.todo.Sorting",
         default = TodoSort.Date.name,
         encrypted = false
     ),
     HideCompleted(
-        key = "hide_completed",
+        key = "xyz.teamgravity.todo.HideCompleted",
         default = false,
         encrypted = false
     );
