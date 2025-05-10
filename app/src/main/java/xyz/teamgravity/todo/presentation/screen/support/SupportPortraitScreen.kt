@@ -3,7 +3,6 @@ package xyz.teamgravity.todo.presentation.screen.support
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -52,10 +51,8 @@ fun SupportPortraitScreen(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primary)
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .windowInsetsTopHeight(WindowInsets.statusBars)
+                Spacer(
+                    modifier = Modifier.windowInsetsTopHeight(WindowInsets.statusBars)
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
