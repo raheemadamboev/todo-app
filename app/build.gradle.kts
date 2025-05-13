@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 13
-        versionName = "1.2.2"
+        versionCode = 14
+        versionName = "1.2.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -100,6 +100,9 @@ dependencies {
     // compose hilt
     implementation(libs.compose.hilt)
 
+    // compose paging
+    implementation(libs.compose.paging)
+
     // core
     implementation(libs.core)
 
@@ -126,6 +129,7 @@ dependencies {
     // room
     implementation(libs.room)
     implementation(libs.room.ktx)
+    implementation(libs.room.paging)
     ksp(libs.room.compiler)
 
     // destinations

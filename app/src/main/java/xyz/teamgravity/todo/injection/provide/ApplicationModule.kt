@@ -1,6 +1,7 @@
 package xyz.teamgravity.todo.injection.provide
 
 import android.app.Application
+import androidx.paging.PagingConfig
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -14,6 +15,7 @@ import xyz.teamgravity.coresdkandroid.crypto.CryptoManager
 import xyz.teamgravity.coresdkandroid.preferences.Preferences
 import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
+import xyz.teamgravity.todo.core.constant.PagingConst
 import xyz.teamgravity.todo.data.local.preferences.AppPreferences
 import xyz.teamgravity.todo.data.local.todo.callback.TodoCallback
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst
@@ -64,7 +66,22 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideTodoRepository(todoDao: TodoDao): TodoRepository = TodoRepository(todoDao)
+    fun providePagingConfig(): PagingConfig = PagingConfig(
+        pageSize = PagingConst.PAGE_SIZE,
+        prefetchDistance = PagingConst.PREFETCH_DISTANCE,
+        maxSize = PagingConst.MAX_SIZE,
+        enablePlaceholders = PagingConst.ENABLE_PLACEHOLDERS
+    )
+
+    @Provides
+    @Singleton
+    fun provideTodoRepository(
+        todoDao: TodoDao,
+        pagingConfig: PagingConfig
+    ): TodoRepository = TodoRepository(
+        dao = todoDao,
+        config = pagingConfig
+    )
 
     @Provides
     @Singleton

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
@@ -26,6 +25,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
@@ -59,6 +61,7 @@ fun TodoListScreen(
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current
+    val todos = viewmodel.todos.collectAsLazyPagingItems()
     val query by viewmodel.query.collectAsStateWithLifecycle()
     val updateLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -182,17 +185,25 @@ fun TodoListScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             items(
-                items = viewmodel.todos,
-                key = { it.id }
-            ) { todo ->
-                CardTodo(
-                    todo = todo,
-                    onClick = {
-                        navigator.navigate(TodoEditScreenDestination(it))
-                    },
-                    onCheckedChange = viewmodel::onTodoChecked,
-                    onDismiss = viewmodel::onTodoDelete
-                )
+                count = todos.itemCount,
+                key = todos.itemKey(
+                    key = { todo ->
+                        todo.id
+                    }
+                ),
+                contentType = todos.itemContentType()
+            ) { index ->
+                val todo = todos[index]
+                if (todo != null) {
+                    CardTodo(
+                        todo = todo,
+                        onClick = {
+                            navigator.navigate(TodoEditScreenDestination(it))
+                        },
+                        onCheckedChange = viewmodel::onTodoChecked,
+                        onDismiss = viewmodel::onTodoDelete
+                    )
+                }
             }
         }
         if (viewmodel.deleteCompletedShown) {
