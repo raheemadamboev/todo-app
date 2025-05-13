@@ -1,5 +1,9 @@
 package xyz.teamgravity.todo.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -11,7 +15,8 @@ import xyz.teamgravity.todo.data.mapper.toModel
 import xyz.teamgravity.todo.data.model.TodoModel
 
 class TodoRepository(
-    private val dao: TodoDao
+    private val dao: TodoDao,
+    private val config: PagingConfig
 ) {
 
     ///////////////////////////////////////////////////////////////////////////
@@ -64,12 +69,17 @@ class TodoRepository(
         query: String,
         hideCompleted: Boolean,
         sorting: TodoSort
-    ): Flow<List<TodoModel>> {
-        return dao.getTodos(
-            query = query,
-            hideCompleted = hideCompleted,
-            sorting = sorting
-        ).map { entities ->
+    ): Flow<PagingData<TodoModel>> {
+        return Pager(
+            config = config,
+            pagingSourceFactory = {
+                dao.getTodos(
+                    query = query,
+                    hideCompleted = hideCompleted,
+                    sorting = sorting
+                )
+            }
+        ).flow.map { entities ->
             entities.map { entity ->
                 entity.toModel()
             }

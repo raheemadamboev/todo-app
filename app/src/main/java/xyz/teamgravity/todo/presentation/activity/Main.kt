@@ -20,7 +20,7 @@ class Main : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val intent = intent
+        val intent = if (savedInstanceState == null) intent else null
         setContent {
             TodoTheme {
                 Navigation(intent)

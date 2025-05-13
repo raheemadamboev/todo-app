@@ -8,17 +8,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -43,9 +41,6 @@ class TodoListViewModel @Inject constructor(
 
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
-
-    var todos: ImmutableList<TodoModel> by mutableStateOf(persistentListOf())
-        private set
 
     var searchExpanded: Boolean by mutableStateOf(false)
         private set
@@ -77,6 +72,19 @@ class TodoListViewModel @Inject constructor(
     var deleteAllShown: Boolean by mutableStateOf(false)
         private set
 
+    val todos: Flow<PagingData<TodoModel>> =
+        combine(query, preferences.getSorting(), preferences.getHideCompleted()) { query, sorting, hideCompleted ->
+            Triple(query, sorting, hideCompleted)
+        }.flatMapLatest { (query, sorting, hideCompleted) ->
+            this@TodoListViewModel.hideCompleted = hideCompleted
+            this@TodoListViewModel.sorting = sorting
+            repository.getTodos(
+                query = query,
+                hideCompleted = hideCompleted,
+                sorting = sorting
+            ).cachedIn(viewModelScope)
+        }
+
     private val _event = Channel<TodoListEvent>()
     val event: Flow<TodoListEvent> = _event.receiveAsFlow()
 
@@ -90,7 +98,6 @@ class TodoListViewModel @Inject constructor(
     private fun observe() {
         observeReviewEvent()
         observeUpdateEvent()
-        observeQueryAndPreferences()
     }
 
     private fun monitor() {
@@ -134,24 +141,6 @@ class TodoListViewModel @Inject constructor(
         viewModelScope.launch {
             update.event.collect { event ->
                 handleUpdateEvent(event)
-            }
-        }
-    }
-
-    private fun observeQueryAndPreferences() {
-        viewModelScope.launch {
-            combine(query, preferences.getSorting(), preferences.getHideCompleted()) { query, sorting, hideCompleted ->
-                Triple(query, sorting, hideCompleted)
-            }.flatMapLatest { (query, sorting, hideCompleted) ->
-                this@TodoListViewModel.hideCompleted = hideCompleted
-                this@TodoListViewModel.sorting = sorting
-                repository.getTodos(
-                    query = query,
-                    hideCompleted = hideCompleted,
-                    sorting = sorting
-                )
-            }.collectLatest { todos ->
-                this@TodoListViewModel.todos = todos.toImmutableList()
             }
         }
     }
@@ -325,7 +314,7 @@ class TodoListViewModel @Inject constructor(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // MISC
+    // Misc
     ///////////////////////////////////////////////////////////////////////////
 
     enum class TodoListEvent {

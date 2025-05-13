@@ -1,12 +1,12 @@
 package xyz.teamgravity.todo.data.local.todo.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst.TABLE_TODO
 import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
@@ -42,14 +42,14 @@ interface TodoDao {
     suspend fun deleteAllTodo()
 
     ///////////////////////////////////////////////////////////////////////////
-    // GET
+    // Get
     ///////////////////////////////////////////////////////////////////////////
 
     fun getTodos(
         query: String,
         hideCompleted: Boolean,
         sorting: TodoSort
-    ): Flow<List<TodoEntity>> {
+    ): PagingSource<Int, TodoEntity> {
         return when (sorting) {
             TodoSort.Name -> getTodosSortedByName(
                 query = query,
@@ -67,11 +67,11 @@ interface TodoDao {
     fun getTodosSortedByName(
         query: String,
         hideCompleted: Boolean
-    ): Flow<List<TodoEntity>>
+    ): PagingSource<Int, TodoEntity>
 
     @Query("SELECT * FROM $TABLE_TODO WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
     fun getTodosSortedByDate(
         query: String,
         hideCompleted: Boolean
-    ): Flow<List<TodoEntity>>
+    ): PagingSource<Int, TodoEntity>
 }
