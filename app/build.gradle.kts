@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 14
-        versionName = "1.2.3"
+        versionCode = 15
+        versionName = "1.2.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
