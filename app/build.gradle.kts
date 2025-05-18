@@ -28,13 +28,19 @@ android {
 
         ndk {
             debugSymbolLevel = "FULL"
-            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86"))
+            abiFilters += setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86")
         }
 
         bundle {
             language {
                 enableSplit = false
             }
+        }
+
+        androidResources {
+            generateLocaleConfig = true
+            localeFilters.clear()
+            localeFilters += setOf("en", "ru", "uz")
         }
     }
 

@@ -22,6 +22,7 @@
     <string name="rate">Baholash</string>
     <string name="source_code">Dastur kodi</string>
     <string name="support">Yordam</string>
+    <string name="change_language">Tilni o\'zgartirish</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Yangi vazifa</string>

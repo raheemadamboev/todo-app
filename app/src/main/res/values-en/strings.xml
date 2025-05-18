@@ -21,6 +21,7 @@
     <string name="rate">Rate</string>
     <string name="source_code">Source code</string>
     <string name="support">Connect us</string>
+    <string name="change_language">Change language</string>
 
     <!-- TodoAdd -->
     <string name="new_task">New task</string>

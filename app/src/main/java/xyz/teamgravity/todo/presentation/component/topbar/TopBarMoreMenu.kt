@@ -8,6 +8,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
@@ -20,6 +21,7 @@ fun TopBarMoreMenu(
     onHideCompletedChange: () -> Unit,
     onDeleteCompletedClick: () -> Unit,
     onDeleteAllClick: () -> Unit,
+    onLanguageClick: () -> Unit,
     onSupportClick: () -> Unit,
     onShareClick: () -> Unit,
     onRateClick: () -> Unit,
@@ -85,6 +87,22 @@ fun TopBarMoreMenu(
                 )
             }
         )
+        if (BuildUtil.atLeastTiramisu()) {
+            DropdownMenuItem(
+                text = {
+                    TextPlain(
+                        id = R.string.change_language
+                    )
+                },
+                onClick = onLanguageClick,
+                leadingIcon = {
+                    TopBarIcon(
+                        icon = R.drawable.ic_language,
+                        contentDescription = R.string.change_language
+                    )
+                }
+            )
+        }
         DropdownMenuItem(
             text = {
                 TextPlain(

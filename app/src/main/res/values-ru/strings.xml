@@ -21,6 +21,7 @@
     <string name="rate">Оценить</string>
     <string name="source_code">Исходный код</string>
     <string name="support">Связаться с нами</string>
+    <string name="change_language">Изменить язык</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новая задача</string>
