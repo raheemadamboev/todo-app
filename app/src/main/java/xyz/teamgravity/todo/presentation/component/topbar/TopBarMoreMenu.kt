@@ -1,8 +1,8 @@
 package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.Done
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -28,7 +28,7 @@ fun TopBarMoreMenu(
 ) {
     TopBarIconButton(
         onClick = onExpand,
-        icon = Icons.Default.MoreVert,
+        icon = Icons.Rounded.MoreVert,
         contentDescription = R.string.cd_more_vertical
     )
     DropdownMenu(
@@ -45,7 +45,7 @@ fun TopBarMoreMenu(
             trailingIcon = {
                 if (hideCompleted) {
                     Icon(
-                        imageVector = Icons.Default.Done,
+                        imageVector = Icons.Rounded.Done,
                         contentDescription = stringResource(id = R.string.cd_hide_completed)
                     )
                 }

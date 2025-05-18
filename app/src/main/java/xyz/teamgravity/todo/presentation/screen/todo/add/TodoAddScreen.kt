@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -63,7 +63,7 @@ fun TodoAddScreen(
                 navigationIcon = {
                     TopBarIconButton(
                         onClick = navigator::navigateUp,
-                        icon = Icons.AutoMirrored.Filled.ArrowBack,
+                        icon = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = R.string.cd_back_button
                     )
                 }
@@ -72,7 +72,7 @@ fun TodoAddScreen(
         floatingActionButton = {
             TodoFloatingActionButton(
                 onClick = viewmodel::onSaveTodo,
-                icon = Icons.Default.Done,
+                icon = Icons.Rounded.Done,
                 contentDescription = R.string.cd_done_button
             )
         },
