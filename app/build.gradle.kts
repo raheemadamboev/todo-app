@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 14
-        versionName = "1.2.3"
+        versionCode = 15
+        versionName = "1.2.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -28,13 +28,19 @@ android {
 
         ndk {
             debugSymbolLevel = "FULL"
-            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86"))
+            abiFilters += setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86")
         }
 
         bundle {
             language {
                 enableSplit = false
             }
+        }
+
+        androidResources {
+            generateLocaleConfig = true
+            localeFilters.clear()
+            localeFilters += setOf("en", "ru", "uz")
         }
     }
 

@@ -1,13 +1,14 @@
 package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.Done
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
@@ -20,6 +21,7 @@ fun TopBarMoreMenu(
     onHideCompletedChange: () -> Unit,
     onDeleteCompletedClick: () -> Unit,
     onDeleteAllClick: () -> Unit,
+    onLanguageClick: () -> Unit,
     onSupportClick: () -> Unit,
     onShareClick: () -> Unit,
     onRateClick: () -> Unit,
@@ -28,7 +30,7 @@ fun TopBarMoreMenu(
 ) {
     TopBarIconButton(
         onClick = onExpand,
-        icon = Icons.Default.MoreVert,
+        icon = Icons.Rounded.MoreVert,
         contentDescription = R.string.cd_more_vertical
     )
     DropdownMenu(
@@ -45,7 +47,7 @@ fun TopBarMoreMenu(
             trailingIcon = {
                 if (hideCompleted) {
                     Icon(
-                        imageVector = Icons.Default.Done,
+                        imageVector = Icons.Rounded.Done,
                         contentDescription = stringResource(id = R.string.cd_hide_completed)
                     )
                 }
@@ -85,6 +87,22 @@ fun TopBarMoreMenu(
                 )
             }
         )
+        if (BuildUtil.atLeastTiramisu()) {
+            DropdownMenuItem(
+                text = {
+                    TextPlain(
+                        id = R.string.change_language
+                    )
+                },
+                onClick = onLanguageClick,
+                leadingIcon = {
+                    TopBarIcon(
+                        icon = R.drawable.ic_language,
+                        contentDescription = R.string.change_language
+                    )
+                }
+            )
+        }
         DropdownMenuItem(
             text = {
                 TextPlain(

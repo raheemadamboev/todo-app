@@ -2,8 +2,8 @@ package xyz.teamgravity.todo.presentation.component.topbar
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Sort
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.automirrored.rounded.Sort
+import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -26,7 +26,7 @@ fun TopBarSortMenu(
 ) {
     TopBarIconButton(
         onClick = onExpand,
-        icon = Icons.AutoMirrored.Filled.Sort,
+        icon = Icons.AutoMirrored.Rounded.Sort,
         contentDescription = R.string.cd_sort
     )
     DropdownMenu(
@@ -46,7 +46,7 @@ fun TopBarSortMenu(
                 trailingIcon = {
                     if (sorting == menu.sort) {
                         Icon(
-                            imageVector = Icons.Default.Done,
+                            imageVector = Icons.Rounded.Done,
                             contentDescription = stringResource(R.string.cd_selected_sort, stringResource(menu.title))
                         )
                     }

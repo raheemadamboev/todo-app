@@ -5,28 +5,29 @@
     <string name="predefined_todo_name">Будьте организованы и эффективны!</string>
 
     <!-- TodoList -->
-    <string name="tasks">Задания</string>
+    <string name="tasks">Задачи</string>
     <string name="deleted_successfully">Задача успешно удалена</string>
     <string name="undo">Отменить</string>
     <string name="search">Поиск…</string>
     <string name="sort_by_name">Сортировать по имени</string>
     <string name="sort_by_date">Сортировать по дате</string>
-    <string name="hide_completed">Скрыть завершено</string>
-    <string name="delete_all_completed">Удалить все завершено</string>
+    <string name="hide_completed">Скрыть выполненные</string>
+    <string name="delete_all_completed">Удалить все выполненные задачи</string>
     <string name="delete_all_tasks">Удалить все задачи</string>
     <string name="about_me">Обо мне</string>
     <string name="share">Поделиться</string>
-    <string name="share_app">Хотите повысить свою производительность? Попробуйте ToDo -> %1$s</string>
+    <string name="share_app">Хотите повысить свою продуктивность? Попробуйте ToDo -> %1$s</string>
     <string name="choose">Выберите</string>
-    <string name="rate">Оценивать</string>
+    <string name="rate">Оценить</string>
     <string name="source_code">Исходный код</string>
-    <string name="support">Подключите нас</string>
+    <string name="support">Связаться с нами</string>
+    <string name="change_language">Изменить язык</string>
 
     <!-- TodoAdd -->
-    <string name="new_task">Новое задание</string>
+    <string name="new_task">Новая задача</string>
     <string name="task_name">Название задачи</string>
     <string name="important_task">Важная задача</string>
-    <string name="error_name">Имя не может быть пустым</string>
+    <string name="error_name">Название не может быть пустым</string>
 
     <!-- TodoEdit -->
     <string name="edit_task">Редактировать задачу</string>
@@ -34,37 +35,37 @@
 
     <!-- TodoDialog -->
     <string name="confirm_deletion">Подтвердить удаление</string>
-    <string name="wanna_delete_completed">Вы хотите удалить все выполненные задачи?</string>
-    <string name="wanna_delete_all">Вы хотите удалить все задачи?</string>
+    <string name="wanna_delete_completed">Хотите ли вы удалить все выполненные задачи?</string>
+    <string name="wanna_delete_all">Хотите ли вы удалить все задачи?</string>
     <string name="no">Нет</string>
     <string name="yes">Да</string>
 
     <!-- Support -->
-    <string name="need_help">Нужна помощь</string>
-    <string name="connect_us">Подключите нас</string>
-    <string name="connect_us_body">Сообщите нам, если вы столкнулись с проблемой или у вас есть предложение по улучшению приложения. Мы заботимся о наших пользователях!</string>
+    <string name="need_help">Нужна помощь?</string>
+    <string name="connect_us">Связаться с нами</string>
+    <string name="connect_us_body">Сообщите нам, если у вас возникла проблема или есть предложения по улучшению приложения. Мы заботимся о наших пользователях!</string>
     <string name="via_telegram">через Telegram</string>
     <string name="via_email">через Email</string>
-    <string name="improvement">Улучшение для ToDo</string>
+    <string name="improvement">Предложения для ToDo</string>
 
     <!-- Content Descriptions -->
     <string name="cd_task_important">Важная задача</string>
-    <string name="cd_task_add">Добавить задание</string>
-    <string name="cd_back_button">Навигация назад</string>
-    <string name="cd_done_button">Сохранение задач</string>
+    <string name="cd_task_add">Добавить задачу</string>
+    <string name="cd_back_button">Назад</string>
+    <string name="cd_done_button">Сохранить задачу</string>
     <string name="cd_more_vertical">Дополнительные действия</string>
-    <string name="cd_app_icon">Значок приложения</string>
+    <string name="cd_app_icon">Иконка приложения</string>
     <string name="cd_company_logo">Логотип компании</string>
     <string name="cd_sort">Сортировать задачи</string>
-    <string name="cd_selected_sort">Задачи сортируются по %1$s</string>
+    <string name="cd_selected_sort">Задачи отсортированы по %1$s</string>
     <string name="cd_search_button">Поиск задач</string>
-    <string name="cd_hide_completed">Скрыть завершено</string>
+    <string name="cd_hide_completed">Скрыть выполненные задачи</string>
     <string name="cd_user_support">Поддержка пользователей</string>
-    <string name="cd_via_telegram">Подключайтесь к нам через Telegram</string>
-    <string name="cd_via_email">Подключайтесь к нам через Email</string>
+    <string name="cd_via_telegram">Связаться через Telegram</string>
+    <string name="cd_via_email">Связаться через Email</string>
 
     <!-- Shortcut -->
     <string name="shortcut_add_todo_short_label">Добавить задачу</string>
-    <string name="shortcut_add_todo_long_label">Быстро добавьте задачу, нажав на действие</string>
-    <string name="shortcut_add_todo_disabled_message">Быстрое добавление задач на данный момент отключено</string>
+    <string name="shortcut_add_todo_long_label">Быстро добавить задачу, нажав на действие</string>
+    <string name="shortcut_add_todo_disabled_message">Быстрое добавление сейчас недоступно</string>
 </resources>

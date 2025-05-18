@@ -17,11 +17,12 @@
     <string name="delete_all_tasks">Hammasini o\'chirish</string>
     <string name="about_me">Dastur haqida</string>
     <string name="share">Ulashish</string>
-    <string name="share_app">Unumdorlikingizni oshirishni xohlaysizmi? Unda ToDo dan foydalanib ko\'ring -> %1$s</string>
+    <string name="share_app">Samaradorligingizni oshirishni xohlaysizmi? Unda ToDo dan foydalanib ko\'ring -> %1$s</string>
     <string name="choose">Tanlang</string>
-    <string name="rate">Baho berish</string>
-    <string name="source_code">Manba kodi</string>
+    <string name="rate">Baholash</string>
+    <string name="source_code">Dastur kodi</string>
     <string name="support">Yordam</string>
+    <string name="change_language">Tilni o\'zgartirish</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Yangi vazifa</string>
@@ -30,7 +31,7 @@
     <string name="error_name">Nomni to\'ldirish majburiy</string>
 
     <!-- TodoEdit -->
-    <string name="edit_task">Vazifani o\'zgartirish</string>
+    <string name="edit_task">Vazifani tahrirlash</string>
     <string name="your_created_timestamp">Yaratilgan: %1$s</string>
 
     <!-- TodoDialog -->
@@ -46,11 +47,11 @@
     <string name="connect_us_body">Taklifingizni yoki qanday muammoga duch kelayotganingizni bizga xabar bering. Biz foydalanuvchilarimiz haqida qayg\'uramiz!</string>
     <string name="via_telegram">Telegram orqali</string>
     <string name="via_email">Email orqali</string>
-    <string name="improvement">ToDo uchun fikr</string>
+    <string name="improvement">ToDo uchun takliflar</string>
 
     <!-- Content Descriptions -->
     <string name="cd_task_important">Muhim vazifa</string>
-    <string name="cd_task_add">Vazifa yaratish</string>
+    <string name="cd_task_add">Vazifa qo\'shish</string>
     <string name="cd_back_button">Orqaga qaytish</string>
     <string name="cd_done_button">Vazifani saqlash</string>
     <string name="cd_more_vertical">Ko\'proq amallar</string>
@@ -67,5 +68,5 @@
     <!-- Shortcut -->
     <string name="shortcut_add_todo_short_label">Vazifa qo\'shish</string>
     <string name="shortcut_add_todo_long_label">Tugmani bosish orqali darhol vazifa qo\'shing</string>
-    <string name="shortcut_add_todo_disabled_message">Vazifalarni darhol qo\'shish hozirda mavjud emas</string>
+    <string name="shortcut_add_todo_disabled_message">Tez qo‘shish hozirda o‘chirib qo‘yilgan</string>
 </resources>

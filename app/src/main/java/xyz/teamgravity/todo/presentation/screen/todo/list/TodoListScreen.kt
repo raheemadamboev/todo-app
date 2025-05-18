@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
@@ -34,7 +34,9 @@ import com.ramcosta.composedestinations.generated.destinations.SupportScreenDest
 import com.ramcosta.composedestinations.generated.destinations.TodoAddScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.TodoEditScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
+import xyz.teamgravity.coresdkandroid.settings.navigateAppLocaleSettings
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.coresdkcompose.review.DialogReview
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
@@ -117,7 +119,7 @@ fun TodoListScreen(
                     if (!viewmodel.searchExpanded) {
                         TopBarIconButton(
                             onClick = viewmodel::onSearchExpanded,
-                            icon = Icons.Default.Search,
+                            icon = Icons.Rounded.Search,
                             contentDescription = R.string.cd_search_button
                         )
                     }
@@ -136,6 +138,10 @@ fun TodoListScreen(
                         onHideCompletedChange = viewmodel::onHideCompletedChange,
                         onDeleteCompletedClick = viewmodel::onDeleteCompletedShow,
                         onDeleteAllClick = viewmodel::onDeleteAllShow,
+                        onLanguageClick = {
+                            if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
+                            viewmodel.onMenuCollapsed()
+                        },
                         onSupportClick = {
                             navigator.navigate(SupportScreenDestination)
                             viewmodel.onMenuCollapsed()
@@ -165,7 +171,7 @@ fun TodoListScreen(
                 onClick = {
                     navigator.navigate(TodoAddScreenDestination)
                 },
-                icon = Icons.Default.Add,
+                icon = Icons.Rounded.Add,
                 contentDescription = R.string.cd_task_add
             )
         },
