@@ -3,7 +3,7 @@
     <string name="raheem" translatable="false">Raheem</string>
 
     <!-- TodoCallback -->
-    <string name="predefined_todo_name">Be organized and efficient!</string>
+    <string name="predefined_todo_name">Stay organized and efficient!</string>
 
     <!-- TodoList -->
     <string name="tasks">Tasks</string>
@@ -13,11 +13,11 @@
     <string name="sort_by_name">Sort by name</string>
     <string name="sort_by_date">Sort by date</string>
     <string name="hide_completed">Hide completed</string>
-    <string name="delete_all_completed">Delete all completed</string>
+    <string name="delete_all_completed">Delete all completed tasks</string>
     <string name="delete_all_tasks">Delete all tasks</string>
     <string name="about_me">About me</string>
     <string name="share">Share</string>
-    <string name="share_app">Do you want to increase your productivity? Try ToDo ->  %1$s</string>
+    <string name="share_app">Want to boost your productivity? Try ToDo -> %1$s</string>
     <string name="choose">Choose</string>
     <string name="rate">Rate</string>
     <string name="source_code">Source code</string>
@@ -31,7 +31,7 @@
 
     <!-- TodoEdit -->
     <string name="edit_task">Edit task</string>
-    <string name="your_created_timestamp">Created: %1$s</string>
+    <string name="your_created_timestamp">Created on: %1$s</string>
 
     <!-- TodoDialog -->
     <string name="confirm_deletion">Confirm deletion</string>
@@ -41,31 +41,31 @@
     <string name="yes">Yes</string>
 
     <!-- Support -->
-    <string name="need_help">Need help</string>
+    <string name="need_help">Need help?</string>
     <string name="connect_us">Connect us</string>
-    <string name="connect_us_body">Let us know if you face a problem or you have a suggestion to improve the application. We care about our users!</string>
+    <string name="connect_us_body">Let us know if you\'re facing a problem or have suggestions to improve the app. We care about our users!</string>
     <string name="via_telegram">via Telegram</string>
     <string name="via_email">via Email</string>
-    <string name="improvement">Improvement for ToDo</string>
+    <string name="improvement">Suggestions for ToDo</string>
 
     <!-- Content Descriptions -->
     <string name="cd_task_important">Important task</string>
     <string name="cd_task_add">Add task</string>
-    <string name="cd_back_button">Navigate back</string>
-    <string name="cd_done_button">Save ToDo</string>
+    <string name="cd_back_button">Go back</string>
+    <string name="cd_done_button">Save task</string>
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_app_icon">App icon</string>
     <string name="cd_company_logo">Company logo</string>
-    <string name="cd_sort">Sort ToDos</string>
-    <string name="cd_selected_sort">ToDos are sorted by %1$s</string>
-    <string name="cd_search_button">Search ToDos</string>
-    <string name="cd_hide_completed">Hide completed</string>
+    <string name="cd_sort">Sort tasks</string>
+    <string name="cd_selected_sort">Tasks are sorted by %1$s</string>
+    <string name="cd_search_button">Search tasks</string>
+    <string name="cd_hide_completed">Hide completed tasks</string>
     <string name="cd_user_support">User support</string>
     <string name="cd_via_telegram">Connect us via Telegram</string>
     <string name="cd_via_email">Connect us via Email</string>
 
     <!-- Shortcut -->
     <string name="shortcut_add_todo_short_label">Add ToDo</string>
-    <string name="shortcut_add_todo_long_label">Add ToDo quickly by pressing the action</string>
-    <string name="shortcut_add_todo_disabled_message">Adding ToDo quickly is disabled at the moment</string>
+    <string name="shortcut_add_todo_long_label">Quickly add ToDo by pressing this action</string>
+    <string name="shortcut_add_todo_disabled_message">Quick add is currently disabled</string>
 </resources>

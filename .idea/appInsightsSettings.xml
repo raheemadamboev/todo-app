@@ -22,8 +22,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="xyz.teamgravity.todo.debug" />
-                  <option name="mobileSdkAppId" value="1:995867002109:android:83208abeea99e83d626a94" />
+                  <option name="appId" value="xyz.teamgravity.todo" />
+                  <option name="mobileSdkAppId" value="1:995867002109:android:95a3b0c48d87251d626a94" />
                   <option name="projectId" value="todo-10993" />
                   <option name="projectNumber" value="995867002109" />
                 </ConnectionSetting>
