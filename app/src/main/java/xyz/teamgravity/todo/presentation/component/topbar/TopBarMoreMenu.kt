@@ -4,13 +4,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
+import xyz.teamgravity.coresdkcompose.image.IconPlain
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.todo.R
-import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarMoreMenu(
@@ -19,7 +18,9 @@ fun TopBarMoreMenu(
     onDismiss: () -> Unit,
     hideCompleted: Boolean,
     onHideCompletedChange: () -> Unit,
+    deleteCompletedEnabled: Boolean,
     onDeleteCompletedClick: () -> Unit,
+    deleteAllEnabled: Boolean,
     onDeleteAllClick: () -> Unit,
     onLanguageClick: () -> Unit,
     onSupportClick: () -> Unit,
@@ -28,7 +29,7 @@ fun TopBarMoreMenu(
     onSourceCodeClick: () -> Unit,
     onAboutClick: () -> Unit
 ) {
-    TopBarIconButton(
+    IconButtonPlain(
         onClick = onExpand,
         icon = Icons.Rounded.MoreVert,
         contentDescription = R.string.cd_more_vertical
@@ -37,141 +38,71 @@ fun TopBarMoreMenu(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.hide_completed
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onHideCompletedChange,
+            icon = R.drawable.ic_hide,
+            label = R.string.hide_completed,
             trailingIcon = {
                 if (hideCompleted) {
-                    Icon(
-                        imageVector = Icons.Rounded.Done,
-                        contentDescription = stringResource(id = R.string.cd_hide_completed)
+                    IconPlain(
+                        icon = Icons.Rounded.Done,
+                        contentDescription = R.string.cd_hide_completed
                     )
                 }
-            },
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_hide,
-                    contentDescription = R.string.hide_completed
-                )
             }
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.delete_all_completed
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onDeleteCompletedClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_delete,
-                    contentDescription = R.string.delete_all_completed
-                )
-            }
+            icon = R.drawable.ic_delete,
+            label = R.string.delete_all_completed,
+            enabled = deleteCompletedEnabled
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.delete_all_tasks
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onDeleteAllClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_delete,
-                    contentDescription = R.string.delete_all_tasks
-                )
-            }
+            icon = R.drawable.ic_delete,
+            label = R.string.delete_all_tasks,
+            enabled = deleteAllEnabled
         )
         if (BuildUtil.atLeastTiramisu()) {
-            DropdownMenuItem(
-                text = {
-                    TextPlain(
-                        id = R.string.change_language
-                    )
-                },
+            GDropdownMenuItem(
+                onDismiss = onDismiss,
                 onClick = onLanguageClick,
-                leadingIcon = {
-                    TopBarIcon(
-                        icon = R.drawable.ic_language,
-                        contentDescription = R.string.change_language
-                    )
-                }
+                icon = R.drawable.ic_language,
+                label = R.string.change_language
             )
         }
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.support
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onSupportClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_customer_service,
-                    contentDescription = R.string.support
-                )
-            }
+            icon = R.drawable.ic_customer_service,
+            label = R.string.support
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.share
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onShareClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_share,
-                    contentDescription = R.string.share
-                )
-            }
+            icon = R.drawable.ic_share,
+            label = R.string.share
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.rate
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onRateClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_star,
-                    contentDescription = R.string.rate
-                )
-            }
+            icon = R.drawable.ic_star,
+            label = R.string.rate
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.source_code
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onSourceCodeClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_github,
-                    contentDescription = R.string.source_code,
-                )
-            }
+            icon = R.drawable.ic_github,
+            label = R.string.source_code
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.about_me
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onAboutClick,
-            leadingIcon = {
-                TopBarIcon(
-                    icon = R.drawable.ic_info,
-                    contentDescription = R.string.about_me
-                )
-            }
+            icon = R.drawable.ic_info,
+            label = R.string.about_me
         )
     }
 }

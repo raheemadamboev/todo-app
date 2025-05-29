@@ -15,11 +15,13 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.review.ReviewManager
@@ -71,6 +73,18 @@ class TodoListViewModel @Inject constructor(
 
     var deleteAllShown: Boolean by mutableStateOf(false)
         private set
+
+    val deleteCompletedEnabled: StateFlow<Boolean> = repository.isCompletedTodoExists().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = false
+    )
+
+    val deleteAllEnabled: StateFlow<Boolean> = repository.isTodoExists().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = false
+    )
 
     val todos: Flow<PagingData<TodoModel>> =
         combine(query, preferences.getSorting(), preferences.getHideCompleted()) { query, sorting, hideCompleted ->

@@ -85,4 +85,16 @@ class TodoRepository(
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Misc
+    ///////////////////////////////////////////////////////////////////////////
+
+    fun isTodoExists(): Flow<Boolean> {
+        return dao.isTodoExists()
+    }
+
+    fun isCompletedTodoExists(): Flow<Boolean> {
+        return dao.isCompletedTodoExists()
+    }
 }
