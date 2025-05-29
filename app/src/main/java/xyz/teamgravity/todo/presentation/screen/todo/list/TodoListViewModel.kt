@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +24,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
@@ -226,7 +228,7 @@ class TodoListViewModel @Inject constructor(
         todo: TodoModel,
         checked: Boolean
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             repository.updateTodo(
                 todo.copy(
                     completed = checked
@@ -238,13 +240,15 @@ class TodoListViewModel @Inject constructor(
     fun onTodoDelete(todo: TodoModel) {
         viewModelScope.launch {
             deletedTodo = todo
-            repository.deleteTodo(todo)
+            withContext(NonCancellable) {
+                repository.deleteTodo(todo)
+            }
             _event.send(TodoListEvent.TodoDeleted)
         }
     }
 
     fun onUndoDeletedTodo() {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             deletedTodo?.let { todo ->
                 repository.insertTodo(
                     todo.copy(id = 0)
@@ -282,22 +286,19 @@ class TodoListViewModel @Inject constructor(
     }
 
     fun onSort(sort: TodoSort) {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             preferences.upsertSorting(sort)
-            onSortCollapsed()
         }
     }
 
     fun onHideCompletedChange() {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             preferences.upsertHideCompleted(!hideCompleted)
-            onMenuCollapsed()
         }
     }
 
     fun onDeleteCompletedShow() {
         deleteCompletedShown = true
-        onMenuCollapsed()
     }
 
     fun onDeleteCompletedDismiss() {
@@ -306,14 +307,15 @@ class TodoListViewModel @Inject constructor(
 
     fun onDeleteCompleted() {
         viewModelScope.launch {
-            repository.deleteAllCompletedTodo()
+            withContext(NonCancellable) {
+                repository.deleteAllCompletedTodo()
+            }
             onDeleteCompletedDismiss()
         }
     }
 
     fun onDeleteAllShow() {
         deleteAllShown = true
-        onMenuCollapsed()
     }
 
     fun onDeleteAllDismiss() {
@@ -322,7 +324,9 @@ class TodoListViewModel @Inject constructor(
 
     fun onDeleteAll() {
         viewModelScope.launch {
-            repository.deleteAllTodo()
+            withContext(NonCancellable) {
+                repository.deleteAllTodo()
+            }
             onDeleteAllDismiss()
         }
     }

@@ -5,15 +5,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Sort
 import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.constant.TodoSort
-import xyz.teamgravity.todo.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarSortMenu(
@@ -24,7 +24,7 @@ fun TopBarSortMenu(
     onSort: (sort: TodoSort) -> Unit,
     menus: ImmutableList<SortMenu> = SORT_MENUS
 ) {
-    TopBarIconButton(
+    IconButtonPlain(
         onClick = onExpand,
         icon = Icons.AutoMirrored.Rounded.Sort,
         contentDescription = R.string.cd_sort
@@ -34,15 +34,12 @@ fun TopBarSortMenu(
         onDismissRequest = onDismiss
     ) {
         menus.forEach { menu ->
-            DropdownMenuItem(
+            GDropdownMenuItem(
+                onDismiss = onDismiss,
                 onClick = {
                     onSort(menu.sort)
                 },
-                text = {
-                    TextPlain(
-                        id = menu.title
-                    )
-                },
+                label = menu.title,
                 trailingIcon = {
                     if (sorting == menu.sort) {
                         Icon(

@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.theme.backgroundDialogButton
 
@@ -20,13 +21,13 @@ fun TodoAlertDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(
-                text = stringResource(id = title)
+            TextPlain(
+                id = title
             )
         },
         text = {
-            Text(
-                text = stringResource(id = message)
+            TextPlain(
+                id = message
             )
         },
         dismissButton = {

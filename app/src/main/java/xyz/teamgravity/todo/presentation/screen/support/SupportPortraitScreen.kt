@@ -32,10 +32,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.card.CardConnection
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.theme.White
 
 @Composable
@@ -60,7 +60,7 @@ fun SupportPortraitScreen(
                         .fillMaxWidth()
                         .padding(12.dp)
                 ) {
-                    TopBarIconButton(
+                    IconButtonPlain(
                         onClick = onBackButtonClick,
                         icon = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = R.string.cd_back_button,

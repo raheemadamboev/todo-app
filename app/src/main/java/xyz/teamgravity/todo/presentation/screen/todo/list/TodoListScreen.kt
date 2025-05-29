@@ -147,27 +147,21 @@ fun TodoListScreen(
                         onDeleteAllClick = viewmodel::onDeleteAllShow,
                         onLanguageClick = {
                             if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
-                            viewmodel.onMenuCollapsed()
                         },
                         onSupportClick = {
                             navigator.navigate(SupportScreenDestination)
-                            viewmodel.onMenuCollapsed()
                         },
                         onShareClick = {
                             Helper.shareApp(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onRateClick = {
                             ConnectUtil.viewAppPlayStorePage(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onSourceCodeClick = {
                             Helper.viewSourceCode(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onAboutClick = {
                             navigator.navigate(AboutScreenDestination)
-                            viewmodel.onMenuCollapsed()
                         }
                     )
                 }
