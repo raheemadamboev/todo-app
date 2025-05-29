@@ -22,6 +22,7 @@
     <string name="source_code">Исходный код</string>
     <string name="support">Связаться с нами</string>
     <string name="change_language">Изменить язык</string>
+    <string name="empty_tasks_message">Задачи, которые вы добавите, появятся здесь</string>
 
     <!-- TodoAdd -->
     <string name="new_task">Новая задача</string>
@@ -31,7 +32,7 @@
 
     <!-- TodoEdit -->
     <string name="edit_task">Редактировать задачу</string>
-    <string name="your_created_timestamp">Создано: %1$s</string>
+    <string name="x_created_timestamp">Создано: %1$s</string>
 
     <!-- TodoDialog -->
     <string name="confirm_deletion">Подтвердить удаление</string>

@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.todo.R
 
 @Composable
@@ -25,7 +26,7 @@ fun TopBarSearch(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        TopBarIconButton(
+        IconButtonPlain(
             onClick = onCancel,
             icon = Icons.AutoMirrored.Rounded.ArrowBack,
             contentDescription = R.string.cd_back_button

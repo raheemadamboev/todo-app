@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen.todo.edit
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -25,14 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.data.model.TodoModel
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
-import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 
 @Destination<MainNavGraph>(navArgs = TodoEditScreenArgs::class)
@@ -43,6 +44,7 @@ fun TodoEditScreen(
     viewmodel: TodoEditViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     ObserveEvent(
         flow = viewmodel.event,
@@ -68,8 +70,10 @@ fun TodoEditScreen(
                     )
                 },
                 navigationIcon = {
-                    TopBarIconButton(
-                        onClick = navigator::navigateUp,
+                    IconButtonPlain(
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateUp()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = R.string.cd_back_button
                     )
@@ -109,7 +113,7 @@ fun TodoEditScreen(
                 modifier = Modifier.height(10.dp)
             )
             Text(
-                text = stringResource(id = R.string.your_created_timestamp, viewmodel.timestamp),
+                text = stringResource(id = R.string.x_created_timestamp, viewmodel.timestamp),
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(horizontal = 12.dp)
             )

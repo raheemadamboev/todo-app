@@ -23,6 +23,7 @@
     <string name="source_code">Source code</string>
     <string name="support">Connect us</string>
     <string name="change_language">Change language</string>
+    <string name="empty_tasks_message">Tasks you add appear here</string>
 
     <!-- TodoAdd -->
     <string name="new_task">New task</string>
@@ -32,7 +33,7 @@
 
     <!-- TodoEdit -->
     <string name="edit_task">Edit task</string>
-    <string name="your_created_timestamp">Created on: %1$s</string>
+    <string name="x_created_timestamp">Created on: %1$s</string>
 
     <!-- TodoDialog -->
     <string name="confirm_deletion">Confirm deletion</string>

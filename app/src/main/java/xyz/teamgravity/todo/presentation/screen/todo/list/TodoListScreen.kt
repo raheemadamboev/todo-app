@@ -37,8 +37,12 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkandroid.settings.navigateAppLocaleSettings
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.paging.shouldShowEmptyState
 import xyz.teamgravity.coresdkcompose.review.DialogReview
+import xyz.teamgravity.coresdkcompose.text.TextImageInfo
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.todo.R
@@ -46,9 +50,7 @@ import xyz.teamgravity.todo.core.util.Helper
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.card.CardTodo
 import xyz.teamgravity.todo.presentation.component.dialog.TodoAlertDialog
-import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarMoreMenu
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSearch
 import xyz.teamgravity.todo.presentation.component.topbar.TopBarSortMenu
@@ -64,6 +66,9 @@ fun TodoListScreen(
     val context = LocalContext.current
     val activity = LocalActivity.current
     val todos = viewmodel.todos.collectAsLazyPagingItems()
+    val shouldShowEmptyState by todos.shouldShowEmptyState()
+    val deleteCompletedEnabled by viewmodel.deleteCompletedEnabled.collectAsStateWithLifecycle()
+    val deleteAllEnabled by viewmodel.deleteAllEnabled.collectAsStateWithLifecycle()
     val query by viewmodel.query.collectAsStateWithLifecycle()
     val updateLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -117,7 +122,7 @@ fun TodoListScreen(
                 },
                 actions = {
                     if (!viewmodel.searchExpanded) {
-                        TopBarIconButton(
+                        IconButtonPlain(
                             onClick = viewmodel::onSearchExpanded,
                             icon = Icons.Rounded.Search,
                             contentDescription = R.string.cd_search_button
@@ -136,31 +141,27 @@ fun TodoListScreen(
                         onDismiss = viewmodel::onMenuCollapsed,
                         hideCompleted = viewmodel.hideCompleted,
                         onHideCompletedChange = viewmodel::onHideCompletedChange,
+                        deleteCompletedEnabled = deleteCompletedEnabled,
                         onDeleteCompletedClick = viewmodel::onDeleteCompletedShow,
+                        deleteAllEnabled = deleteAllEnabled,
                         onDeleteAllClick = viewmodel::onDeleteAllShow,
                         onLanguageClick = {
                             if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
-                            viewmodel.onMenuCollapsed()
                         },
                         onSupportClick = {
                             navigator.navigate(SupportScreenDestination)
-                            viewmodel.onMenuCollapsed()
                         },
                         onShareClick = {
                             Helper.shareApp(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onRateClick = {
                             ConnectUtil.viewAppPlayStorePage(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onSourceCodeClick = {
                             Helper.viewSourceCode(context)
-                            viewmodel.onMenuCollapsed()
                         },
                         onAboutClick = {
                             navigator.navigate(AboutScreenDestination)
-                            viewmodel.onMenuCollapsed()
                         }
                     )
                 }
@@ -211,6 +212,12 @@ fun TodoListScreen(
                     )
                 }
             }
+        }
+        if (shouldShowEmptyState) {
+            TextImageInfo(
+                icon = R.drawable.ic_task,
+                message = R.string.empty_tasks_message
+            )
         }
         if (viewmodel.deleteCompletedShown) {
             TodoAlertDialog(

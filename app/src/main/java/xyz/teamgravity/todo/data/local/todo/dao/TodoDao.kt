@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 import xyz.teamgravity.todo.core.constant.TodoSort
 import xyz.teamgravity.todo.data.local.todo.constant.TodoDatabaseConst.TABLE_TODO
 import xyz.teamgravity.todo.data.local.todo.entity.TodoEntity
@@ -35,7 +36,7 @@ interface TodoDao {
     @Delete
     suspend fun deleteTodo(todo: TodoEntity)
 
-    @Query("DELETE FROM $TABLE_TODO WHERE completed = 1")
+    @Query("DELETE FROM $TABLE_TODO WHERE `completed` = 1")
     suspend fun deleteAllCompletedTodo()
 
     @Query("DELETE FROM $TABLE_TODO")
@@ -63,15 +64,25 @@ interface TodoDao {
         }
     }
 
-    @Query("SELECT * FROM $TABLE_TODO WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, name ASC")
+    @Query("SELECT * FROM $TABLE_TODO WHERE (`completed` != :hideCompleted OR `completed` = 0) AND `name` LIKE '%' || :query || '%' ORDER BY `important` DESC, `name` ASC")
     fun getTodosSortedByName(
         query: String,
         hideCompleted: Boolean
     ): PagingSource<Int, TodoEntity>
 
-    @Query("SELECT * FROM $TABLE_TODO WHERE (completed != :hideCompleted OR completed = 0) AND name LIKE '%' || :query || '%' ORDER BY important DESC, timestamp ASC")
+    @Query("SELECT * FROM $TABLE_TODO WHERE (`completed` != :hideCompleted OR `completed` = 0) AND `name` LIKE '%' || :query || '%' ORDER BY `important` DESC, `timestamp` ASC")
     fun getTodosSortedByDate(
         query: String,
         hideCompleted: Boolean
     ): PagingSource<Int, TodoEntity>
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Misc
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Query("SELECT EXISTS (SELECT 1 FROM $TABLE_TODO)")
+    fun isTodoExists(): Flow<Boolean>
+
+    @Query("SELECT EXISTS (SELECT 1 FROM $TABLE_TODO WHERE `completed` = 1)")
+    fun isCompletedTodoExists(): Flow<Boolean>
 }
