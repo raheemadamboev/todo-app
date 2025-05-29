@@ -1,5 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen.todo.add
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,13 +20,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.todo.R
 import xyz.teamgravity.todo.presentation.component.button.TodoFloatingActionButton
 import xyz.teamgravity.todo.presentation.component.misc.TodoConfigure
-import xyz.teamgravity.todo.presentation.component.text.TextPlain
 import xyz.teamgravity.todo.presentation.component.topbar.TopBar
-import xyz.teamgravity.todo.presentation.component.topbar.TopBarIconButton
 import xyz.teamgravity.todo.presentation.navigation.MainNavGraph
 
 @Destination<MainNavGraph>
@@ -36,6 +37,7 @@ fun TodoAddScreen(
     viewmodel: TodoAddViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     ObserveEvent(
         flow = viewmodel.event,
@@ -61,8 +63,10 @@ fun TodoAddScreen(
                     )
                 },
                 navigationIcon = {
-                    TopBarIconButton(
-                        onClick = navigator::navigateUp,
+                    IconButtonPlain(
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateUp()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBack,
                         contentDescription = R.string.cd_back_button
                     )
