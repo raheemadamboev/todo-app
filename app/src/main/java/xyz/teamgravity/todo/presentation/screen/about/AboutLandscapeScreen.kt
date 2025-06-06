@@ -1,7 +1,6 @@
 package xyz.teamgravity.todo.presentation.screen.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,15 +21,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.todo.BuildConfig
@@ -41,8 +37,6 @@ import xyz.teamgravity.todo.presentation.component.topbar.TopBar
 fun AboutLandscapeScreen(
     onBackButtonClick: () -> Unit
 ) {
-    val context = LocalContext.current
-
     Scaffold(
         topBar = {
             TopBar(
@@ -95,10 +89,7 @@ fun AboutLandscapeScreen(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier
-                        .clip(MaterialTheme.shapes.extraLarge)
-                        .clickable { ConnectUtil.viewGravityPlayStorePage(context) }
-                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.gravity),
