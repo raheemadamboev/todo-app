@@ -66,7 +66,7 @@ fun TopBarMoreMenu(
             label = R.string.delete_all_tasks,
             enabled = deleteAllEnabled
         )
-        if (BuildUtil.atLeastTiramisu()) {
+        if (BuildUtil.atLeast33()) {
             GDropdownMenuItem(
                 onDismiss = onDismiss,
                 onClick = onLanguageClick,
