@@ -146,7 +146,7 @@ fun TodoListScreen(
                         deleteAllEnabled = deleteAllEnabled,
                         onDeleteAllClick = viewmodel::onDeleteAllShow,
                         onLanguageClick = {
-                            if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
+                            if (BuildUtil.atLeast33()) context.navigateAppLocaleSettings()
                         },
                         onSupportClick = {
                             navigator.navigate(SupportScreenDestination)
