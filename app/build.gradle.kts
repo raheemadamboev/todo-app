@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 17
-        versionName = "1.2.6"
+        versionCode = 18
+        versionName = "1.2.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -145,7 +145,7 @@ dependencies {
     // timber
     implementation(libs.timber)
 
-    // gravity core
+    // gravity
     implementation(libs.gravity.core)
     implementation(libs.gravity.core.compose)
 }
