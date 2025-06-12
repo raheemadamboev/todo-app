@@ -16,11 +16,11 @@ room = "2.7.1"
 destinations = "2.2.0"
 timber = "5.0.1"
 gravity-core = "1.0.24"
-gravity-core-compose = "1.0.22"
+gravity-core-compose = "1.0.24"
 
 android = "8.10.1"
 kotlin = "2.1.21"
-ksp = "2.1.21-2.0.1"
+ksp = "2.1.21-2.0.2"
 gms = "4.4.2"
 crashlytics = "3.0.4"
 
