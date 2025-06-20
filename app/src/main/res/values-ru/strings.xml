@@ -45,8 +45,8 @@
     <string name="need_help">Нужна помощь?</string>
     <string name="connect_us">Связаться с нами</string>
     <string name="connect_us_body">Сообщите нам, если у вас возникла проблема или есть предложения по улучшению приложения. Мы заботимся о наших пользователях!</string>
-    <string name="via_telegram">через Telegram</string>
-    <string name="via_email">через Email</string>
+    <string name="via_telegram">через Телеграм</string>
+    <string name="via_email">через Эл. почту</string>
     <string name="improvement">Предложения для ToDo</string>
 
     <!-- Content Descriptions -->
