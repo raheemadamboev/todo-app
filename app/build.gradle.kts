@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.todo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 18
-        versionName = "1.2.7"
+        versionCode = 19
+        versionName = "1.2.8"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -114,6 +114,9 @@ dependencies {
 
     // splash
     implementation(libs.splash)
+
+    // shortcut
+    implementation(libs.shortcut)
 
     // collections
     implementation(libs.collections)

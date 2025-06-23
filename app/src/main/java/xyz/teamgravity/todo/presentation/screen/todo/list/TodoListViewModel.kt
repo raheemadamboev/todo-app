@@ -108,16 +108,11 @@ class TodoListViewModel @Inject constructor(
 
     init {
         observe()
-        monitor()
     }
 
     private fun observe() {
         observeReviewEvent()
         observeUpdateEvent()
-    }
-
-    private fun monitor() {
-        review.monitor()
     }
 
     private suspend fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
