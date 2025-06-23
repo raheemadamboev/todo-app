@@ -115,6 +115,9 @@ dependencies {
     // splash
     implementation(libs.splash)
 
+    // shortcut
+    implementation(libs.shortcut)
+
     // collections
     implementation(libs.collections)
 
