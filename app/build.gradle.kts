@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
@@ -60,12 +62,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvm.target.get()
-        freeCompilerArgs += listOf(
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-        )
+    kotlin {
+        target {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_17)
+                freeCompilerArgs.addAll(
+                    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                    "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+                )
+            }
+        }
     }
 
     buildFeatures {
